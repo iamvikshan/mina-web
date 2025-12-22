@@ -38,13 +38,18 @@ export function SidebarContent() {
 
         return config.guild.filter(guild) && contains;
       }),
-    [guilds.data, filter]
+    [guilds.data, filter],
   );
 
   return (
     <>
       <VStack align="center" py="2rem" m={3} bg="Brand" rounded="xl">
-        <Heading size="lg" fontWeight={600} color="white">
+        <Heading
+          fontSize={{ base: '2xl', sm: '3xl' }}
+          lineHeight={{ base: 1.33, sm: 1.2 }}
+          fontWeight={600}
+          color="white"
+        >
           {config.name}
         </Heading>
       </VStack>
@@ -93,7 +98,7 @@ export function BottomCard() {
         </Avatar.Root>
         <Text fontWeight="600">{user.username}</Text>
         <Spacer />
-        <IconButton asChild aria-label="settings">
+        <IconButton asChild aria-label="settings" size="sm" rounded="full" variant="ghost">
           <Link href="/user/profile">
             <SettingsIcon />
           </Link>

@@ -12,7 +12,7 @@ export const TextAreaForm = forwardRef<HTMLTextAreaElement, TextAreaFormProps>(
         <Textarea {...input} ref={ref} />
       </FormCard>
     );
-  }
-); 
+  },
+);
 
 TextAreaForm.displayName = 'Textarea';

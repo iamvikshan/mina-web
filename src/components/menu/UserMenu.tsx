@@ -1,11 +1,4 @@
-import {
-  Avatar,
-  Box,
-  Flex,
-  Menu,
-  Portal,
-  Text,
-} from '@chakra-ui/react';
+import { Avatar, Box, Flex, Menu, Portal, Text } from '@chakra-ui/react';
 import { UserInfo, avatarUrl } from '@/api/discord';
 import { common } from '@/config/translations/common';
 import Link from 'next/link';
@@ -19,12 +12,7 @@ export function UserMenu(props: { color: string; shadow: string; bg: string }) {
     <Menu.Root>
       {/* @ts-expect-error Chakra v3 types don't include children on compound components */}
       <Menu.Trigger cursor="pointer" p="0px" rounded="full" focusRing="outside">
-        <Avatar.Root
-          colorPalette="brand"
-          w="40px"
-          h="40px"
-          name={user.username}
-        >
+        <Avatar.Root colorPalette="brand" w="40px" h="40px" name={user.username}>
           {/* @ts-expect-error Chakra v3 types don't expose src/alt on Avatar.Image */}
           <Avatar.Image src={avatarUrl(user)} alt={user.username} />
           <Avatar.Fallback name={user.username} />
@@ -47,7 +35,14 @@ function List(props: { textColor: string; shadow: string; menuBg: string; user: 
 
   return (
     // @ts-expect-error Chakra v3 types don't include children on compound components
-    <Menu.Content boxShadow={shadow} p="0px" mt="10px" borderRadius="20px" bg={menuBg} border="none">
+    <Menu.Content
+      boxShadow={shadow}
+      p="0px"
+      mt="10px"
+      borderRadius="20px"
+      bg={menuBg}
+      border="none"
+    >
       <Flex w="100%" mb="0px">
         <Text
           ps="20px"
@@ -69,10 +64,7 @@ function List(props: { textColor: string; shadow: string; menuBg: string; user: 
       <Flex flexDirection="column" p="10px">
         {/* @ts-expect-error Chakra v3 types don't include children on compound components */}
         <Menu.Item value="profile" asChild>
-          <Link
-            href={`/user/profile`}
-            style={{ borderRadius: '8px', padding: '0 14px' }}
-          >
+          <Link href={`/user/profile`} style={{ borderRadius: '8px', padding: '0 14px' }}>
             <Text fontSize="sm">{t.profile}</Text>
           </Link>
         </Menu.Item>

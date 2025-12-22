@@ -33,6 +33,16 @@ const { T } = createI18n(provider, {
     memes: '模因時間',
     'memes description': '每天發送模因',
   },
+  ja: {
+    music: '音楽プレイヤー',
+    'music description': 'Discordサーバーで音楽を再生',
+    gaming: 'ゲーム',
+    'gaming description': '友達と一緒にゲームを楽しもう',
+    'reaction role': 'リアクションロール',
+    'reaction role description': 'ボタンをクリックするとロールが付与されます',
+    memes: 'ミームタイム',
+    'memes description': '毎日ミームをお届け',
+  },
 });
 
 /**

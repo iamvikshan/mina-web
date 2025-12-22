@@ -1,13 +1,9 @@
-import {
-  Drawer,
-  Flex,
-  Spacer,
-  CloseButton,
-} from '@chakra-ui/react';
+import { Drawer, Flex, Spacer, CloseButton } from '@chakra-ui/react';
 import { BottomCard, SidebarContent } from './SidebarContent';
 import { AnimatePresence, motion } from 'framer-motion';
 import { usePageStore } from '@/stores';
 import { ReactNode } from 'react';
+import { useShallow } from 'zustand/react/shallow';
 
 export function Sidebar({ sidebar }: { sidebar?: ReactNode }) {
   return (
@@ -39,10 +35,16 @@ export function Sidebar({ sidebar }: { sidebar?: ReactNode }) {
 }
 
 export function SidebarResponsive({ sidebar }: { sidebar?: ReactNode }) {
-  const [isOpen, setOpen] = usePageStore((s) => [s.sidebarIsOpen, s.setSidebarIsOpen]);
+  const { isOpen, setOpen } = usePageStore(
+    useShallow((s) => ({ isOpen: s.sidebarIsOpen, setOpen: s.setSidebarIsOpen })),
+  );
+
+  const handleOpenChange = (details: { open: boolean }) => {
+    setOpen(details.open);
+  };
 
   return (
-    <Drawer.Root open={isOpen} onOpenChange={(details: { open: boolean }) => setOpen(details.open)}>
+    <Drawer.Root open={isOpen} onOpenChange={handleOpenChange}>
       <Drawer.Backdrop />
       {/* @ts-expect-error Chakra v3 types don't include children on compound components */}
       <Drawer.Positioner>

@@ -33,6 +33,18 @@ const LoginPage: NextPageWithLayout = () => {
         size="lg"
         width="350px"
         maxW="full"
+        fontWeight="600"
+        borderRadius="xl"
+        bg={{
+          _light:
+            'linear-gradient(to right bottom, var(--chakra-colors-brand-500), var(--chakra-colors-brand-400))',
+          _dark:
+            'linear-gradient(to right bottom, var(--chakra-colors-brand-400), var(--chakra-colors-brand-500))',
+        }}
+        boxShadow={{
+          _light: '1px 2px 5px var(--chakra-colors-brand-400)',
+          _dark: '1px 2px 15px var(--chakra-colors-brand-400)',
+        }}
         asChild
       >
         <a href={`/api/auth/login?locale=${locale}`}>

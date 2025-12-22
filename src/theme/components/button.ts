@@ -9,7 +9,7 @@ export const buttonStyles = defineRecipe({
     _focus: {
       boxShadow: 'none',
     },
-    _active: { 
+    _active: {
       boxShadow: 'none',
     },
   },

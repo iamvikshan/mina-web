@@ -66,10 +66,22 @@ function NotJoined({ guild }: { guild: string }) {
       </Text>
       <Text textAlign="center" color="TextSecondary">
         {t.error['not found description']}
-      </Text> 
+      </Text>
       <Button
         colorPalette="brand"
         px={6}
+        fontWeight="600"
+        borderRadius="xl"
+        bg={{
+          _light:
+            'linear-gradient(to right bottom, var(--chakra-colors-brand-500), var(--chakra-colors-brand-400))',
+          _dark:
+            'linear-gradient(to right bottom, var(--chakra-colors-brand-400), var(--chakra-colors-brand-500))',
+        }}
+        boxShadow={{
+          _light: '1px 2px 5px var(--chakra-colors-brand-400)',
+          _dark: '1px 2px 15px var(--chakra-colors-brand-400)',
+        }}
         asChild
       >
         <a href={`${config.inviteUrl}&guild_id=${guild}`} target="_blank">

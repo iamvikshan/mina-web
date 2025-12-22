@@ -23,4 +23,14 @@ export const profile = createI18n(provider, {
     'dev mode': '開發者模式',
     'dev mode description': '用於調試和測試',
   },
+  ja: {
+    logout: common.translations.ja.logout,
+    language: '言語',
+    'language description': '言語を選択してください',
+    settings: '設定',
+    'dark mode': 'ダークモード',
+    'dark mode description': '目を守るためにダークテーマを有効にします',
+    'dev mode': '開発者モード',
+    'dev mode description': 'デバッグとテスト用',
+  },
 });

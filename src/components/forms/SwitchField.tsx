@@ -1,10 +1,5 @@
 // Chakra imports
-import {
-  Box,
-  Flex,
-  Switch,
-  Text,
-} from '@chakra-ui/react';
+import { Box, Flex, Switch, Text } from '@chakra-ui/react';
 import { ReactNode } from 'react';
 import { useController } from 'react-hook-form';
 import { Form } from './Form';
@@ -17,7 +12,7 @@ export const SwitchFieldForm: ControlledInput<{}, boolean> = ({
 }) => {
   const {
     field: { value, ...field },
-    fieldState, 
+    fieldState,
   } = useController(controller);
 
   return (
@@ -40,21 +35,21 @@ export const SwitchFieldForm: ControlledInput<{}, boolean> = ({
         </Switch.Root>
       </Flex>
       {fieldState.error?.message && (
-        <Text color="red.500" fontSize="sm">{fieldState.error.message}</Text>
+        <Text color="red.500" fontSize="sm">
+          {fieldState.error.message}
+        </Text>
       )}
     </Form>
   );
 };
 
-export function SwitchField(
-  props: {
-    id?: string;
-    label?: ReactNode;
-    desc?: ReactNode;
-    checked?: boolean;
-    onCheckedChange?: (details: { checked: boolean }) => void;
-  }
-) {
+export function SwitchField(props: {
+  id?: string;
+  label?: ReactNode;
+  desc?: ReactNode;
+  checked?: boolean;
+  onCheckedChange?: (details: { checked: boolean }) => void;
+}) {
   const { id, label, desc, checked, onCheckedChange, ...rest } = props;
 
   return (

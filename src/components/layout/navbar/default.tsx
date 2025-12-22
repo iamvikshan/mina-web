@@ -22,7 +22,7 @@ export function DefaultNavbar() {
       icon: activeItem.icon,
       text: <>{activeItem.name}</>,
       href: activeItem.path,
-    }); 
+    });
 
   const separator = (
     <Icon
@@ -48,9 +48,7 @@ export function DefaultNavbar() {
         sm: '0',
       }}
     >
-      <Breadcrumb.Root
-        fontSize="sm"
-      >
+      <Breadcrumb.Root fontSize="sm">
         <Breadcrumb.List>
           {breadcrumb.map((item, i) => (
             <Fragment key={i}>

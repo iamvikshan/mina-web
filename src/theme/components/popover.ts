@@ -1,10 +1,19 @@
-import { popoverAnatomy as parts } from '@chakra-ui/anatomy';
-import { createMultiStyleConfigHelpers } from '@chakra-ui/styled-system';
+import { defineSlotRecipe } from '@chakra-ui/react';
 
-const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpers(parts.keys);
-
-export const popoverStyles = defineMultiStyleConfig({
-  baseStyle: definePartsStyle({
+export const popoverSlotRecipe = defineSlotRecipe({
+  className: 'chakra-popover',
+  slots: [
+    'trigger',
+    'positioner',
+    'content',
+    'header',
+    'body',
+    'footer',
+    'closeTrigger',
+    'arrow',
+    'arrowTip',
+  ],
+  base: {
     content: {
       bg: 'secondaryGray.300',
       rounded: 'xl',
@@ -13,5 +22,5 @@ export const popoverStyles = defineMultiStyleConfig({
         bg: 'navy.900',
       },
     },
-  }),
+  },
 });

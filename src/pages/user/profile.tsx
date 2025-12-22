@@ -1,13 +1,5 @@
 import { Flex, Grid, Spacer, Text, VStack } from '@chakra-ui/react';
-import {
-  Avatar,
-  Button,
-  Card,
-  Field,
-  Image,
-  Icon,
-  Box,
-} from '@chakra-ui/react';
+import { Avatar, Button, Card, Field, Image, Icon, Box } from '@chakra-ui/react';
 import { avatarUrl, bannerUrl } from '@/api/discord';
 import { SelectField } from '@/components/forms/SelectField';
 import { SwitchField } from '@/components/forms/SwitchField';
@@ -20,6 +12,7 @@ import AppLayout from '@/components/layout/app';
 import { useLogoutMutation } from '@/utils/auth/hooks';
 import { useSelfUser } from '@/api/hooks';
 import { useTheme } from 'next-themes';
+import { useShallow } from 'zustand/react/shallow';
 
 /**
  * User info and general settings here
@@ -31,7 +24,9 @@ const ProfilePage: NextPageWithLayout = () => {
 
   const { theme, setTheme } = useTheme();
   const { lang, setLang } = useLang();
-  const [devMode, setDevMode] = useSettingsStore((s) => [s.devMode, s.setDevMode]);
+  const { devMode, setDevMode } = useSettingsStore(
+    useShallow((s) => ({ devMode: s.devMode, setDevMode: s.setDevMode })),
+  );
 
   return (
     <Grid templateColumns={{ base: '1fr', lg: 'minmax(0, 800px) auto' }} gap={{ base: 3, lg: 6 }}>
@@ -102,11 +97,7 @@ const ProfilePage: NextPageWithLayout = () => {
             />
           </Field.Root>
           <Spacer />
-          <Button
-            colorPalette="red"
-            loading={logout.isPending}
-            onClick={() => logout.mutate()}
-          >
+          <Button colorPalette="red" loading={logout.isPending} onClick={() => logout.mutate()}>
             <Icon>
               <IoLogOut />
             </Icon>

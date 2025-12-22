@@ -44,4 +44,25 @@ export const dashboard = createI18n(provider, {
       description: '使用你的服務器命令使用量',
     },
   },
+  ja: {
+    pricing: '料金プラン',
+    learn_more: '詳しく見る',
+    invite: {
+      title: 'ボットを招待',
+      description: 'ワンクリックでDiscordボットをお試しください',
+      bn: '今すぐ招待',
+    },
+    servers: {
+      title: 'サーバーを選択',
+      description: '設定するサーバーを選んでください',
+    },
+    vc: {
+      create: 'ボイスチャンネルを作成',
+      'created channels': '作成済みボイスチャンネル',
+    },
+    command: {
+      title: 'コマンド使用状況',
+      description: 'サーバーでのコマンド使用履歴',
+    },
+  },
 });

@@ -1,15 +1,32 @@
-import { mode } from '@chakra-ui/theme-tools';
-import { sliderAnatomy as parts } from '@chakra-ui/anatomy';
-import { createMultiStyleConfigHelpers } from '@chakra-ui/styled-system';
+import { defineSlotRecipe } from '@chakra-ui/react';
 
-const { defineMultiStyleConfig, definePartsStyle } = createMultiStyleConfigHelpers(parts.keys);
-
-export const sliderStyles = defineMultiStyleConfig({
+export const sliderSlotRecipe = defineSlotRecipe({
+  className: 'chakra-slider',
+  slots: [
+    'root',
+    'label',
+    'thumb',
+    'valueText',
+    'track',
+    'range',
+    'control',
+    'markerGroup',
+    'marker',
+    'markerIndicator',
+  ],
+  base: {},
   variants: {
-    main: definePartsStyle((props) => ({
-      thumb: {
-        bg: mode('brand.500', 'brand.400')(props),
+    variant: {
+      main: {
+        thumb: {
+          _light: {
+            bg: 'brand.500',
+          },
+          _dark: {
+            bg: 'brand.400',
+          },
+        },
       },
-    })),
+    },
   },
 });

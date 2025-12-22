@@ -19,4 +19,4 @@ export function ErrorPanel({ children, retry }: { children: string; retry: () =>
       </VStack>
     </Center>
   );
-} 
+}

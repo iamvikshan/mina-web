@@ -20,7 +20,7 @@ import { FaRobot } from 'react-icons/fa';
 import { MdVoiceChat } from 'react-icons/md';
 import { GuildSelect } from '@/pages/user/home';
 
-export default function HomeView() { 
+export default function HomeView() {
   const t = dashboard.useTranslations();
 
   return (
@@ -75,7 +75,22 @@ export default function HomeView() {
         <Heading size="md">{t.command.title}</Heading>
         <Text color="TextSecondary">{t.command.description}</Text>
         <HStack mt={3}>
-          <Button colorPalette="brand">
+          <Button
+            color="white"
+            colorPalette="brand"
+            fontWeight="600"
+            borderRadius="xl"
+            bg={{
+              _light:
+                'linear-gradient(to right bottom, var(--chakra-colors-brand-500), var(--chakra-colors-brand-400))',
+              _dark:
+                'linear-gradient(to right bottom, var(--chakra-colors-brand-400), var(--chakra-colors-brand-500))',
+            }}
+            boxShadow={{
+              _light: '1px 2px 5px var(--chakra-colors-brand-400)',
+              _dark: '1px 2px 15px var(--chakra-colors-brand-400)',
+            }}
+          >
             <Icon>
               <IoPricetag />
             </Icon>
@@ -160,9 +175,9 @@ function VoiceChannelItem() {
         <Icon color="Brand" fontSize={{ base: '2xl', md: '3xl' }}>
           <MdVoiceChat />
         </Icon>
-        <Text>My Channel</Text>
+        <Text fontWeight="600">My Channel</Text>
       </Card.Header>
-      <Card.Body mt={3}>
+      <Card.Body pt={0}>
         <Text color="TextSecondary">89 Members</Text>
       </Card.Body>
     </Card.Root>

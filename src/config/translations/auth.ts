@@ -12,4 +12,9 @@ export const auth = createI18n(provider, {
     'login description': '登錄並開始使用我們的機器人',
     login_bn: '使用 Discord 登錄',
   },
+  ja: {
+    login: 'ログイン',
+    'login description': 'ログインして、今すぐボットを使い始めましょう',
+    login_bn: 'Discordでログイン',
+  },
 });

@@ -1,10 +1,4 @@
-import {
-  Icon,
-  IconButton,
-  Input,
-  Group,
-  GroupProps,
-} from '@chakra-ui/react';
+import { Icon, IconButton, Input, Group, GroupProps } from '@chakra-ui/react';
 import { AiOutlineSearch as SearchIcon } from 'react-icons/ai';
 import { common } from '@/config/translations/common';
 import { InputProps } from '@chakra-ui/react';
@@ -13,7 +7,7 @@ export function SearchBar(
   props: {
     input?: InputProps;
     onSearch?: () => void;
-  } & GroupProps
+  } & GroupProps,
 ) {
   const t = common.useTranslations();
   const { input, onSearch, ...rest } = props;

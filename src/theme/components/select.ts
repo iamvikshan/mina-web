@@ -6,7 +6,7 @@ export const selectStyles = defineSlotRecipe({
   slots: ['root', 'field', 'indicator'],
   base: {},
   variants: {
-    variant: { 
+    variant: {
       outline: {
         field: {
           border: '1px solid',

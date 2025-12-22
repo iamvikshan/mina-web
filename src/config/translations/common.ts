@@ -24,4 +24,15 @@ export const common = createI18n(provider, {
     pages: '所有頁面',
     logout: '登出',
   },
+  ja: {
+    loading: '読み込み中',
+    search: '検索',
+    'select lang': '言語を選択',
+    'select role': 'ロールを選択',
+    'select channel': 'チャンネルを選択',
+    dashboard: 'ダッシュボード',
+    profile: 'プロフィール',
+    pages: 'ページ一覧',
+    logout: 'ログアウト',
+  },
 });

@@ -1,29 +1,37 @@
-import { modalAnatomy as parts } from '@chakra-ui/anatomy';
-import { createMultiStyleConfigHelpers } from '@chakra-ui/styled-system';
+import { defineSlotRecipe } from '@chakra-ui/react';
 
-const { definePartsStyle, defineMultiStyleConfig } = createMultiStyleConfigHelpers(parts.keys);
-
-const baseStyle = definePartsStyle({
-  overlay: {
-    backdropFilter: 'auto',
-    backdropBlur: 'lg',
-  },
-  closeButton: {
-    _hover: {},
-    _focus: {
-      boxShadow: 'none',
+export const dialogSlotRecipe = defineSlotRecipe({
+  className: 'chakra-dialog',
+  slots: [
+    'trigger',
+    'backdrop',
+    'positioner',
+    'content',
+    'header',
+    'body',
+    'footer',
+    'closeTrigger',
+    'title',
+    'description',
+  ],
+  base: {
+    backdrop: {
+      backdropFilter: 'auto',
+      backdropBlur: 'lg',
+    },
+    closeTrigger: {
+      _hover: {},
+      _focus: {
+        boxShadow: 'none',
+      },
+    },
+    content: {
+      _light: {
+        bg: 'secondaryGray.300',
+      },
+      _dark: {
+        bg: 'navy.900',
+      },
     },
   },
-  dialog: {
-    _light: {
-      bg: 'secondaryGray.300',
-    },
-    _dark: {
-      bg: 'navy.900',
-    },
-  },
-});
-
-export const modalStyles = defineMultiStyleConfig({
-  baseStyle,
 });

@@ -16,11 +16,7 @@ export default function GuildNavbar({ back }: { back?: boolean }) {
     <Flex w="full" direction="row" alignItems="center">
       <HorizontalCollapse in={back ?? false}>
         <Link href={`/guilds/${selected}`}>
-          <Box
-            display={{ base: 'flex', xl: 'none' }}
-            pr={3}
-            py={3}
-          >
+          <Box display={{ base: 'flex', xl: 'none' }} pr={3} py={3}>
             <Icon aria-label="back" my="auto" fontSize="lg">
               <ChevronLeftIcon />
             </Icon>

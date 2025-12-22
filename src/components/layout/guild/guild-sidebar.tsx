@@ -22,10 +22,7 @@ export function InGuildSidebar() {
     <Flex direction="column" gap={2} p={3}>
       <Link href={`/guilds/${guildId}`}>
         <HStack cursor="pointer" mb={2}>
-          <IconButton
-            display={{ base: 'none', xl: 'block' }}
-            aria-label="back"
-          >
+          <IconButton display={{ base: 'none', xl: 'block' }} aria-label="back">
             <Icon verticalAlign="middle">
               <ChevronLeftIcon />
             </Icon>

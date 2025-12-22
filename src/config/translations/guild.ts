@@ -38,4 +38,22 @@ export const guild = createI18n(provider, {
       settings: '設置',
     },
   },
+  ja: {
+    features: '機能',
+    banner: {
+      title: 'はじめよう',
+      description: 'ボットを作成して、何か入力してみましょう',
+    },
+    error: {
+      'not found': 'どこにあるの？',
+      'not found description': 'ボットがサーバーにアクセスできません。招待しましょう！',
+      load: 'サーバーの読み込みに失敗しました',
+    },
+    bn: {
+      'enable feature': '有効化',
+      'config feature': '設定',
+      invite: 'ボットを招待',
+      settings: '設定',
+    },
+  },
 });

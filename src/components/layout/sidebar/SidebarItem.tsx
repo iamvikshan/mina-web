@@ -40,7 +40,12 @@ export function SidebarItem({
   );
 }
 
-function CardItem({ active, href, children, ...props }: { href: string; active: boolean } & StackProps) {
+function CardItem({
+  active,
+  href,
+  children,
+  ...props
+}: { href: string; active: boolean } & StackProps) {
   return (
     <HStack
       asChild

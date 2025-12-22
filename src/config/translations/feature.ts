@@ -32,4 +32,19 @@ export const feature = createI18n(provider, {
       discard: '放棄',
     },
   },
+  ja: {
+    unsaved: '変更を保存',
+    error: {
+      'not enabled': '無効です',
+      'not enabled description': 'この機能を有効にしますか？',
+      'not found': '見つかりません',
+      'not found description': 'おかしいですね…見つかりませんでした',
+    },
+    bn: {
+      enable: '機能を有効化',
+      disable: '無効化',
+      save: '保存',
+      discard: '破棄',
+    },
+  },
 });

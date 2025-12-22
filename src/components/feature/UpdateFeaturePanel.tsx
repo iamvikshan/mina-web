@@ -33,7 +33,11 @@ export function UpdateFeaturePanel({
 
   return (
     <Flex as="form" direction="column" gap={5} w="full" h="full">
-      <Flex direction={{ base: 'column', md: 'row' }} mx={{ base: 0, '3sm': 5 }} justify="space-between">
+      <Flex
+        direction={{ base: 'column', md: 'row' }}
+        mx={{ base: 0, '3sm': 5 }}
+        justify="space-between"
+      >
         <Box>
           <Heading fontSize="2xl" fontWeight="600">
             {config.name}
@@ -101,6 +105,17 @@ function Savebar({
               type="submit"
               colorPalette="brand"
               rounded="full"
+              fontWeight="600"
+              bg={{
+                _light:
+                  'linear-gradient(to right bottom, var(--chakra-colors-brand-500), var(--chakra-colors-brand-400))',
+                _dark:
+                  'linear-gradient(to right bottom, var(--chakra-colors-brand-400), var(--chakra-colors-brand-500))',
+              }}
+              boxShadow={{
+                _light: '1px 2px 5px var(--chakra-colors-brand-400)',
+                _dark: '1px 2px 15px var(--chakra-colors-brand-400)',
+              }}
               loading={isLoading}
               disabled={isLoading}
               onClick={onSubmit}
