@@ -239,83 +239,39 @@ echo "Step 3.6: Configuring Git Remote and Credentials..."
 echo "Configuring git credential helper to use gh CLI..."
 gh auth setup-git
 
-# Ensure remote is set correctly
-echo "Ensuring git remote 'origin' is configured..."
+# Ensure upstream remote is set correctly (origin is the fork, upstream is iamvikshan's repo)
+echo "Ensuring git remote 'upstream' is configured..."
 # Check if we are in a git repo
 if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-    DEFAULT_TARGET_REPO="https://github.com/iamvikshan/mina-web.git"
+    UPSTREAM_REPO="https://github.com/iamvikshan/mina-web.git"
 
-    is_valid_repo_url() {
-        local url="$1"
-        if [ -z "$url" ]; then
-            return 1
-        fi
-
-        # Define regex patterns for supported GitHub URL formats
-        local HTTPS_PATTERN='^https://github.com/[^/]+/[^/]+(\.git)?$'
-        local SSH_GIT_PATTERN='^git@github.com:[^/]+/[^/]+(\.git)?$'
-        local SSH_URL_PATTERN='^ssh://git@github.com/[^/]+/[^/]+(\.git)?$'
-
-        # Check each pattern separately for clarity
-        if [[ "$url" =~ $HTTPS_PATTERN ]]; then
-            return 0
-        fi
-        if [[ "$url" =~ $SSH_GIT_PATTERN ]]; then
-            return 0
-        fi
-        if [[ "$url" =~ $SSH_URL_PATTERN ]]; then
-            return 0
-        fi
-
-        return 1
-    }
-
-    REMOTE_CANDIDATES=()
-
-    if [ -n "${TARGET_REPO:-}" ]; then
-        REMOTE_CANDIDATES+=("$TARGET_REPO")
-    fi
-
-    if [ -n "${1:-}" ]; then
-        REMOTE_CANDIDATES+=("$1")
-    fi
-
-    EXISTING_REMOTE=$(git config --get remote.origin.url 2>/dev/null || true)
-    if [ -n "$EXISTING_REMOTE" ]; then
-        REMOTE_CANDIDATES+=("$EXISTING_REMOTE")
-    fi
-
-    REMOTE_CANDIDATES+=("$DEFAULT_TARGET_REPO")
-
-    TARGET_REPO=""
-
-    for candidate in "${REMOTE_CANDIDATES[@]}"; do
-        if is_valid_repo_url "$candidate"; then
-            TARGET_REPO="$candidate"
-            break
-        fi
-    done
-
-    if [ -z "$TARGET_REPO" ]; then
-        echo "❌ Unable to resolve a valid target repository URL."
-        exit 1
-    fi
-
-    echo "Using target repository: $TARGET_REPO"
+    echo "Using upstream repository: $UPSTREAM_REPO"
     
-    if git remote | grep -q "^origin$"; then
-        CURRENT_URL=$(git remote get-url origin)
-        if [ "$CURRENT_URL" != "$TARGET_REPO" ]; then
-            echo "Updating existing 'origin' remote from $CURRENT_URL to $TARGET_REPO..."
-            git remote set-url origin "$TARGET_REPO"
+    if git remote | grep -q "^upstream$"; then
+        CURRENT_URL=$(git remote get-url upstream)
+        if [ "$CURRENT_URL" != "$UPSTREAM_REPO" ]; then
+            echo "Updating existing 'upstream' remote from $CURRENT_URL to $UPSTREAM_REPO..."
+            git remote set-url upstream "$UPSTREAM_REPO"
         else
-            echo "Remote 'origin' is already set to $TARGET_REPO"
+            echo "Remote 'upstream' is already set to $UPSTREAM_REPO"
         fi
     else
-        echo "Adding 'origin' remote..."
-        git remote add origin "$TARGET_REPO"
+        echo "Adding 'upstream' remote..."
+        git remote add upstream "$UPSTREAM_REPO"
     fi
-    echo "✓ Remote 'origin' configured"
+    echo "✓ Remote 'upstream' configured"
+    
+    # Set upstream as the default push target for the current branch
+    CURRENT_BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null || echo "main")
+    echo "Setting 'upstream/$CURRENT_BRANCH' as the default push target..."
+    git fetch upstream --quiet 2>/dev/null || true
+    git branch --set-upstream-to=upstream/"$CURRENT_BRANCH" "$CURRENT_BRANCH" 2>/dev/null || true
+    echo "✓ 'git push' will now push to 'upstream' by default"
+    
+    # Show current remote configuration
+    echo ""
+    echo "Current remotes:"
+    git remote -v
 else
     echo "⚠️  Not inside a git repository. Skipping remote configuration."
 fi
