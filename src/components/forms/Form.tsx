@@ -1,10 +1,5 @@
-import {
-  FormControl,
-  FormControlProps,
-  FormErrorMessage,
-  FormLabel,
-} from '@chakra-ui/form-control';
-import { Flex, Spacer, Text } from '@chakra-ui/layout';
+import { Field, Flex, Spacer, Text } from '@chakra-ui/react';
+import type { FieldRootProps } from '@chakra-ui/react';
 import { ReactNode } from 'react';
 import {
   Controller,
@@ -14,25 +9,25 @@ import {
   UseControllerProps,
 } from 'react-hook-form';
 
-export function Form(props: FormControlProps) {
+export function Form(props: FieldRootProps) {
   return (
-    <FormControl
-      as={Flex}
-      direction="column"
-      bg="CardBackground"
-      rounded="3xl"
-      p={5}
-      boxShadow="normal"
-      {...props}
-    >
-      {props.children}
-    </FormControl>
+    <Field.Root asChild {...props}>
+      <Flex
+        direction="column"
+        bg="CardBackground"
+        rounded="3xl"
+        p={5}
+        boxShadow="normal"
+      >
+        {props.children}
+      </Flex>
+    </Field.Root>
   );
 }
 
 export type FormCardProps = {
   required?: boolean;
-  baseControl?: FormControlProps;
+  baseControl?: FieldRootProps;
   /**
    * Show an error message if not null
    */
@@ -52,16 +47,22 @@ export function FormCard({
   error,
 }: FormCardProps) {
   return (
-    <Form isRequired={required} isInvalid={error != null} {...baseControl}>
-      <FormLabel fontSize={{ base: '16px', md: 'lg' }} fontWeight="medium" mb={0}>
-        {label}
-      </FormLabel>
+    <Form required={required} invalid={error != null} {...baseControl}>
+      {label && (
+        <Text fontSize={{ base: '16px', md: 'lg' }} fontWeight="medium" mb={0}>
+          {label}
+        </Text>
+      )}
       <Text fontSize={{ base: 'sm', md: 'md' }} color="TextSecondary">
         {description}
       </Text>
       <Spacer mt={2} />
       {children}
-      <FormErrorMessage>{error}</FormErrorMessage>
+      {error && (
+        <Text color="red.500" fontSize="sm" mt={1}>
+          {error}
+        </Text>
+      )}
     </Form>
   );
 }
@@ -78,7 +79,11 @@ export type FormCardControllerProps<
 export function FormCardController<
   TFieldValue extends FieldValues,
   TName extends Path<TFieldValue>,
->({ control, controller, render }: FormCardControllerProps<TFieldValue, TName>) {
+>({
+  control,
+  controller,
+  render,
+}: FormCardControllerProps<TFieldValue, TName>) {
   return (
     <Controller
       {...controller}

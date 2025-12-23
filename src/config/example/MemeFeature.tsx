@@ -1,4 +1,4 @@
-import { SimpleGrid } from '@chakra-ui/layout';
+import { SimpleGrid } from '@chakra-ui/react';
 import { MemeFeature, UseFormRender, memeFeatureSchema } from '@/config/types';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -44,7 +44,11 @@ export const useMemeFeature: UseFormRender<MemeFeature> = (data, onSubmit) => {
           render={({ field }) => (
             <SelectField<Option>
               {...field}
-              value={field.value != null ? sources.find((v) => v.value === field.value) : undefined}
+              value={
+                field.value != null
+                  ? sources.find((v) => v.value === field.value)
+                  : undefined
+              }
               onChange={(v) => v && field.onChange(v.value)}
               options={sources}
             />
@@ -57,7 +61,7 @@ export const useMemeFeature: UseFormRender<MemeFeature> = (data, onSubmit) => {
         JSON.stringify({
           channel: e.channel,
           source: e.source,
-        }),
+        })
       );
 
       reset(data);

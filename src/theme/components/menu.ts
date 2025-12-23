@@ -2,7 +2,15 @@ import { defineSlotRecipe } from '@chakra-ui/react';
 
 export const menuSlotRecipe = defineSlotRecipe({
   className: 'chakra-menu',
-  slots: ['content', 'item', 'trigger', 'indicator', 'separator', 'itemGroup', 'itemGroupLabel'],
+  slots: [
+    'content',
+    'item',
+    'trigger',
+    'indicator',
+    'separator',
+    'itemGroup',
+    'itemGroupLabel',
+  ],
   base: {
     item: {
       bg: 'transparent',

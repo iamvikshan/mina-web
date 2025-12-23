@@ -1,12 +1,17 @@
 import { ReactElement, ReactNode } from 'react';
 import { Translation, TranslationModel } from './translations';
 
-export type I18nConfig<Languages extends string, Model extends TranslationModel> = {
+export type I18nConfig<
+  Languages extends string,
+  Model extends TranslationModel,
+> = {
   useTranslations: () => Translation<Model>;
   translations: {
     [lang in Languages]: Translation<Model>;
   };
-  T: (props: { text: keyof Model | ((model: Model) => ReactNode) }) => ReactElement;
+  T: (props: {
+    text: keyof Model | ((model: Model) => ReactNode);
+  }) => ReactElement;
 };
 
 export type I18nProvider<Languages extends string> = {
@@ -46,11 +51,14 @@ export function initI18n<Languages extends string>(config: {
   };
 }
 
-export function createI18n<Model extends TranslationModel, Languages extends string>(
+export function createI18n<
+  Model extends TranslationModel,
+  Languages extends string,
+>(
   provider: I18nProvider<Languages>,
   translations: {
     [lang in Languages]: Translation<Model>;
-  },
+  }
 ): I18nConfig<Languages, Model> {
   return {
     translations: translations,

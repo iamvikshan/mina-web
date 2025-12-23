@@ -1,4 +1,4 @@
-import { Box, Center, Flex, Text } from '@chakra-ui/layout';
+import { Box, Center, Flex, Text } from '@chakra-ui/react';
 import { Button, ButtonGroup, Card } from '@chakra-ui/react';
 import { IdFeature } from '@/utils/common';
 import { IoOpen, IoOptions } from 'react-icons/io5';
@@ -52,11 +52,17 @@ export function FeatureItem({
                 colorPalette: 'brand',
                 rounded: '2xl',
                 leftIcon: <IoOptions />,
-                onClick: () => Router.push(`/guilds/${guild}/features/${feature.id}`),
+                onClick: () =>
+                  Router.push(`/guilds/${guild}/features/${feature.id}`),
               }
             : {
                 leftIcon: <IoOpen />,
-                onClick: () => mutation.mutate({ enabled: true, guild, feature: feature.id }),
+                onClick: () =>
+                  mutation.mutate({
+                    enabled: true,
+                    guild,
+                    feature: feature.id,
+                  }),
               })}
         >
           {enabled ? (

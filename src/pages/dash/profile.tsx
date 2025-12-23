@@ -1,5 +1,13 @@
 import { Flex, Grid, Spacer, Text, VStack } from '@chakra-ui/react';
-import { Avatar, Button, Card, Field, Image, Icon, Box } from '@chakra-ui/react';
+import {
+  Avatar,
+  Button,
+  Card,
+  Field,
+  Image,
+  Icon,
+  Box,
+} from '@chakra-ui/react';
 import { avatarUrl, bannerUrl } from '@/api/discord';
 import { SelectField } from '@/components/forms/SelectField';
 import { SwitchField } from '@/components/forms/SwitchField';
@@ -25,11 +33,14 @@ const ProfilePage: NextPageWithLayout = () => {
   const { theme, setTheme } = useTheme();
   const { lang, setLang } = useLang();
   const { devMode, setDevMode } = useSettingsStore(
-    useShallow((s) => ({ devMode: s.devMode, setDevMode: s.setDevMode })),
+    useShallow((s) => ({ devMode: s.devMode, setDevMode: s.setDevMode }))
   );
 
   return (
-    <Grid templateColumns={{ base: '1fr', lg: 'minmax(0, 800px) auto' }} gap={{ base: 3, lg: 6 }}>
+    <Grid
+      templateColumns={{ base: '1fr', lg: 'minmax(0, 800px) auto' }}
+      gap={{ base: 3, lg: 6 }}
+    >
       <Flex direction="column">
         {user.banner != null ? (
           <Image
@@ -46,7 +57,10 @@ const ProfilePage: NextPageWithLayout = () => {
           <Avatar.Root
             w="100px"
             h="100px"
-            css={{ '--ring-color': 'var(--chakra-colors-card-background)', '--ring-width': '6px' }}
+            css={{
+              '--ring-color': 'var(--chakra-colors-card-background)',
+              '--ring-width': '6px',
+            }}
           >
             {/* @ts-expect-error Chakra v3 types don't expose src on Avatar.Image */}
             <Avatar.Image src={avatarUrl(user)} />
@@ -68,7 +82,9 @@ const ProfilePage: NextPageWithLayout = () => {
             label={t['dark mode']}
             desc={t['dark mode description']}
             checked={theme === 'dark'}
-            onCheckedChange={(details) => setTheme(details.checked ? 'dark' : 'light')}
+            onCheckedChange={(details) =>
+              setTheme(details.checked ? 'dark' : 'light')
+            }
           />
           <SwitchField
             id="developer-mode"
@@ -97,7 +113,11 @@ const ProfilePage: NextPageWithLayout = () => {
             />
           </Field.Root>
           <Spacer />
-          <Button colorPalette="red" loading={logout.isPending} onClick={() => logout.mutate()}>
+          <Button
+            colorPalette="red"
+            loading={logout.isPending}
+            onClick={() => logout.mutate()}
+          >
             <Icon>
               <IoLogOut />
             </Icon>
@@ -117,3 +137,6 @@ function Content() {
 ProfilePage.getLayout = (p) => <AppLayout>{p}</AppLayout>;
 
 export default ProfilePage;
+
+// Disable static generation
+export const getServerSideProps = async () => ({ props: {} });

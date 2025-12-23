@@ -23,7 +23,7 @@ export async function logout() {
   });
 
   await client.invalidateQueries({ queryKey: Keys.login });
-  await Router.push('/auth/signin');
+  await Router.push('/');
 }
 
 type SessionResult =

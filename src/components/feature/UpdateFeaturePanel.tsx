@@ -1,9 +1,16 @@
 import { RiErrorWarningFill as WarningIcon } from 'react-icons/ri';
-import { Box, Flex, Heading, Spacer, Text } from '@chakra-ui/layout';
+import { Box, Flex, Heading, Spacer, Text } from '@chakra-ui/react';
 import { ButtonGroup, Button, Icon } from '@chakra-ui/react';
-import { FeatureConfig, UseFormRenderResult, CustomFeatures } from '@/config/types';
+import {
+  FeatureConfig,
+  UseFormRenderResult,
+  CustomFeatures,
+} from '@/config/types';
 import { IoSave } from 'react-icons/io5';
-import { useEnableFeatureMutation, useUpdateFeatureMutation } from '@/api/hooks';
+import {
+  useEnableFeatureMutation,
+  useUpdateFeatureMutation,
+} from '@/api/hooks';
 import { Params } from '@/pages/guilds/[guild]/features/[feature]';
 import { feature as view } from '@/config/translations/feature';
 import { useRouter } from 'next/router';
@@ -35,7 +42,7 @@ export function UpdateFeaturePanel({
     <Flex as="form" direction="column" gap={5} w="full" h="full">
       <Flex
         direction={{ base: 'column', md: 'row' }}
-        mx={{ base: 0, '3sm': 5 }}
+        mx={{ base: 0, sm: 5 }}
         justify="space-between"
       >
         <Box>
@@ -45,7 +52,11 @@ export function UpdateFeaturePanel({
           <Text color="TextSecondary">{config.description}</Text>
         </Box>
         <ButtonGroup mt={3}>
-          <Button colorPalette="red" loading={enableMutation.isPending} onClick={onDisable}>
+          <Button
+            colorPalette="red"
+            loading={enableMutation.isPending}
+            onClick={onDisable}
+          >
             <view.T text={(e) => e.bn.disable} />
           </Button>
         </ButtonGroup>
@@ -69,65 +80,69 @@ function Savebar({
   return (
     <AnimatePresence mode="wait">
       {canSave && (
-        <Flex
+        <Box
           as={motion.div}
+          // @ts-expect-error - motion props not typed on Box
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
-          bg="CardBackground"
-          rounded="3xl"
-          zIndex="sticky"
-          pos="sticky"
-          bottom={{ base: 2, sm: '10px' }}
-          w="full"
-          p={{ base: 1, sm: '15px' }}
-          shadow="normal"
-          alignItems="center"
-          flexDirection={{ base: 'column', sm: 'row' }}
-          gap={{ base: 1, sm: 2 }}
-          mt="auto"
         >
-          <Icon
-            display={{ base: 'none', sm: 'block' }}
-            _light={{ color: 'orange.400' }}
-            _dark={{ color: 'orange.300' }}
-            w="30px"
-            h="30px"
+          <Flex
+            bg="CardBackground"
+            rounded="3xl"
+            zIndex="sticky"
+            pos="sticky"
+            bottom={{ base: 2, sm: '10px' }}
+            w="full"
+            p={{ base: 1, sm: '15px' }}
+            shadow="normal"
+            alignItems="center"
+            flexDirection={{ base: 'column', sm: 'row' }}
+            gap={{ base: 1, sm: 2 }}
+            mt="auto"
           >
-            <WarningIcon />
-          </Icon>
-          <Text fontSize={{ base: 'md', sm: 'lg' }} fontWeight="600">
-            {t.unsaved}
-          </Text>
-          <Spacer />
-          <ButtonGroup size={{ base: 'sm', sm: 'md' }}>
-            <Button
-              type="submit"
-              colorPalette="brand"
-              rounded="full"
-              fontWeight="600"
-              bg={{
-                _light:
-                  'linear-gradient(to right bottom, var(--chakra-colors-brand-500), var(--chakra-colors-brand-400))',
-                _dark:
-                  'linear-gradient(to right bottom, var(--chakra-colors-brand-400), var(--chakra-colors-brand-500))',
-              }}
-              boxShadow={{
-                _light: '1px 2px 5px var(--chakra-colors-brand-400)',
-                _dark: '1px 2px 15px var(--chakra-colors-brand-400)',
-              }}
-              loading={isLoading}
-              disabled={isLoading}
-              onClick={onSubmit}
+            <Icon
+              display={{ base: 'none', sm: 'block' }}
+              _light={{ color: 'orange.400' }}
+              _dark={{ color: 'orange.300' }}
+              w="30px"
+              h="30px"
             >
-              <IoSave />
-              {t.bn.save}
-            </Button>
-            <Button rounded="full" disabled={isLoading} onClick={reset}>
-              {t.bn.discard}
-            </Button>
-          </ButtonGroup>
-        </Flex>
+              <WarningIcon />
+            </Icon>
+            <Text fontSize={{ base: 'md', sm: 'lg' }} fontWeight="600">
+              {t.unsaved}
+            </Text>
+            <Spacer />
+            <ButtonGroup size={{ base: 'sm', sm: 'md' }}>
+              <Button
+                type="submit"
+                colorPalette="brand"
+                rounded="full"
+                fontWeight="600"
+                bg={{
+                  _light:
+                    'linear-gradient(to right bottom, var(--chakra-colors-brand-500), var(--chakra-colors-brand-400))',
+                  _dark:
+                    'linear-gradient(to right bottom, var(--chakra-colors-brand-400), var(--chakra-colors-brand-500))',
+                }}
+                boxShadow={{
+                  _light: '1px 2px 5px var(--chakra-colors-brand-400)',
+                  _dark: '1px 2px 15px var(--chakra-colors-brand-400)',
+                }}
+                loading={isLoading}
+                disabled={isLoading}
+                onClick={onSubmit}
+              >
+                <IoSave />
+                {t.bn.save}
+              </Button>
+              <Button rounded="full" disabled={isLoading} onClick={reset}>
+                {t.bn.discard}
+              </Button>
+            </ButtonGroup>
+          </Flex>
+        </Box>
       )}
     </AnimatePresence>
   );

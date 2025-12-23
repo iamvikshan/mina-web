@@ -83,10 +83,11 @@ export const ChannelSelect = forwardRef<SelectInstance<Option, false>, Props>(
     const channelsQuery = useGuildChannelsQuery(guild);
     const isLoading = channelsQuery.isLoading;
 
-    const selected = value != null ? channelsQuery.data?.find((c) => c.id === value) : null;
+    const selected =
+      value != null ? channelsQuery.data?.find((c) => c.id === value) : null;
     const options = useMemo(
       () => (channelsQuery.data != null ? mapOptions(channelsQuery.data) : []),
-      [channelsQuery.data],
+      [channelsQuery.data]
     );
 
     return (
@@ -101,16 +102,14 @@ export const ChannelSelect = forwardRef<SelectInstance<Option, false>, Props>(
         {...rest}
       />
     );
-  },
+  }
 );
 
 ChannelSelect.displayName = 'ChannelSelect';
 
-export const ChannelSelectForm: ControlledInput<Omit<Props, 'value' | 'onChange'>> = ({
-  control,
-  controller,
-  ...props
-}) => {
+export const ChannelSelectForm: ControlledInput<
+  Omit<Props, 'value' | 'onChange'>
+> = ({ control, controller, ...props }) => {
   const { field, fieldState } = useController(controller);
 
   return (

@@ -2,9 +2,10 @@ import { CustomFeatures } from '../config/types';
 import { features } from '../config/features';
 import { FeatureConfig } from '../config/types';
 
-export type IdFeature<K extends keyof CustomFeatures = keyof CustomFeatures> = FeatureConfig<K> & {
-  id: K;
-};
+export type IdFeature<K extends keyof CustomFeatures = keyof CustomFeatures> =
+  FeatureConfig<K> & {
+    id: K;
+  };
 
 export function getFeatures(): IdFeature<any>[] {
   return Object.entries(features).map(([k, v]) => {

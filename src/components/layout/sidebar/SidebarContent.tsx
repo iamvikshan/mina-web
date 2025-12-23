@@ -34,11 +34,13 @@ export function SidebarContent() {
   const filteredGuilds = useMemo(
     () =>
       guilds.data?.filter((guild) => {
-        const contains = guild.name.toLowerCase().includes(filter.toLowerCase());
+        const contains = guild.name
+          .toLowerCase()
+          .includes(filter.toLowerCase());
 
         return config.guild.filter(guild) && contains;
       }),
-    [guilds.data, filter],
+    [guilds.data, filter]
   );
 
   return (
@@ -98,8 +100,14 @@ export function BottomCard() {
         </Avatar.Root>
         <Text fontWeight="600">{user.username}</Text>
         <Spacer />
-        <IconButton asChild aria-label="settings" size="sm" rounded="full" variant="ghost">
-          <Link href="/user/profile">
+        <IconButton
+          asChild
+          aria-label="settings"
+          size="sm"
+          rounded="full"
+          variant="ghost"
+        >
+          <Link href="/dash/profile">
             <SettingsIcon />
           </Link>
         </IconButton>

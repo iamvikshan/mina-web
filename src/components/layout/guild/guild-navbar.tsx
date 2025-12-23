@@ -26,7 +26,11 @@ export default function GuildNavbar({ back }: { back?: boolean }) {
       {guild == null ? (
         <SkeletonCircle mr={3} />
       ) : (
-        <Avatar.Root display={{ base: 'none', xl: 'block' }} mr={3} name={guild?.name}>
+        <Avatar.Root
+          display={{ base: 'none', xl: 'block' }}
+          mr={3}
+          name={guild?.name}
+        >
           {/* @ts-expect-error Chakra v3 types don't expose src/alt on Avatar.Image */}
           <Avatar.Image src={iconUrl(guild)} alt={guild?.name} />
           <Avatar.Fallback name={guild?.name} />
@@ -46,7 +50,13 @@ export default function GuildNavbar({ back }: { back?: boolean }) {
   );
 }
 
-function HorizontalCollapse({ in: isOpen, children }: { in: boolean; children: ReactElement }) {
+function HorizontalCollapse({
+  in: isOpen,
+  children,
+}: {
+  in: boolean;
+  children: ReactElement;
+}) {
   return (
     <motion.section
       animate={isOpen ? 'open' : 'collapsed'}

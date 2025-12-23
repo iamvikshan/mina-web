@@ -10,7 +10,8 @@ export const guild = createI18n(provider, {
     },
     error: {
       'not found': 'Where is it?',
-      'not found description': "The bot can't access the server, let's invite him!",
+      'not found description':
+        "The bot can't access the server, let's invite him!",
       load: 'Failed to load guild',
     },
     bn: {
@@ -46,7 +47,8 @@ export const guild = createI18n(provider, {
     },
     error: {
       'not found': 'どこにあるの？',
-      'not found description': 'ボットがサーバーにアクセスできません。招待しましょう！',
+      'not found description':
+        'ボットがサーバーにアクセスできません。招待しましょう！',
       load: 'サーバーの読み込みに失敗しました',
     },
     bn: {

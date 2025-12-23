@@ -17,7 +17,9 @@ export type Params = {
   feature: keyof CustomFeatures;
 };
 
-export type UpdateFeatureValue<K extends keyof CustomFeatures> = Partial<CustomFeatures[K]>;
+export type UpdateFeatureValue<K extends keyof CustomFeatures> = Partial<
+  CustomFeatures[K]
+>;
 
 const FeaturePage: NextPageWithLayout = () => {
   const { feature, guild } = useRouter().query as Params;
@@ -28,8 +30,15 @@ const FeaturePage: NextPageWithLayout = () => {
 
   if (featureConfig == null) return <NotFound />;
   if (query.isError) return <NotEnabled />;
-  if (query.isPending) return skeleton != null ? <>{skeleton}</> : <LoadingPanel />;
-  return <UpdateFeaturePanel key={feature} feature={query.data} config={featureConfig} />;
+  if (query.isPending)
+    return skeleton != null ? <>{skeleton}</> : <LoadingPanel />;
+  return (
+    <UpdateFeaturePanel
+      key={feature}
+      feature={query.data}
+      config={featureConfig}
+    />
+  );
 };
 
 function NotEnabled() {
@@ -84,3 +93,6 @@ function NotFound() {
 
 FeaturePage.getLayout = (c) => getGuildLayout({ children: c, back: true });
 export default FeaturePage;
+
+// Disable static generation
+export const getServerSideProps = async () => ({ props: {} });

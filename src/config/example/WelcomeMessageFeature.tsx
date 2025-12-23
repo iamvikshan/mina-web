@@ -4,7 +4,10 @@ import { UseFormRender, WelcomeMessageFeature } from '@/config/types';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { ColorPickerForm, SmallColorPickerForm } from '@/components/forms/ColorPicker';
+import {
+  ColorPickerForm,
+  SmallColorPickerForm,
+} from '@/components/forms/ColorPicker';
 import { DatePickerForm } from '@/components/forms/DatePicker';
 import { FilePickerForm } from '@/components/forms/FilePicker';
 import { SwitchFieldForm } from '@/components/forms/SwitchField';
@@ -21,7 +24,10 @@ const schema = z.object({
 
 type Input = z.infer<typeof schema>;
 
-export const useWelcomeMessageFeature: UseFormRender<WelcomeMessageFeature> = (data, onSubmit) => {
+export const useWelcomeMessageFeature: UseFormRender<WelcomeMessageFeature> = (
+  data,
+  onSubmit
+) => {
   const { register, reset, handleSubmit, formState, control } = useForm<Input>({
     resolver: zodResolver(schema),
     shouldUnregister: false,
@@ -98,7 +104,7 @@ export const useWelcomeMessageFeature: UseFormRender<WelcomeMessageFeature> = (d
         JSON.stringify({
           message: e.message,
           channel: e.channel,
-        }),
+        })
       );
 
       reset(data);

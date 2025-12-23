@@ -29,7 +29,13 @@ function render(role: Role): Option {
     label: role.name,
     icon:
       role.icon?.iconUrl != null ? (
-        <Image alt="icon" src={role.icon.iconUrl} bg={toRGB(role.color)} w="25px" h="25px" />
+        <Image
+          alt="icon"
+          src={role.icon.iconUrl}
+          bg={toRGB(role.color)}
+          w="25px"
+          h="25px"
+        />
       ) : (
         <Icon color={toRGB(role.color)} w="20px" h="20px">
           <BsPeopleFill />
@@ -38,35 +44,36 @@ function render(role: Role): Option {
   };
 }
 
-export const RoleSelect = forwardRef<SelectInstance<Option, false>, Props>((props, ref) => {
-  const { value, onChange, ...rest } = props;
-  const { guild } = useRouter().query as Params;
-  const rolesQuery = useGuildRolesQuery(guild);
-  const isLoading = rolesQuery.isPending;
+export const RoleSelect = forwardRef<SelectInstance<Option, false>, Props>(
+  (props, ref) => {
+    const { value, onChange, ...rest } = props;
+    const { guild } = useRouter().query as Params;
+    const rolesQuery = useGuildRolesQuery(guild);
+    const isLoading = rolesQuery.isPending;
 
-  const selected = value != null ? rolesQuery.data?.find((role) => role.id === value) : null;
+    const selected =
+      value != null ? rolesQuery.data?.find((role) => role.id === value) : null;
 
-  return (
-    <SelectField<Option>
-      isDisabled={isLoading}
-      isLoading={isLoading}
-      placeholder={<common.T text="select role" />}
-      value={selected != null ? render(selected) : null}
-      onChange={(e) => e != null && onChange(e.value)}
-      options={rolesQuery.data?.map(render) ?? []}
-      ref={ref}
-      {...rest}
-    />
-  );
-});
+    return (
+      <SelectField<Option>
+        isDisabled={isLoading}
+        isLoading={isLoading}
+        placeholder={<common.T text="select role" />}
+        value={selected != null ? render(selected) : null}
+        onChange={(e) => e != null && onChange(e.value)}
+        options={rolesQuery.data?.map(render) ?? []}
+        ref={ref}
+        {...rest}
+      />
+    );
+  }
+);
 
 RoleSelect.displayName = 'RolesSelect';
 
-export const RoleSelectForm: ControlledInput<Omit<Props, 'value' | 'onChange'>> = ({
-  control,
-  controller,
-  ...props
-}) => {
+export const RoleSelectForm: ControlledInput<
+  Omit<Props, 'value' | 'onChange'>
+> = ({ control, controller, ...props }) => {
   const { fieldState, field } = useController(controller);
 
   return (

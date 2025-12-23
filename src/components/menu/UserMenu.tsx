@@ -1,18 +1,36 @@
-import { Avatar, Box, Flex, Menu, Portal, Text } from '@chakra-ui/react';
+import {
+  Avatar,
+  Box,
+  Flex,
+  Menu,
+  Portal,
+  Skeleton,
+  Text,
+} from '@chakra-ui/react';
 import { UserInfo, avatarUrl } from '@/api/discord';
 import { common } from '@/config/translations/common';
 import Link from 'next/link';
-import { useSelfUser } from '@/api/hooks';
+import { useSelfUserQuery } from '@/api/hooks';
 import { useLogoutMutation } from '@/utils/auth/hooks';
 
 export function UserMenu(props: { color: string; shadow: string; bg: string }) {
-  const user = useSelfUser();
+  const { data: user, isLoading } = useSelfUserQuery();
+
+  // Show skeleton while loading
+  if (isLoading || !user) {
+    return <Skeleton rounded="full" w="40px" h="40px" />;
+  }
 
   return (
     <Menu.Root>
       {/* @ts-expect-error Chakra v3 types don't include children on compound components */}
       <Menu.Trigger cursor="pointer" p="0px" rounded="full" focusRing="outside">
-        <Avatar.Root colorPalette="brand" w="40px" h="40px" name={user.username}>
+        <Avatar.Root
+          colorPalette="brand"
+          w="40px"
+          h="40px"
+          name={user.username}
+        >
           {/* @ts-expect-error Chakra v3 types don't expose src/alt on Avatar.Image */}
           <Avatar.Image src={avatarUrl(user)} alt={user.username} />
           <Avatar.Fallback name={user.username} />
@@ -21,14 +39,24 @@ export function UserMenu(props: { color: string; shadow: string; bg: string }) {
       <Portal>
         {/* @ts-expect-error Chakra v3 types don't include children on compound components */}
         <Menu.Positioner>
-          <List user={user} shadow={props.shadow} menuBg={props.bg} textColor={props.color} />
+          <List
+            user={user}
+            shadow={props.shadow}
+            menuBg={props.bg}
+            textColor={props.color}
+          />
         </Menu.Positioner>
       </Portal>
     </Menu.Root>
   );
 }
 
-function List(props: { textColor: string; shadow: string; menuBg: string; user: UserInfo }) {
+function List(props: {
+  textColor: string;
+  shadow: string;
+  menuBg: string;
+  user: UserInfo;
+}) {
   const t = common.useTranslations();
   const { menuBg, shadow, textColor, user } = props;
   const logout = useLogoutMutation();
@@ -64,7 +92,10 @@ function List(props: { textColor: string; shadow: string; menuBg: string; user: 
       <Flex flexDirection="column" p="10px">
         {/* @ts-expect-error Chakra v3 types don't include children on compound components */}
         <Menu.Item value="profile" asChild>
-          <Link href={`/user/profile`} style={{ borderRadius: '8px', padding: '0 14px' }}>
+          <Link
+            href={`/dash/profile`}
+            style={{ borderRadius: '8px', padding: '0 14px' }}
+          >
             <Text fontSize="sm">{t.profile}</Text>
           </Link>
         </Menu.Item>

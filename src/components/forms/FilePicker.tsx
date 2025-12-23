@@ -1,4 +1,4 @@
-import { Box, Center, Flex, Text, VStack } from '@chakra-ui/layout';
+import { Box, Center, Flex, Text, VStack } from '@chakra-ui/react';
 import { Icon, Image } from '@chakra-ui/react';
 import { ComponentProps } from 'react';
 import Dropzone, { DropzoneOptions } from 'react-dropzone';
@@ -14,12 +14,10 @@ export type FilePickerFormProps = {
   placeholder?: string;
 };
 
-export const FilePickerForm: ControlledInput<FilePickerFormProps, File[] | undefined | null> = ({
-  control,
-  controller,
-  options,
-  placeholder,
-}) => {
+export const FilePickerForm: ControlledInput<
+  FilePickerFormProps,
+  File[] | undefined | null
+> = ({ control, controller, options, placeholder }) => {
   const {
     field: { value, onChange, ref, ...field },
     fieldState,

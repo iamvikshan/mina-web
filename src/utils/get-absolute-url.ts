@@ -3,5 +3,7 @@ export function getAbsoluteUrl(): string {
 
   if (process.env.APP_URL != null) return process.env.APP_URL;
 
-  return process.env.VERCEL_URL == null ? defaultUrl : `https://${process.env.VERCEL_URL}`;
+  return process.env.VERCEL_URL == null
+    ? defaultUrl
+    : `https://${process.env.VERCEL_URL}`;
 }

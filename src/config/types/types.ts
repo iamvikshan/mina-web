@@ -82,4 +82,7 @@ export type UseFormRenderResult = {
   component: ReactElement;
 };
 
-export type UseFormRender<T = unknown> = (data: T, onSubmit: SubmitFn<T>) => UseFormRenderResult;
+export type UseFormRender<T = unknown> = (
+  data: T,
+  onSubmit: SubmitFn<T>
+) => UseFormRenderResult;

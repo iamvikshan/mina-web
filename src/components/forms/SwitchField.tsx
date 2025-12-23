@@ -16,10 +16,19 @@ export const SwitchFieldForm: ControlledInput<{}, boolean> = ({
   } = useController(controller);
 
   return (
-    <Form isInvalid={fieldState.invalid} isRequired={control.required} {...control.baseControl}>
+    <Form
+      isInvalid={fieldState.invalid}
+      isRequired={control.required}
+      {...control.baseControl}
+    >
       <Flex justify="space-between" align="center" borderRadius="16px" gap={3}>
         <Box>
-          <Text as="label" fontSize={{ base: '16px', md: 'lg' }} fontWeight="medium" mb={0}>
+          <Text
+            as="label"
+            fontSize={{ base: '16px', md: 'lg' }}
+            fontWeight="medium"
+            mb={0}
+          >
             {control.label}
           </Text>
           <Text fontSize={{ base: 'sm', md: 'md' }} color="TextSecondary">
@@ -60,7 +69,13 @@ export function SwitchField(props: {
         </Text>
         <Text color="TextSecondary">{desc}</Text>
       </Box>
-      <Switch.Root id={id} size="md" checked={checked} onCheckedChange={onCheckedChange} {...rest}>
+      <Switch.Root
+        id={id}
+        size="md"
+        checked={checked}
+        onCheckedChange={onCheckedChange}
+        {...rest}
+      >
         <Switch.HiddenInput />
         {/* @ts-expect-error Chakra v3 types don't include children on compound components */}
         <Switch.Control>

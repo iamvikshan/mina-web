@@ -7,7 +7,10 @@ export function SidebarTrigger() {
   const setOpen = usePageStore((s) => s.setSidebarIsOpen);
 
   return (
-    <Flex display={{ base: 'flex', [sidebarBreakpoint]: 'none' }} alignItems="center">
+    <Flex
+      display={{ base: 'flex', [sidebarBreakpoint]: 'none' }}
+      alignItems="center"
+    >
       <Flex w="max-content" h="max-content" onClick={() => setOpen(true)}>
         <Icon
           as={IoMenuOutline}

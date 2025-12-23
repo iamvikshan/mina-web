@@ -26,6 +26,7 @@ export const config: AppConfig = {
     'https://discord.com/api/oauth2/authorize?client_id=1070011901385375845&permissions=8&scope=bot',
   guild: {
     //filter guilds that user has no permissions to manage it
-    filter: (guild) => (BigInt(guild.permissions) & PermissionFlags.ADMINISTRATOR) !== 0n,
+    filter: (guild) =>
+      (BigInt(guild.permissions) & PermissionFlags.ADMINISTRATOR) !== 0n,
   },
 };

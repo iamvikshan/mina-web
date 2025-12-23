@@ -49,7 +49,11 @@ export const SmallColorPickerForm: ControlledInput<
             {/* @ts-expect-error Chakra v3 types don't include children on compound components */}
             <Popover.Content>
               <Popover.Body>
-                <ColorPicker value={value} onChange={field.onChange} {...props} />
+                <ColorPicker
+                  value={value}
+                  onChange={field.onChange}
+                  {...props}
+                />
               </Popover.Body>
             </Popover.Content>
           </Popover.Positioner>
@@ -59,11 +63,10 @@ export const SmallColorPickerForm: ControlledInput<
   );
 };
 
-export const ColorPickerForm: ControlledInput<ColorPickerFormProps, ColorPickerProps['value']> = ({
-  control,
-  controller,
-  ...props
-}) => {
+export const ColorPickerForm: ControlledInput<
+  ColorPickerFormProps,
+  ColorPickerProps['value']
+> = ({ control, controller, ...props }) => {
   const { field, fieldState } = useController(controller);
   const { value } = field;
 
@@ -77,7 +80,9 @@ export const ColorPickerForm: ControlledInput<ColorPickerFormProps, ColorPickerP
             rounded="xl"
             border="1px solid"
             borderColor="InputBorder"
-            bgColor={value == null ? 'InputBackground' : convertHexToRGBA(value)}
+            bgColor={
+              value == null ? 'InputBackground' : convertHexToRGBA(value)
+            }
             flex={1}
           >
             {value == null && (
@@ -105,7 +110,12 @@ export type ColorPickerProps = {
   supportAlpha?: boolean;
 };
 
-export function ColorPicker({ value, onChange, supportAlpha, ...rest }: ColorPickerProps) {
+export function ColorPicker({
+  value,
+  onChange,
+  supportAlpha,
+  ...rest
+}: ColorPickerProps) {
   const props: Partial<ColorPickerBaseProps<string>> = {
     color: value ?? undefined,
     onChange,
@@ -115,5 +125,9 @@ export function ColorPicker({ value, onChange, supportAlpha, ...rest }: ColorPic
     ...rest,
   };
 
-  return supportAlpha ? <HexAlphaColorPicker {...props} /> : <HexColorPicker {...props} />;
+  return supportAlpha ? (
+    <HexAlphaColorPicker {...props} />
+  ) : (
+    <HexColorPicker {...props} />
+  );
 }

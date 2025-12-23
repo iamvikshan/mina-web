@@ -1,7 +1,13 @@
 import { Button, Center, Icon, Text, VStack } from '@chakra-ui/react';
 import { MdOutlineError } from 'react-icons/md';
 
-export function ErrorPanel({ children, retry }: { children: string; retry: () => void }) {
+export function ErrorPanel({
+  children,
+  retry,
+}: {
+  children: string;
+  retry: () => void;
+}) {
   const red = 'red.400';
 
   return (

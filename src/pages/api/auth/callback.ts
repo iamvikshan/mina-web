@@ -49,7 +49,10 @@ const querySchema = z.object({
     }),
 });
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const query = querySchema.safeParse(req.query);
 
   if (!query.success) {
@@ -60,5 +63,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   const token = await exchangeToken(code);
 
   setServerSession(req, res, token);
-  res.redirect(state ? `/${state}/user/home` : `/user/home`);
+  res.redirect(state ? `/${state}/dash` : `/dash`);
 }

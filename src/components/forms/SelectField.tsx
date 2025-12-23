@@ -1,4 +1,4 @@
-import { Box, HStack } from '@chakra-ui/layout';
+import { Box, HStack } from '@chakra-ui/react';
 import {
   chakraComponents,
   ChakraStylesConfig,
@@ -101,16 +101,18 @@ export type Option = OptionBase & {
   icon?: ReactNode;
 };
 
-export const SelectFieldBase = forwardRef<SelectInstance, Props>((props, ref) => {
-  return (
-    <Select<any, any, any>
-      components={customComponents}
-      chakraStyles={styles}
-      ref={ref}
-      {...props}
-    />
-  );
-});
+export const SelectFieldBase = forwardRef<SelectInstance, Props>(
+  (props, ref) => {
+    return (
+      <Select<any, any, any>
+        components={customComponents}
+        chakraStyles={styles}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
 
 SelectFieldBase.displayName = 'SelectField';
 

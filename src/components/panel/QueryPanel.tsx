@@ -16,7 +16,8 @@ export function QueryStatus({
   loading: ReactNode;
   children: ReactNode;
 }) {
-  if (query.isError) return <ErrorPanel retry={() => query.refetch()}>{error}</ErrorPanel>;
+  if (query.isError)
+    return <ErrorPanel retry={() => query.refetch()}>{error}</ErrorPanel>;
   if (query.isLoading) return <>{loading}</>;
   if (query.isSuccess) return <>{children}</>;
 

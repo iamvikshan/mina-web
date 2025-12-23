@@ -39,3 +39,4 @@ bun.lock
 .codebuddy/
 .github/
 cache/
+.vscode/

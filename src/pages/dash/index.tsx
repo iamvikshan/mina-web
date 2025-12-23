@@ -1,4 +1,13 @@
-import { Heading, Button, Card, Avatar, Flex, SimpleGrid, Skeleton, Text } from '@chakra-ui/react';
+import {
+  Heading,
+  Button,
+  Card,
+  Avatar,
+  Flex,
+  SimpleGrid,
+  Skeleton,
+  Text,
+} from '@chakra-ui/react';
 import { config } from '@/config/common';
 import { useGuilds } from '@/api/hooks';
 import HomeView from '@/config/example/HomeView';
@@ -25,7 +34,12 @@ export function GuildSelect() {
           .map((guild) => (
             <Card.Root key={guild.id} variant="elevated" asChild>
               <Link href={`/guilds/${guild.id}`}>
-                <Card.Header as={Flex} flexDirection="row" alignItems="center" gap={3}>
+                <Card.Header
+                  as={Flex}
+                  flexDirection="row"
+                  alignItems="center"
+                  gap={3}
+                >
                   <Avatar.Root size="md">
                     {/* @ts-expect-error Chakra v3 types don't expose src on Avatar.Image */}
                     <Avatar.Image src={iconUrl(guild)} />
@@ -42,7 +56,11 @@ export function GuildSelect() {
 
   if (guilds.status === 'error')
     return (
-      <Button w="fit-content" colorPalette="red" onClick={() => guilds.refetch()}>
+      <Button
+        w="fit-content"
+        colorPalette="red"
+        onClick={() => guilds.refetch()}
+      >
         Try Again
       </Button>
     );
@@ -63,3 +81,6 @@ export function GuildSelect() {
 
 HomePage.getLayout = (c) => <AppLayout>{c}</AppLayout>;
 export default HomePage;
+
+// Disable static generation - this page requires client-side router
+export const getServerSideProps = async () => ({ props: {} });

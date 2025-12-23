@@ -36,7 +36,7 @@ export function middleware_hasServerSession(req: NextRequest) {
 export function getServerSession(
   req: IncomingMessage & {
     cookies: NextApiRequestCookies;
-  },
+  }
 ) {
   const raw = req.cookies[TokenCookie];
 
@@ -46,7 +46,7 @@ export function getServerSession(
 export async function setServerSession(
   req: NextApiRequest,
   res: NextApiResponse,
-  data: AccessToken,
+  data: AccessToken
 ) {
   const options: HttpContext = { req, res, ...cookieOptions };
   await setCookie(TokenCookie, JSON.stringify(data), options);

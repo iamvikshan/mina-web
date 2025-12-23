@@ -1,12 +1,8 @@
-> Deprecated
->
-> Please consider other alternatives. You may continuously use it but no support will be provided.
-
-![banner](./document/preview-new.png)
+![banner](./docs/preview-new.png)
 
 # Discord Bot Dashboard Template
 
-Using Typescript, Next.js 13, React 18 and Chakra ui 2.0
+Using Typescript 5, Next.js 16, React 19 and Chakra ui 3
 
 - Support Light/Dark theme
 - Multi languages support (i18n)
@@ -15,16 +11,14 @@ Using Typescript, Next.js 13, React 18 and Chakra ui 2.0
 - Flexiable and Customizable
 - Detailed Documentation
 
-**Video:** https://youtu.be/IdMPjT5PzVk <br/>
-**Live Demo:** https://demo-bot.vercel.app
 
 - Only 'Welcome message' Feature is Supported
 
 ## Review (not the latest version)
 
-|                  Light                   |                  Dark                  |
-| :--------------------------------------: | :------------------------------------: |
-| ![light-mode](./document/home-light.png) | ![dark-mode](./document/home-dark.png) |
+|                Light                 |                Dark                |
+| :----------------------------------: | :--------------------------------: |
+| ![light-mode](./docs/home-light.png) | ![dark-mode](./docs/home-dark.png) |
 
 ## Getting Started
 
@@ -114,7 +108,7 @@ As a template, you need to customize a few things in order to get it work
    <br>
    Then you should see the app started in port `3000`
 
-   [Localization](./document/localization.md) | [Forms](./document/form.md)
+   [Localization](./docs/localization.md) | [Forms](./docs/form.md)
 
 ## Authorization
 

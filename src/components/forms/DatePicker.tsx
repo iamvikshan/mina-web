@@ -3,7 +3,7 @@ import { FormCard } from './Form';
 import { ControlledInput } from './types';
 import { Icon, Input, InputElement, Group, Popover } from '@chakra-ui/react';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
-import { Text } from '@chakra-ui/layout';
+import { Text } from '@chakra-ui/react';
 import { AiTwotoneCalendar as CalendarIcon } from 'react-icons/ai';
 import { useController } from 'react-hook-form';
 
@@ -30,11 +30,10 @@ export function DatePicker(props: CalendarProps) {
 
 export type DatePickerFormProps = Omit<CalendarProps, 'value' | 'onChange'>;
 
-export const DatePickerForm: ControlledInput<DatePickerFormProps, CalendarProps['value']> = ({
-  control,
-  controller,
-  ...props
-}) => {
+export const DatePickerForm: ControlledInput<
+  DatePickerFormProps,
+  CalendarProps['value']
+> = ({ control, controller, ...props }) => {
   const {
     field: { ref, ...field },
     fieldState,
@@ -47,11 +46,10 @@ export const DatePickerForm: ControlledInput<DatePickerFormProps, CalendarProps[
   );
 };
 
-export const SmallDatePickerForm: ControlledInput<DatePickerFormProps, CalendarProps['value']> = ({
-  control,
-  controller,
-  ...props
-}) => {
+export const SmallDatePickerForm: ControlledInput<
+  DatePickerFormProps,
+  CalendarProps['value']
+> = ({ control, controller, ...props }) => {
   const {
     field: { ref, ...field },
     fieldState,
@@ -67,7 +65,12 @@ export const SmallDatePickerForm: ControlledInput<DatePickerFormProps, CalendarP
         {/* @ts-expect-error Chakra v3 types don't include children on compound components */}
         <Popover.Trigger asChild>
           <Group attached w="full">
-            <Input value={text ?? ''} placeholder="Select a Date" readOnly flex={1} />
+            <Input
+              value={text ?? ''}
+              placeholder="Select a Date"
+              readOnly
+              flex={1}
+            />
             <InputElement pointerEvents="none">
               <CalendarIcon />
             </InputElement>

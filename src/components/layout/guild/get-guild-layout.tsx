@@ -12,7 +12,10 @@ export default function getGuildLayout({
   children: ReactNode;
 }) {
   return (
-    <AppLayout navbar={<GuildNavbar back={back} />} sidebar={back ? <InGuildSidebar /> : undefined}>
+    <AppLayout
+      navbar={<GuildNavbar back={back} />}
+      sidebar={back ? <InGuildSidebar /> : undefined}
+    >
       {children}
     </AppLayout>
   );

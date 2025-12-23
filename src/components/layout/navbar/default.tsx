@@ -1,5 +1,12 @@
 // Chakra Imports
-import { Breadcrumb, Flex, Icon, SkeletonText, Tag, Text } from '@chakra-ui/react';
+import {
+  Breadcrumb,
+  Flex,
+  Icon,
+  SkeletonText,
+  Tag,
+  Text,
+} from '@chakra-ui/react';
 import { Fragment, ReactNode } from 'react';
 import { useActiveSidebarItem } from '@/utils/router';
 import { IoHome } from 'react-icons/io5';
@@ -13,7 +20,7 @@ export function DefaultNavbar() {
     {
       icon: (<IoHome />) as ReactNode,
       text: (<common.T text="pages" />) as ReactNode,
-      href: '/user/home',
+      href: '/dash',
     },
   ];
 
@@ -52,7 +59,9 @@ export function DefaultNavbar() {
         <Breadcrumb.List>
           {breadcrumb.map((item, i) => (
             <Fragment key={i}>
-              {i > 0 && <Breadcrumb.Separator>{separator}</Breadcrumb.Separator>}
+              {i > 0 && (
+                <Breadcrumb.Separator>{separator}</Breadcrumb.Separator>
+              )}
               <Breadcrumb.Item>
                 <Tag.Root
                   asChild
@@ -75,7 +84,12 @@ export function DefaultNavbar() {
           ))}
         </Breadcrumb.List>
       </Breadcrumb.Root>
-      <Text color="TextPrimary" fontWeight="bold" fontSize={{ base: '25px', sm: '34px' }} mb={2}>
+      <Text
+        color="TextPrimary"
+        fontWeight="bold"
+        fontSize={{ base: '25px', sm: '34px' }}
+        mb={2}
+      >
         {activeItem?.name || <SkeletonText w="full" noOfLines={2} />}
       </Text>
     </Flex>

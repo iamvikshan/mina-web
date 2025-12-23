@@ -33,7 +33,7 @@ export type GuildChannel = {
  */
 export async function fetchGuildInfo(
   session: AccessToken,
-  guild: string,
+  guild: string
 ): Promise<CustomGuildInfo | null> {
   return await callReturn<CustomGuildInfo | null>(
     `/guilds/${guild}`,
@@ -44,36 +44,44 @@ export async function fetchGuildInfo(
       allowed: {
         404: () => null,
       },
-    }),
+    })
   );
 }
 
-export async function enableFeature(session: AccessToken, guild: string, feature: string) {
+export async function enableFeature(
+  session: AccessToken,
+  guild: string,
+  feature: string
+) {
   return await callDefault(
     `/guilds/${guild}/features/${feature}`,
     botRequest(session, {
       request: {
         method: 'POST',
       },
-    }),
+    })
   );
 }
 
-export async function disableFeature(session: AccessToken, guild: string, feature: string) {
+export async function disableFeature(
+  session: AccessToken,
+  guild: string,
+  feature: string
+) {
   return await callDefault(
     `/guilds/${guild}/features/${feature}`,
     botRequest(session, {
       request: {
         method: 'DELETE',
       },
-    }),
+    })
   );
 }
 
 export async function getFeature<K extends keyof CustomFeatures>(
   session: AccessToken,
   guild: string,
-  feature: K,
+  feature: K
 ): Promise<CustomFeatures[K]> {
   return await callReturn<CustomFeatures[K]>(
     `/guilds/${guild}/features/${feature}`,
@@ -81,7 +89,7 @@ export async function getFeature<K extends keyof CustomFeatures>(
       request: {
         method: 'GET',
       },
-    }),
+    })
   );
 }
 
@@ -89,7 +97,7 @@ export async function updateFeature<K extends keyof CustomFeatures>(
   session: AccessToken,
   guild: string,
   feature: K,
-  options: FormData | string,
+  options: FormData | string
 ): Promise<CustomFeatures[K]> {
   const isForm = options instanceof FormData;
 
@@ -105,7 +113,7 @@ export async function updateFeature<K extends keyof CustomFeatures>(
             },
         body: options,
       },
-    }),
+    })
   );
 }
 
@@ -122,7 +130,7 @@ export async function fetchGuildRoles(session: AccessToken, guild: string) {
       request: {
         method: 'GET',
       },
-    }),
+    })
   );
 }
 
@@ -136,6 +144,6 @@ export async function fetchGuildChannels(session: AccessToken, guild: string) {
       request: {
         method: 'GET',
       },
-    }),
+    })
   );
 }

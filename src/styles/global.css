@@ -1,8 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+/* ==================== AMINA WEB - GLOBAL STYLES ==================== */
+/* Akame ga Kill inspired theming with modern dashboard aesthetics */
+
+/* === GOOGLE FONTS === */
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800;900&family=Nunito+Sans:wght@400;500;600;700&family=Comfortaa:wght@400;500;600;700&family=Fira+Code:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap');
 
+/* === BASE STYLES === */
 body {
-  font-family: 'DM Sans', 'Noto Color Emoji' !important;
+  font-family:
+    'Nunito Sans', 'Noto Color Emoji', ui-sans-serif, system-ui, sans-serif !important;
   min-width: 350px;
   width: auto;
 }
@@ -16,4 +22,373 @@ body,
 
 option {
   color: black;
+}
+
+/* === TYPOGRAPHY UTILITIES === */
+.font-heading {
+  font-family: 'Exo 2', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.font-dialogue {
+  font-family: 'Comfortaa', ui-sans-serif, system-ui, cursive;
+  font-weight: 500;
+}
+
+.font-mono {
+  font-family: 'Fira Code', ui-monospace, monospace;
+}
+
+.text-uppercase-heading {
+  font-family: 'Exo 2', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* === KEYFRAME ANIMATIONS === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes portraitBreathe {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(220, 20, 60, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(220, 20, 60, 0.8);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* === ANIMATION UTILITIES === */
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-slideIn {
+  animation: slideIn 0.4s ease-out;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.4s ease-out;
+}
+
+.animate-pulseGlow {
+  animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.animate-portraitBreathe {
+  animation: portraitBreathe 4s ease-in-out infinite;
+}
+
+.animate-glowPulse {
+  animation: glowPulse 1.5s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* === AMINA CHARACTER STYLES === */
+.amina-portrait {
+  border: 3px solid #dc143c;
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(220, 20, 60, 0.6);
+  border-radius: 50%;
+  overflow: hidden;
+  animation: portraitBreathe 4s ease-in-out infinite;
+}
+
+.amina-portrait-active {
+  animation: glowPulse 1.5s ease-in-out infinite;
+}
+
+/* === SPEECH BUBBLE === */
+.speech-bubble {
+  position: relative;
+  background: #1a1a1a;
+  border: 2px solid #1e90ff;
+  border-radius: 12px;
+  padding: 1rem;
+  font-family: 'Comfortaa', ui-sans-serif, system-ui, cursive;
+  color: #1e90ff;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(30, 144, 255, 0.6);
+  max-width: 300px;
+}
+
+.speech-bubble::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #1e90ff;
+}
+
+/* === GLOW UTILITIES === */
+.glow-crimson {
+  box-shadow: 0 0 20px rgba(220, 20, 60, 0.6);
+}
+
+.glow-blue {
+  box-shadow: 0 0 20px rgba(30, 144, 255, 0.6);
+}
+
+.glow-gold {
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+}
+
+.glow-green {
+  box-shadow: 0 0 20px rgba(87, 242, 135, 0.6);
+}
+
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(0, 206, 209, 0.5);
+}
+
+/* === HOVER GLOW EFFECTS === */
+.hover-glow-crimson:hover {
+  box-shadow: 0 0 25px rgba(220, 20, 60, 0.7);
+  transition: box-shadow 0.3s ease;
+}
+
+.hover-glow-blue:hover {
+  box-shadow: 0 0 25px rgba(30, 144, 255, 0.7);
+  transition: box-shadow 0.3s ease;
+}
+
+/* === GRADIENT BACKGROUNDS === */
+.bg-amina-gradient {
+  background: linear-gradient(135deg, #dc143c 0%, #8b0000 100%);
+}
+
+.bg-cyber-gradient {
+  background: linear-gradient(135deg, #1e90ff 0%, #00ced1 100%);
+}
+
+.bg-imperial-gradient {
+  background: linear-gradient(135deg, #ffd700 0%, #ffa500 100%);
+}
+
+.bg-night-gradient {
+  background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+}
+
+/* === PIXEL ART RENDERING === */
+.pixel-art,
+.pixelated {
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  -ms-interpolation-mode: nearest-neighbor;
+}
+
+/* === TRANSITION UTILITIES === */
+.transition-fast {
+  transition: all 0.15s ease;
+}
+
+.transition-base {
+  transition: all 0.3s ease;
+}
+
+.transition-slow {
+  transition: all 0.5s ease;
+}
+
+/* === BACKGROUND PATTERNS === */
+.bg-grid-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 10 0 L 0 0 0 10' fill='none' stroke='%2300CED1' stroke-width='0.5'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)'/%3E%3C/svg%3E");
+}
+
+.bg-dots-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='dots' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Ccircle cx='2' cy='2' r='1' fill='%2300CED1' opacity='0.2'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23dots)'/%3E%3C/svg%3E");
+}
+
+/* === LANDING PAGE ANIMATIONS === */
+@keyframes gradient-x {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes float-delayed {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-gradient-x {
+  background-size: 200% auto;
+  animation: gradient-x 3s ease infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-bounce-slow {
+  animation: bounce-slow 2s ease-in-out infinite;
+}
+
+.animate-float-delayed-1 {
+  animation: float-delayed 4s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.animate-float-delayed-2 {
+  animation: float-delayed 5s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.animate-float-delayed-3 {
+  animation: float-delayed 4.5s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
+
+/* Hero section animations */
+.hero-content {
+  animation: fadeInUp 1s ease-out;
+}
+
+.hero-character {
+  animation: slideInRight 1.2s ease-out;
+}
+
+.hero-image {
+  animation: float 6s ease-in-out infinite;
+}
+
+.floating-ui {
+  animation: float-delayed 3s ease-in-out infinite;
 }

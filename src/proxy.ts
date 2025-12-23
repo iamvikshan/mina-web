@@ -3,7 +3,7 @@ import { middleware_hasServerSession } from './utils/auth/server';
 
 //Pages need to be logged in before visiting
 export const config = {
-  matcher: ['/guilds/:path*', '/user/:path*'],
+  matcher: ['/guilds/:path*', '/dash/:path*'],
 };
 
 export default function middleware(req: NextRequest) {
@@ -11,7 +11,7 @@ export default function middleware(req: NextRequest) {
 
   if (!loggedin) {
     const url = req.nextUrl.clone();
-    url.pathname = '/auth/signin';
+    url.pathname = '/';
 
     return NextResponse.redirect(url);
   }

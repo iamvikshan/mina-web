@@ -25,7 +25,11 @@ export default function AppLayout({
       <Box display={{ base: 'block', xl: 'none' }}>
         <SidebarResponsive sidebar={sidebar} />
       </Box>
-      <QueryStatus query={query} loading={<LoadingPanel />} error="Failed to load user info">
+      <QueryStatus
+        query={query}
+        loading={<LoadingPanel />}
+        error="Failed to load user info"
+      >
         <Flex
           pos="relative"
           direction="column"

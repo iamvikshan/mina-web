@@ -18,14 +18,21 @@ import { BsMusicNoteBeamed } from 'react-icons/bs';
 import { IoOpen, IoPricetag } from 'react-icons/io5';
 import { FaRobot } from 'react-icons/fa';
 import { MdVoiceChat } from 'react-icons/md';
-import { GuildSelect } from '@/pages/user/home';
+import { GuildSelect } from '@/pages/dash';
 
 export default function HomeView() {
   const t = dashboard.useTranslations();
 
   return (
     <Flex direction="column" gap={5}>
-      <Flex direction="row" alignItems="center" rounded="2xl" bg="Brand" gap={4} p={5}>
+      <Flex
+        direction="row"
+        alignItems="center"
+        rounded="2xl"
+        bg="Brand"
+        gap={4}
+        p={5}
+      >
         <Circle
           color="white"
           bgGradient="linear(to right bottom, transparent, blackAlpha.600)"
@@ -105,7 +112,12 @@ export default function HomeView() {
       <Grid templateColumns={{ base: '1fr', lg: '0.5fr 1fr' }} gap={3}>
         <Card.Root rounded="3xl" variant="elevated">
           <Card.Body as={Center} p={4} flexDirection="column" gap={3}>
-            <Circle p={4} bg="brandAlpha.100" color="brand.500" _dark={{ color: 'brand.200' }}>
+            <Circle
+              p={4}
+              bg="brandAlpha.100"
+              color="brand.500"
+              _dark={{ color: 'brand.200' }}
+            >
               <Icon w="80px" h="80px">
                 <BsMusicNoteBeamed />
               </Icon>

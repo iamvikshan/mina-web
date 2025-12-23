@@ -36,7 +36,10 @@ export function Sidebar({ sidebar }: { sidebar?: ReactNode }) {
 
 export function SidebarResponsive({ sidebar }: { sidebar?: ReactNode }) {
   const { isOpen, setOpen } = usePageStore(
-    useShallow((s) => ({ isOpen: s.sidebarIsOpen, setOpen: s.setSidebarIsOpen })),
+    useShallow((s) => ({
+      isOpen: s.sidebarIsOpen,
+      setOpen: s.setSidebarIsOpen,
+    }))
   );
 
   const handleOpenChange = (details: { open: boolean }) => {

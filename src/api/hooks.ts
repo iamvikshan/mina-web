@@ -82,7 +82,10 @@ export function useGuildInfoQuery(guild: string) {
   });
 }
 
-export function useFeatureQuery<K extends keyof CustomFeatures>(guild: string, feature: K) {
+export function useFeatureQuery<K extends keyof CustomFeatures>(
+  guild: string,
+  feature: K
+) {
   const { status, session } = useSession();
 
   return useQuery({
@@ -92,7 +95,11 @@ export function useFeatureQuery<K extends keyof CustomFeatures>(guild: string, f
   });
 }
 
-export type EnableFeatureOptions = { guild: string; feature: string; enabled: boolean };
+export type EnableFeatureOptions = {
+  guild: string;
+  feature: string;
+  enabled: boolean;
+};
 export function useEnableFeatureMutation() {
   const { session } = useSession();
 
@@ -102,7 +109,9 @@ export function useEnableFeatureMutation() {
       return disableFeature(session!!, guild, feature);
     },
     onSuccess: async (_, { guild, feature, enabled }) => {
-      await client.invalidateQueries({ queryKey: Keys.features(guild, feature) });
+      await client.invalidateQueries({
+        queryKey: Keys.features(guild, feature),
+      });
       client.setQueryData<GuildInfo | null>(Keys.guild_info(guild), (prev) => {
         if (prev == null) return null;
 

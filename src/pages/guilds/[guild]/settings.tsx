@@ -22,15 +22,16 @@ type ExampleSettings = z.infer<typeof schema>;
  * Exmaple for using react-hook-form with built-in components
  */
 const GuildSettingsPage: NextPageWithLayout = () => {
-  const { watch, register, control, formState, handleSubmit } = useForm<ExampleSettings>({
-    resolver: zodResolver(schema),
-    defaultValues: {
-      beta: true,
-      prefix: '/',
-      role: undefined,
-      channel: undefined,
-    },
-  });
+  const { watch, register, control, formState, handleSubmit } =
+    useForm<ExampleSettings>({
+      resolver: zodResolver(schema),
+      defaultValues: {
+        beta: true,
+        prefix: '/',
+        role: undefined,
+        channel: undefined,
+      },
+    });
   const errors = formState.errors;
 
   return (
@@ -87,5 +88,8 @@ const GuildSettingsPage: NextPageWithLayout = () => {
   );
 };
 
-GuildSettingsPage.getLayout = (c) => getGuildLayout({ children: c, back: true });
+GuildSettingsPage.getLayout = (c) =>
+  getGuildLayout({ children: c, back: true });
 export default GuildSettingsPage;
+// Disable static generation
+export const getServerSideProps = async () => ({ props: {} });

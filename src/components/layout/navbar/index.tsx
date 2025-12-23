@@ -5,7 +5,13 @@ import { UserMenu } from '@/components/menu/UserMenu';
 import { SidebarTrigger } from '@/components/SidebarTrigger';
 import { ThemeSwitch } from '@/components/ThemeSwitch';
 
-export function Navbar({ links, children }: { links?: ReactNode; children: ReactNode }) {
+export function Navbar({
+  links,
+  children,
+}: {
+  links?: ReactNode;
+  children: ReactNode;
+}) {
   return (
     <Flex
       direction="row"

@@ -6,12 +6,12 @@ import { SidebarItemInfo } from '@/utils/router';
 const items: SidebarItemInfo[] = [
   {
     name: <common.T text="dashboard" />,
-    path: '/user/home',
+    path: '/dash',
     icon: <Icon as={MdDashboard} />,
   },
   {
     name: <common.T text="profile" />,
-    path: '/user/profile',
+    path: '/dash/profile',
     icon: <Icon as={MdPerson} />,
   },
 ];

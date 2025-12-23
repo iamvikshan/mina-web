@@ -1,4 +1,12 @@
-import { Center, Flex, Heading, SimpleGrid, Text, Button, Icon } from '@chakra-ui/react';
+import {
+  Center,
+  Flex,
+  Heading,
+  SimpleGrid,
+  Text,
+  Button,
+  Icon,
+} from '@chakra-ui/react';
 import { LoadingPanel } from '@/components/panel/LoadingPanel';
 import { QueryStatus } from '@/components/panel/QueryPanel';
 import { config } from '@/config/common';
@@ -30,7 +38,13 @@ const GuildPage: NextPageWithLayout = () => {
   );
 };
 
-function GuildPanel({ guild: id, info }: { guild: string; info: CustomGuildInfo }) {
+function GuildPanel({
+  guild: id,
+  info,
+}: {
+  guild: string;
+  info: CustomGuildInfo;
+}) {
   const t = view.useTranslations();
 
   return (
@@ -97,3 +111,6 @@ function NotJoined({ guild }: { guild: string }) {
 
 GuildPage.getLayout = (c) => getGuildLayout({ children: c });
 export default GuildPage;
+
+// Disable static generation
+export const getServerSideProps = async () => ({ props: {} });

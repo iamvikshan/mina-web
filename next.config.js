@@ -4,9 +4,9 @@ const nextConfig = {
   allowedDevOrigins: ['127.0.0.1', 'localhost'],
   async redirects() {
     return [
-      { source: '/auth', destination: '/auth/signin', permanent: false },
-      { source: '/user', destination: '/user/home', permanent: false },
-      { source: '/', destination: '/user/home', permanent: false },
+      { source: '/dash', destination: '/dash', permanent: false },
+      // Landing page (/) is now the entry point - no redirect needed
+      // Auth is handled by landing page header login button
     ];
   },
   i18n: {

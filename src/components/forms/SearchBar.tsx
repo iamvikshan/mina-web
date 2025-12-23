@@ -7,7 +7,7 @@ export function SearchBar(
   props: {
     input?: InputProps;
     onSearch?: () => void;
-  } & GroupProps,
+  } & GroupProps
 ) {
   const t = common.useTranslations();
   const { input, onSearch, ...rest } = props;
