@@ -25,7 +25,7 @@ As a template, you need to customize a few things in order to get it work
 
 ### Before that
 
-- Install bun (preferred) or Node.js (v18 or above)
+- Install Bun
 
   ```sh
   curl -fsSL https://bun.sh/install | bash
@@ -44,11 +44,10 @@ As a template, you need to customize a few things in order to get it work
 2. **Install dependencies**
    <br>
 
-   Using `bun` (preferred):
-
    ```sh
    bun install
    ```
+
 3. **Customize files**
    <br>
    The file structure of this project
@@ -107,7 +106,7 @@ As a template, you need to customize a few things in order to get it work
 
 8. **Done!**
    <br>
-   Start the app by `bun dev` _(depends on your package manager)_
+   Start the app with `bun dev`
    <br>
    Then you should see the app started in port `3000`
 

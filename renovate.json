@@ -61,7 +61,7 @@
       "matchPackageNames": ["react", "react-dom"],
       "matchPackagePatterns": ["^react-"],
       "automerge": false,
-      "minimumReleaseAge": "5 days",
+      "minimumReleaseAge": "3 days",
       "labels": ["dependencies", "react"]
     },
     {
@@ -88,11 +88,7 @@
     },
     {
       "groupName": "Form libraries",
-      "matchPackageNames": [
-        "react-hook-form",
-        "@hookform/resolvers",
-        "zod"
-      ],
+      "matchPackageNames": ["react-hook-form", "@hookform/resolvers", "zod"],
       "automerge": false,
       "minimumReleaseAge": "3 days"
     },
@@ -123,6 +119,6 @@
   "vulnerabilityAlerts": {
     "labels": ["security"],
     "minimumReleaseAge": "0 days",
-    "automerge": true
+    "automerge": false
   }
 }

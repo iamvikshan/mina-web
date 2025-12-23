@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "next dev --webpack",
-    "build": "bun clean && NODE_ENV=production next build",
+    "build": "bun clean && next build",
     "start": "next start",
     "clean": "rm -rf .next && rm -rf out",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",

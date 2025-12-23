@@ -145,8 +145,16 @@ export const HeroAmina = ({ formattedGuildCount, uptime }: HeroAminaProps) => {
 
             {/* CTA Buttons */}
             <Flex direction={{ base: 'column', sm: 'row' }} gap="4">
-              <PrimaryBtn url={addBotUrl} text="Add to Discord" icon="discord" />
-              <SecondaryBtn url={docsUrl} text="Documentation" icon="file-text" />
+              <PrimaryBtn
+                url={addBotUrl}
+                text="Add to Discord"
+                icon="discord"
+              />
+              <SecondaryBtn
+                url={docsUrl}
+                text="Documentation"
+                icon="file-text"
+              />
             </Flex>
 
             {/* Stats */}

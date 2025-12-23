@@ -136,20 +136,20 @@ const customConfig = defineConfig({
         },
         SurfacePrimary: {
           value: {
-            base: '{colors.white}',
-            _dark: '{colors.night.700}',
+            base: `{colors.${light.surfacePrimary}}`,
+            _dark: `{colors.${dark.surfacePrimary}}`,
           },
         },
         SurfaceSecondary: {
           value: {
-            base: '{colors.slate.100}',
-            _dark: '{colors.night.600}',
+            base: `{colors.${light.surfaceSecondary}}`,
+            _dark: `{colors.${dark.surfaceSecondary}}`,
           },
         },
         SurfaceMuted: {
           value: {
-            base: '{colors.slate.200}',
-            _dark: '{colors.night.500}',
+            base: `{colors.${light.surfaceMuted}}`,
+            _dark: `{colors.${dark.surfaceMuted}}`,
           },
         },
         // Input states
@@ -181,27 +181,27 @@ const customConfig = defineConfig({
         // Border colors
         BorderPrimary: {
           value: {
-            base: '{colors.slate.200}',
-            _dark: '{colors.whiteAlpha.200}',
+            base: `{colors.${light.borderPrimary}}`,
+            _dark: `{colors.${dark.borderPrimary}}`,
           },
         },
         BorderSecondary: {
           value: {
-            base: '{colors.slate.300}',
-            _dark: '{colors.whiteAlpha.300}',
+            base: `{colors.${light.borderSecondary}}`,
+            _dark: `{colors.${dark.borderSecondary}}`,
           },
         },
         // Interactive states
         HoverBackground: {
           value: {
-            base: '{colors.slate.100}',
-            _dark: '{colors.night.600}',
+            base: `{colors.${light.hoverBg}}`,
+            _dark: `{colors.${dark.hoverBg}}`,
           },
         },
         ActiveBackground: {
           value: {
-            base: '{colors.slate.200}',
-            _dark: '{colors.night.500}',
+            base: `{colors.${light.activeBg}}`,
+            _dark: `{colors.${dark.activeBg}}`,
           },
         },
         // Amina-specific semantic colors

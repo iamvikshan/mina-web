@@ -5,14 +5,18 @@ import { FaDiscord } from 'react-icons/fa';
 import { LuArrowRight, LuShield, LuStar, LuArrowLeft } from 'react-icons/lu';
 import type { IconType } from 'react-icons';
 
+type IconName = 'discord' | 'arrow-right' | 'arrow-left' | 'shield' | 'star';
+
+const fallbackIcon: IconType = LuArrowRight;
+
 interface PrimaryBtnProps {
   url?: string;
   text?: string;
-  icon?: 'discord' | 'arrow-right' | 'shield' | 'star' | 'arrow-left';
+  icon?: IconName;
   className?: string;
 }
 
-const iconMap: Record<string, IconType> = {
+const iconMap: Record<IconName, IconType> = {
   discord: FaDiscord,
   'arrow-right': LuArrowRight,
   'arrow-left': LuArrowLeft,
@@ -35,7 +39,11 @@ export const PrimaryBtn = ({
   icon = 'arrow-right',
   className = '',
 }: PrimaryBtnProps) => {
-  const IconComponent = iconMap[icon];
+  const IconComponent = iconMap[icon] ?? fallbackIcon;
+
+  if (!iconMap[icon]) {
+    console.warn('PrimaryBtn: unknown icon, falling back to arrow-right', icon);
+  }
 
   return (
     <Button
@@ -62,19 +70,16 @@ export const PrimaryBtn = ({
       transition="all 0.3s"
     >
       <a href={url} target="_blank" rel="noopener noreferrer">
-        <Icon boxSize="6">
-          <IconComponent />
-        </Icon>
+        {IconComponent && <Icon as={IconComponent} boxSize="6" />}
         <span>{text}</span>
         <Icon
+          as={LuArrowRight}
           boxSize="5"
           transition="transform 0.3s"
           css={{
             '.group:hover &': { transform: 'translateX(4px)' },
           }}
-        >
-          <LuArrowRight />
-        </Icon>
+        />
       </a>
     </Button>
   );

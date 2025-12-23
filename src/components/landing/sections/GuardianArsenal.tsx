@@ -69,7 +69,6 @@ interface GuardianArsenalProps {
 export const GuardianArsenal = ({
   features = defaultFeatures,
 }: GuardianArsenalProps) => {
-
   return (
     <Box
       as="section"

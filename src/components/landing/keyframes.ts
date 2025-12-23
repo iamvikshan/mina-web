@@ -2,20 +2,20 @@
  * Landing Page Animation Tokens
  * ==============================
  * Animation tokens for landing page components.
- * 
+ *
  * Keyframes and animations are defined in theme/config.tsx using Chakra's
  * native animation system. This file exports:
  * 1. Animation token names for the `animation` prop
  * 2. staggeredFadeIn() helper for index-based delays
- * 
+ *
  * Usage in components:
  * ```tsx
  * // Using animation prop (preferred)
  * <Box animation="float">...</Box>
- * 
+ *
  * // Using css prop for custom timing
  * <Box css={{ animation: animations.floatDelayed1 }}>...</Box>
- * 
+ *
  * // Staggered animations
  * <Box css={{ animation: staggeredFadeIn(index) }}>...</Box>
  * ```
@@ -41,23 +41,22 @@ export const animations = {
 } as const;
 
 /**
+ * Type-safe helper to create animation tokens from animation definitions
+ * Ensures compile-time verification that keys match the source object
+ */
+function createAnimationTokens<T extends Record<string, unknown>>(
+  obj: T
+): { [P in keyof T]: P } {
+  return Object.fromEntries(Object.keys(obj).map((k) => [k, k])) as {
+    [P in keyof T]: P;
+  };
+}
+
+/**
  * Animation token names for use with Chakra's animation prop
  * @example <Box animation="float">...</Box>
  */
-export const animationTokens = {
-  float: 'float',
-  floatSlow: 'floatSlow',
-  floatDelayed1: 'floatDelayed1',
-  floatDelayed2: 'floatDelayed2',
-  floatDelayed3: 'floatDelayed3',
-  breath: 'breath',
-  pulse: 'pulse',
-  shimmer: 'shimmer',
-  fadeInUp: 'fadeInUp',
-  bounceSlow: 'bounceSlow',
-  ping: 'ping',
-  gradientText: 'gradientText',
-} as const;
+export const animationTokens = createAnimationTokens(animations);
 
 /**
  * Staggered fadeInUp animation helper

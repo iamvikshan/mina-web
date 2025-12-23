@@ -2,6 +2,8 @@
 // Based on Akame ga Kill themes + modern dashboard aesthetics
 // Unified palette - no duplicates, all references use Amina namespace
 
+const CYBER_PRIMARY = '#00ced1'; // Prefer using cyber.400 (canonical electric cyan)
+
 export const colors = {
   // === AMINA'S CRIMSON (Primary - Night Raid) ===
   amina: {
@@ -62,15 +64,15 @@ export const colors = {
     100: { value: '#b3e5fc' },
     200: { value: '#87ceeb' }, // Ice blue
     300: { value: '#4fc3f7' },
-    400: { value: '#00ced1' }, // Electric cyan - primary cyber color
+    400: { value: CYBER_PRIMARY }, // Electric cyan - primary cyber color (canonical)
     500: { value: '#1e90ff' }, // Dodger blue
     600: { value: '#1976d2' },
     700: { value: '#1565c0' },
     800: { value: '#0d47a1' },
     900: { value: '#0a2463' },
-    // Aliases for Hono compatibility
-    blue: { value: '#00ced1' },
-    electric: { value: '#00ced1' },
+    // Aliases for Hono compatibility (prefer cyber.400 in new code)
+    blue: { value: CYBER_PRIMARY },
+    electric: { value: CYBER_PRIMARY },
     ice: { value: '#87ceeb' },
   },
 
@@ -140,6 +142,7 @@ export const colors = {
 
   // === STATUS COLORS ===
   red: {
+    50: { value: '#fef2f2' },
     100: { value: '#fee2e2' },
     200: { value: '#fecaca' },
     300: { value: '#fca5a5' },
@@ -163,6 +166,7 @@ export const colors = {
     900: { value: '#1e3a8a' },
   },
   orange: {
+    50: { value: '#fffbf0' },
     100: { value: '#FFF6DA' },
     200: { value: '#fef3c7' },
     300: { value: '#fde68a' },
@@ -174,6 +178,7 @@ export const colors = {
     900: { value: '#78350f' },
   },
   green: {
+    50: { value: '#f0fdf4' },
     100: { value: '#E6FAF5' },
     200: { value: '#bbf7d0' },
     300: { value: '#86efac' },
@@ -196,6 +201,20 @@ export const colors = {
     800: { value: '#1f2937' },
     900: { value: '#111827' },
   },
+
+  // === WHITE ALPHA (Translucent overlays for dark mode) ===
+  whiteAlpha: {
+    50: { value: 'rgba(255, 255, 255, 0.05)' },
+    100: { value: 'rgba(255, 255, 255, 0.1)' },
+    200: { value: 'rgba(255, 255, 255, 0.15)' },
+    300: { value: 'rgba(255, 255, 255, 0.2)' },
+    400: { value: 'rgba(255, 255, 255, 0.25)' },
+    500: { value: 'rgba(255, 255, 255, 0.3)' },
+    600: { value: 'rgba(255, 255, 255, 0.35)' },
+    700: { value: 'rgba(255, 255, 255, 0.4)' },
+    800: { value: 'rgba(255, 255, 255, 0.45)' },
+    900: { value: 'rgba(255, 255, 255, 0.5)' },
+  },
 };
 
 // === LIGHT THEME MAPPING (Day mode - Guardian's watch) ===
@@ -205,7 +224,8 @@ export const light = {
   textColorPrimary: 'slate.900',
   textColorSecondary: 'slate.500',
   cardBg: 'white',
-  shadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
+  shadow:
+    '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)',
   // Surface colors for light mode
   surfacePrimary: 'white',
   surfaceSecondary: 'slate.100',
@@ -225,7 +245,8 @@ export const dark = {
   textColorPrimary: 'white',
   textColorSecondary: 'gray.400',
   cardBg: 'night.700',
-  shadow: '0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3)',
+  shadow:
+    '0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3)',
   // Surface colors for dark mode
   surfacePrimary: 'night.700',
   surfaceSecondary: 'night.600',
