@@ -1,0 +1,128 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended", ":semanticCommits"],
+  "baseBranches": ["main"],
+  "automerge": false,
+  "prConcurrentLimit": 10,
+  "prHourlyLimit": 5,
+  "labels": ["dependencies"],
+  "assignees": ["iamvikshan"],
+  "schedule": ["before 4am every weekday"],
+  "timezone": "Africa/Nairobi",
+  "dependencyDashboard": true,
+  "dependencyDashboardApproval": false,
+  "rebaseWhen": "conflicted",
+  "rangeStrategy": "bump",
+  "separateMinorPatch": true,
+  "separateMajorMinor": true,
+  "minimumReleaseAge": "3 days",
+  "packageRules": [
+    {
+      "description": "Automerge patch updates and digests (safe bug fixes)",
+      "matchUpdateTypes": ["patch", "digest"],
+      "automerge": true,
+      "minimumReleaseAge": "0 days"
+    },
+    {
+      "description": "Automerge minor updates for devDependencies (safe for lint/types)",
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["minor"],
+      "automerge": true,
+      "minimumReleaseAge": "1 day"
+    },
+    {
+      "description": "Require approval for major updates",
+      "matchUpdateTypes": ["major"],
+      "automerge": false,
+      "minimumReleaseAge": "7 days",
+      "labels": ["dependencies", "major-update"]
+    },
+    {
+      "description": "Require approval for production dependency minor updates",
+      "matchDepTypes": ["dependencies"],
+      "matchUpdateTypes": ["minor"],
+      "automerge": false,
+      "minimumReleaseAge": "3 days"
+    },
+    {
+      "description": "Automerge GitHub Actions (safe, doesn't affect code)",
+      "matchManagers": ["github-actions"],
+      "automerge": true,
+      "minimumReleaseAge": "1 day"
+    },
+    {
+      "groupName": "linters and formatters",
+      "matchPackageNames": ["eslint", "prettier"],
+      "matchPackagePatterns": ["^eslint", "^prettier"],
+      "automerge": true
+    },
+    {
+      "groupName": "React ecosystem",
+      "matchPackageNames": ["react", "react-dom"],
+      "matchPackagePatterns": ["^react-"],
+      "automerge": false,
+      "minimumReleaseAge": "5 days",
+      "labels": ["dependencies", "react"]
+    },
+    {
+      "groupName": "Next.js",
+      "matchPackageNames": ["next"],
+      "matchPackagePatterns": ["^next-"],
+      "automerge": false,
+      "minimumReleaseAge": "5 days",
+      "labels": ["dependencies", "nextjs"]
+    },
+    {
+      "groupName": "Chakra UI ecosystem",
+      "matchPackageNames": ["@chakra-ui/react", "chakra-react-select"],
+      "matchPackagePatterns": ["^@chakra-ui"],
+      "automerge": false,
+      "minimumReleaseAge": "3 days"
+    },
+    {
+      "groupName": "Emotion styling",
+      "matchPackageNames": ["@emotion/react", "@emotion/styled"],
+      "matchPackagePatterns": ["^@emotion/"],
+      "automerge": true,
+      "minimumReleaseAge": "1 day"
+    },
+    {
+      "groupName": "Form libraries",
+      "matchPackageNames": [
+        "react-hook-form",
+        "@hookform/resolvers",
+        "zod"
+      ],
+      "automerge": false,
+      "minimumReleaseAge": "3 days"
+    },
+    {
+      "groupName": "TanStack Query",
+      "matchPackagePatterns": ["^@tanstack/"],
+      "automerge": false,
+      "minimumReleaseAge": "3 days"
+    },
+    {
+      "groupName": "TypeScript and types",
+      "matchPackageNames": ["typescript"],
+      "matchPackagePatterns": ["^@types/"],
+      "automerge": true
+    },
+    {
+      "groupName": "Dockerfile base images",
+      "matchManagers": ["dockerfile"],
+      "automerge": true,
+      "minimumReleaseAge": "3 days"
+    }
+  ],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "automerge": true,
+    "schedule": ["before 4am on monday"]
+  },
+  "vulnerabilityAlerts": {
+    "labels": ["security"],
+    "minimumReleaseAge": "0 days",
+    "automerge": true
+  }
+}

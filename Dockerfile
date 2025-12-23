@@ -25,14 +25,14 @@ COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
 
 # Copy application source + build config
-COPY app/ ./app/
+COPY src/ ./src/
 COPY public/ ./public/
-COPY types/ ./types/
-COPY postcss.config.mts ./
+COPY cache/ ./cache/
+COPY next.config.js ./
+COPY next-env.d.ts ./
 COPY tsconfig.json ./
-COPY vite.config.mts ./
 
-# Build the application
+# Build the Next.js application
 RUN bun run build
 
 # ============================================
@@ -48,15 +48,17 @@ WORKDIR /app
 # Copy production dependencies from dependencies stage
 COPY --from=dependencies --chown=amina:amina /app/node_modules ./node_modules
 
-# Copy built application from builder stage
-COPY --from=builder --chown=amina:amina /app/dist ./dist
+# Copy built Next.js application from builder stage
+COPY --from=builder --chown=amina:amina /app/.next ./.next
 COPY --from=builder --chown=amina:amina /app/public ./public
+COPY --from=builder --chown=amina:amina /app/next.config.js ./
+COPY --from=builder --chown=amina:amina /app/package.json ./
 
 USER amina
 
 # Set environment variables
-ENV NODE_ENV=production HOST=0.0.0.0 PORT=4321
+ENV NODE_ENV=production HOST=0.0.0.0 PORT=3000
 
-EXPOSE 4321
+EXPOSE 3000
 
-CMD ["bun", "dist/index.js"]
+CMD ["bun", "run", "start"]

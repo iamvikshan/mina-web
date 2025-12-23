@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
 import {
   Box,
   Container,
@@ -15,11 +14,7 @@ import { LuLink, LuSettings, LuRocket, LuClock } from 'react-icons/lu';
 import { FaDiscord } from 'react-icons/fa';
 import type { IconType } from 'react-icons';
 import { getInviteUrl } from '@/config/permalinks';
-import {
-  injectLandingKeyframes,
-  animations,
-  staggeredFadeIn,
-} from '../keyframes';
+import { animations, staggeredFadeIn } from '../keyframes';
 
 interface Step {
   number: number;
@@ -73,10 +68,6 @@ export const DeploymentSteps = ({
   protectedRealmsLabel,
 }: DeploymentStepsProps) => {
   const addBotUrl = getInviteUrl();
-
-  useEffect(() => {
-    injectLandingKeyframes();
-  }, []);
 
   return (
     <Box

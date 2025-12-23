@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
 import {
   Box,
   Container,
@@ -10,18 +9,13 @@ import {
   VStack,
   Text,
   Image,
-  Button,
+  Icon,
 } from '@chakra-ui/react';
-import NextLink from 'next/link';
 import { LuShield, LuZap, LuMoon } from 'react-icons/lu';
-import { FaDiscord } from 'react-icons/fa';
 import { ImagePaths } from '@/utils/cdn';
 import { getInviteUrl, getDocsUrl } from '@/config/permalinks';
-import {
-  injectLandingKeyframes,
-  animations,
-  staggeredFadeIn,
-} from '../keyframes';
+import { animations } from '../keyframes';
+import { PrimaryBtn, SecondaryBtn } from '../buttons';
 
 interface HeroAminaProps {
   formattedGuildCount: string;
@@ -36,10 +30,6 @@ interface HeroAminaProps {
 export const HeroAmina = ({ formattedGuildCount, uptime }: HeroAminaProps) => {
   const addBotUrl = getInviteUrl();
   const docsUrl = getDocsUrl();
-
-  useEffect(() => {
-    injectLandingKeyframes();
-  }, []);
 
   return (
     <Box
@@ -118,7 +108,7 @@ export const HeroAmina = ({ formattedGuildCount, uptime }: HeroAminaProps) => {
                 </Text>
                 <Text
                   as="span"
-                  bgGradient="linear(to-r, amina.crimson, rose.red, amina.crimson)"
+                  bgGradient="linear(to-r, amina.500, rose.500, amina.500)"
                   bgClip="text"
                   bgSize="200% auto"
                   css={{ animation: animations.gradientText }}
@@ -155,49 +145,8 @@ export const HeroAmina = ({ formattedGuildCount, uptime }: HeroAminaProps) => {
 
             {/* CTA Buttons */}
             <Flex direction={{ base: 'column', sm: 'row' }} gap="4">
-              <Button
-                asChild
-                size="lg"
-                bg="discord.blurple"
-                color="white"
-                px="8"
-                fontFamily="heading"
-                fontWeight="bold"
-                rounded="xl"
-                _hover={{
-                  bg: '#4752c4',
-                  transform: 'scale(1.05)',
-                  boxShadow: '0 0 30px rgba(88, 101, 242, 0.5)',
-                }}
-                transition="all 0.3s"
-              >
-                <a href={addBotUrl} target="_blank" rel="noopener noreferrer">
-                  <FaDiscord style={{ marginRight: '8px' }} />
-                  Add to Discord
-                </a>
-              </Button>
-
-              <Button
-                asChild
-                size="lg"
-                variant="outline"
-                borderColor="cyber.blue"
-                color="cyber.blue"
-                px="8"
-                fontFamily="heading"
-                fontWeight="bold"
-                rounded="xl"
-                _hover={{
-                  bg: 'cyber.blue/10',
-                  transform: 'scale(1.05)',
-                  boxShadow: '0 0 30px rgba(0, 206, 209, 0.3)',
-                }}
-                transition="all 0.3s"
-              >
-                <a href={docsUrl} target="_blank" rel="noopener noreferrer">
-                  Documentation
-                </a>
-              </Button>
+              <PrimaryBtn url={addBotUrl} text="Add to Discord" icon="discord" />
+              <SecondaryBtn url={docsUrl} text="Documentation" icon="file-text" />
             </Flex>
 
             {/* Stats */}
@@ -210,7 +159,9 @@ export const HeroAmina = ({ formattedGuildCount, uptime }: HeroAminaProps) => {
               color="gray.400"
             >
               <HStack gap="2">
-                <LuShield color="#57f287" size={20} />
+                <Icon color="discord.green" boxSize="5">
+                  <LuShield />
+                </Icon>
                 <Text>
                   <Text as="strong" color="gray.200">
                     {formattedGuildCount}
@@ -219,7 +170,9 @@ export const HeroAmina = ({ formattedGuildCount, uptime }: HeroAminaProps) => {
                 </Text>
               </HStack>
               <HStack gap="2">
-                <LuZap color="#ffd700" size={20} />
+                <Icon color="imperial.500" boxSize="5">
+                  <LuZap />
+                </Icon>
                 <Text>
                   <Text as="strong" color="gray.200">
                     {uptime.toFixed(1)}%
@@ -228,7 +181,9 @@ export const HeroAmina = ({ formattedGuildCount, uptime }: HeroAminaProps) => {
                 </Text>
               </HStack>
               <HStack gap="2">
-                <LuMoon color="#00ced1" size={20} />
+                <Icon color="cyber.400" boxSize="5">
+                  <LuMoon />
+                </Icon>
                 <Text>
                   <Text as="strong" color="gray.200">
                     24/7
