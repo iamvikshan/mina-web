@@ -27,7 +27,6 @@ RUN bun install --frozen-lockfile
 # Copy application source + build config
 COPY src/ ./src/
 COPY public/ ./public/
-COPY cache/ ./cache/
 COPY next.config.js ./
 COPY next-env.d.ts ./
 COPY tsconfig.json ./
