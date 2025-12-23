@@ -68,6 +68,7 @@ const customConfig = defineConfig({
         glowGold: { value: '0 0 20px rgba(255, 215, 0, 0.6)' },
         glowGreen: { value: '0 0 20px rgba(87, 242, 135, 0.6)' },
         glowCyan: { value: '0 0 20px rgba(0, 206, 209, 0.5)' },
+        glowRed: { value: '0 0 30px rgba(220, 20, 60, 0.5)' },
       },
       durations: {
         fast: { value: '150ms' },
@@ -94,95 +95,143 @@ const customConfig = defineConfig({
       shadows: {
         normal: {
           value: {
-            _light: light.shadow,
+            base: light.shadow,
             _dark: dark.shadow,
           },
         },
         // Contextual glow shadows
         glowPrimary: {
           value: {
-            _light: '0 0 15px rgba(220, 20, 60, 0.4)',
+            base: '0 0 15px rgba(220, 20, 60, 0.4)',
             _dark: '0 0 20px rgba(220, 20, 60, 0.6)',
           },
         },
         glowAccent: {
           value: {
-            _light: '0 0 15px rgba(30, 144, 255, 0.4)',
-            _dark: '0 0 20px rgba(30, 144, 255, 0.6)',
+            base: '0 0 15px rgba(0, 206, 209, 0.4)',
+            _dark: '0 0 20px rgba(0, 206, 209, 0.6)',
           },
         },
       },
       colors: {
+        // Primary text colors
         TextPrimary: {
           value: {
-            _light: `{colors.${light.textColorPrimary}}`,
+            base: `{colors.${light.textColorPrimary}}`,
             _dark: `{colors.${dark.textColorPrimary}}`,
           },
         },
         TextSecondary: {
           value: {
-            _light: `{colors.${light.textColorSecondary}}`,
+            base: `{colors.${light.textColorSecondary}}`,
             _dark: `{colors.${dark.textColorSecondary}}`,
           },
         },
+        // Background surfaces
         MainBackground: {
           value: {
-            _light: `{colors.${light.globalBg}}`,
+            base: `{colors.${light.globalBg}}`,
             _dark: `{colors.${dark.globalBg}}`,
           },
         },
+        SurfacePrimary: {
+          value: {
+            base: `{colors.${light.surfacePrimary}}`,
+            _dark: `{colors.${dark.surfacePrimary}}`,
+          },
+        },
+        SurfaceSecondary: {
+          value: {
+            base: `{colors.${light.surfaceSecondary}}`,
+            _dark: `{colors.${dark.surfaceSecondary}}`,
+          },
+        },
+        SurfaceMuted: {
+          value: {
+            base: `{colors.${light.surfaceMuted}}`,
+            _dark: `{colors.${dark.surfaceMuted}}`,
+          },
+        },
+        // Input states
         InputBackground: {
           value: {
-            _light: '{colors.secondaryGray.300}',
+            base: '{colors.slate.100}',
             _dark: '{colors.blackAlpha.300}',
           },
         },
         InputBorder: {
           value: {
-            _light: '{colors.blackAlpha.200}',
+            base: '{colors.slate.300}',
             _dark: '{colors.whiteAlpha.200}',
           },
         },
+        // Brand colors
         Brand: {
           value: {
-            _light: `{colors.${light.brand}}`,
+            base: `{colors.${light.brand}}`,
             _dark: `{colors.${dark.brand}}`,
           },
         },
         CardBackground: {
           value: {
-            _light: `{colors.${light.cardBg}}`,
+            base: `{colors.${light.cardBg}}`,
             _dark: `{colors.${dark.cardBg}}`,
+          },
+        },
+        // Border colors
+        BorderPrimary: {
+          value: {
+            base: `{colors.${light.borderPrimary}}`,
+            _dark: `{colors.${dark.borderPrimary}}`,
+          },
+        },
+        BorderSecondary: {
+          value: {
+            base: `{colors.${light.borderSecondary}}`,
+            _dark: `{colors.${dark.borderSecondary}}`,
+          },
+        },
+        // Interactive states
+        HoverBackground: {
+          value: {
+            base: `{colors.${light.hoverBg}}`,
+            _dark: `{colors.${dark.hoverBg}}`,
+          },
+        },
+        ActiveBackground: {
+          value: {
+            base: `{colors.${light.activeBg}}`,
+            _dark: `{colors.${dark.activeBg}}`,
           },
         },
         // Amina-specific semantic colors
         AminaCrimson: {
           value: {
-            _light: '{colors.amina.600}',
+            base: '{colors.amina.600}',
             _dark: '{colors.amina.500}',
           },
         },
         AminaGlow: {
           value: {
-            _light: '{colors.amina.400}',
+            base: '{colors.amina.400}',
             _dark: '{colors.amina.400}',
           },
         },
         CyberBlue: {
           value: {
-            _light: '{colors.cyber.600}',
-            _dark: '{colors.cyber.500}',
+            base: '{colors.cyber.500}',
+            _dark: '{colors.cyber.400}',
           },
         },
         CyberGlow: {
           value: {
-            _light: '{colors.cyber.400}',
+            base: '{colors.cyber.400}',
             _dark: '{colors.cyber.400}',
           },
         },
         ImperialGold: {
           value: {
-            _light: '{colors.imperial.600}',
+            base: '{colors.imperial.600}',
             _dark: '{colors.imperial.500}',
           },
         },
@@ -192,19 +241,19 @@ const customConfig = defineConfig({
         // Status colors
         Success: {
           value: {
-            _light: '{colors.green.500}',
+            base: '{colors.green.600}',
             _dark: '{colors.discord.green}',
           },
         },
         Warning: {
           value: {
-            _light: '{colors.orange.500}',
+            base: '{colors.orange.500}',
             _dark: '{colors.imperial.600}',
           },
         },
         Error: {
           value: {
-            _light: '{colors.red.500}',
+            base: '{colors.red.500}',
             _dark: '{colors.discord.red}',
           },
         },
@@ -245,11 +294,11 @@ const customConfig = defineConfig({
       letterSpacing: '0.02em',
     },
     input: {
-      color: 'gray.700',
+      color: { _light: 'gray.700', _dark: 'gray.100' },
     },
     '*:focus-visible': {
       outline: '2px solid',
-      outlineColor: 'cyber.500',
+      outlineColor: 'cyber.400',
       outlineOffset: '2px',
     },
   },

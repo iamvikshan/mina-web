@@ -45,8 +45,3 @@ export default function NotFoundPage() {
     </Box>
   );
 }
-
-// Force SSR to prevent static generation issues with Next.js 16
-export const getStaticProps = async () => {
-  return { props: {} };
-};

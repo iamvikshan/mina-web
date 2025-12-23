@@ -69,6 +69,141 @@ _Based on Amina's character story and inspired by Akame ga Kill's dramatic aesth
 | **Achievements**      | `--imperial-gold`   | Badges, ranks, rewards               |
 | **Discord Brand**     | `--discord-blurple` | Login, Discord integrations          |
 
+### 🌗 Light & Dark Theme Modes
+
+The design system supports both light and dark themes using semantic tokens that adapt automatically.
+
+#### Dark Theme (Default - "Night Raid Mode")
+
+The dark theme represents Amina's "true form" - the Night Raid assassin aesthetic.
+
+```css
+:root {
+  /* Backgrounds */
+  --MainBackground: var(--night-800); /* #0a0a0a */
+  --CardBackground: var(--night-700); /* #121212 */
+  --SurfacePrimary: var(--night-700); /* Primary surfaces */
+  --SurfaceSecondary: var(--night-600); /* Secondary surfaces */
+  --SurfaceMuted: var(--night-500); /* Muted backgrounds */
+
+  /* Text */
+  --TextPrimary: #ffffff;
+  --TextSecondary: var(--gray-400);
+
+  /* Borders */
+  --BorderPrimary: rgba(255, 255, 255, 0.2);
+  --BorderSecondary: rgba(255, 255, 255, 0.3);
+
+  /* Brand */
+  --Brand: var(--amina-400); /* #f04d6a - slightly brighter for dark bg */
+}
+```
+
+#### Light Theme ("Guardian's Watch")
+
+The light theme represents Amina's protective daytime presence - softer but still bold.
+
+```css
+:root[data-theme='light'] {
+  /* Backgrounds */
+  --MainBackground: var(--slate-50); /* #f8fafc */
+  --CardBackground: #ffffff;
+  --SurfacePrimary: #ffffff;
+  --SurfaceSecondary: var(--slate-100); /* #f1f5f9 */
+  --SurfaceMuted: var(--slate-200); /* #e2e8f0 */
+
+  /* Text */
+  --TextPrimary: var(--slate-900); /* #0f172a */
+  --TextSecondary: var(--slate-500); /* #64748b */
+
+  /* Borders */
+  --BorderPrimary: var(--slate-200); /* #e2e8f0 */
+  --BorderSecondary: var(--slate-300); /* #cbd5e1 */
+
+  /* Brand - stays crimson but slightly darker for light bg */
+  --Brand: var(--amina-500); /* #dc143c */
+}
+```
+
+Toggle themes by setting the `data-theme` attribute on the root element (e.g., `document.documentElement.dataset.theme = 'light'` for light mode).
+
+#### Theme Color Palettes Reference
+
+##### Neutral Grays (Light Mode Surfaces)
+
+| Token           | Value     | Usage             |
+| --------------- | --------- | ----------------- |
+| `--neutral-50`  | `#fafafa` | Lightest surfaces |
+| `--neutral-100` | `#f5f5f5` | Light backgrounds |
+| `--neutral-200` | `#e5e5e5` | Subtle dividers   |
+| `--neutral-300` | `#d4d4d4` | Border highlights |
+| `--neutral-400` | `#a3a3a3` | Placeholder text  |
+| `--neutral-500` | `#737373` | Secondary text    |
+| `--neutral-600` | `#525252` | Primary text      |
+| `--neutral-700` | `#404040` | Headings          |
+| `--neutral-800` | `#262626` | Strong emphasis   |
+| `--neutral-900` | `#171717` | Maximum contrast  |
+
+##### Slate Grays (Muted UI Elements)
+
+| Token         | Value     | Usage                         |
+| ------------- | --------- | ----------------------------- |
+| `--slate-50`  | `#f8fafc` | Light mode main background    |
+| `--slate-100` | `#f1f5f9` | Light mode secondary surfaces |
+| `--slate-200` | `#e2e8f0` | Light mode muted, borders     |
+| `--slate-300` | `#cbd5e1` | Light mode secondary borders  |
+| `--slate-500` | `#64748b` | Light mode secondary text     |
+| `--slate-900` | `#0f172a` | Light mode primary text       |
+
+Tokens shown above map directly to CSS variables; use the hyphenated `--token-name` form in code, and reference the same naming in design docs to avoid dot/hyphen drift.
+
+**Legacy → Semantic Token Mapping**
+
+| Legacy Token        | Semantic Token                                      | Notes                                          |
+| ------------------- | --------------------------------------------------- | ---------------------------------------------- |
+| `--midnight-black`  | `--MainBackground`                                  | Page/root backgrounds                          |
+| `--shadow-gray`     | `--CardBackground`                                  | Cards, panels                                  |
+| `--steel-gray`      | `--BorderPrimary`                                   | Default borders                                |
+| `--pure-white`      | `--TextPrimary` (dark) / `--SurfacePrimary` (light) | Adjust per theme                               |
+| `--off-white`       | `--TextSecondary`                                   | Secondary text                                 |
+| `--electric-blue`   | `--Brand` (accent)                                  | Use where electric-blue was previously applied |
+| `--discord-blurple` | `--Brand` (integration contexts)                    | Keep for Discord-specific CTA                  |
+
+Semantic tokens replace legacy tokens going forward; legacy names remain as fallbacks during migration.
+
+**Migration: Legacy Colors → Semantic Tokens**
+
+- Continue to ship both sets temporarily; semantic tokens are the new source of truth, and legacy tokens should only appear as fallbacks.
+- Update components to reference semantic tokens first, with `var(--Semantic, var(--legacy-token))` so older themes keep working until fully migrated.
+- Focus migration starting with buttons (~L349), cards (~L427), and inputs (~L470) since they touch the most surfaces.
+- When theming, set values on `:root` (dark) or `[data-theme='light']` and let semantic tokens cascade; avoid mixing direct legacy tokens in component CSS after migration.
+
+Example updated component usages with fallbacks (mirrors the component snippets below):
+
+```css
+.btn-primary {
+  background: linear-gradient(
+    135deg,
+    var(--Brand, var(--amina-crimson)) 0%,
+    var(--BrandStrong, var(--blood-red)) 100%
+  );
+  color: var(--TextPrimary, var(--pure-white));
+}
+
+.card {
+  background: var(--CardBackground, var(--shadow-gray));
+  border: 1px solid var(--BorderPrimary, var(--steel-gray));
+}
+
+.input {
+  background: var(--SurfaceSecondary, var(--midnight-black));
+  border-color: var(--BorderPrimary, var(--steel-gray));
+  color: var(--TextPrimary, var(--pure-white));
+}
+```
+
+Fallback guidance: keep both token systems only during the transition window; remove legacy fallbacks once every theme defines the semantic set.
+
 ---
 
 ## 🖋️ Typography
@@ -265,10 +400,10 @@ These fonts were chosen to match Amina's character: a passionate, energetic 18-2
 .btn-primary {
   background: linear-gradient(
     135deg,
-    var(--amina-crimson) 0%,
-    var(--blood-red) 100%
+    var(--Brand, var(--amina-crimson)) 0%,
+    var(--BrandStrong, var(--blood-red)) 100%
   );
-  color: var(--pure-white);
+  color: var(--TextPrimary, var(--pure-white));
   border: 2px solid transparent;
   border-radius: var(--radius-lg);
   padding: var(--space-3) var(--space-6);
@@ -287,8 +422,8 @@ These fonts were chosen to match Amina's character: a passionate, energetic 18-2
   box-shadow: var(--shadow-lg), var(--glow-crimson);
   background: linear-gradient(
     135deg,
-    var(--rose-red) 0%,
-    var(--amina-crimson) 100%
+    var(--Brand, var(--rose-red)) 0%,
+    var(--BrandStrong, var(--amina-crimson)) 100%
   );
 }
 
@@ -300,8 +435,8 @@ These fonts were chosen to match Amina's character: a passionate, energetic 18-2
 /* Secondary Button (Electric Blue) */
 .btn-secondary {
   background: transparent;
-  color: var(--electric-blue);
-  border: 2px solid var(--electric-blue);
+  color: var(--Brand, var(--electric-blue));
+  border: 2px solid var(--Brand, var(--electric-blue));
   border-radius: var(--radius-lg);
   padding: var(--space-3) var(--space-6);
   font-family: var(--font-heading);
@@ -314,15 +449,15 @@ These fonts were chosen to match Amina's character: a passionate, energetic 18-2
 }
 
 .btn-secondary:hover {
-  background: var(--electric-blue);
-  color: var(--midnight-black);
+  background: var(--Brand, var(--electric-blue));
+  color: var(--MainBackground, var(--midnight-black));
   box-shadow: var(--glow-blue);
 }
 
 /* Danger Button */
 .btn-danger {
   background: var(--blood-red);
-  color: var(--pure-white);
+  color: var(--TextPrimary, var(--pure-white));
   border: 2px solid var(--blood-red);
   /* ...rest similar to primary */
 }
@@ -341,8 +476,8 @@ These fonts were chosen to match Amina's character: a passionate, energetic 18-2
 ```css
 /* Base Card */
 .card {
-  background: var(--shadow-gray);
-  border: 1px solid var(--steel-gray);
+  background: var(--CardBackground, var(--shadow-gray));
+  border: 1px solid var(--BorderPrimary, var(--steel-gray));
   border-radius: var(--radius-xl);
   padding: var(--space-6);
   box-shadow: var(--shadow-md);
@@ -359,14 +494,14 @@ These fonts were chosen to match Amina's character: a passionate, energetic 18-2
 
 /* Active/Selected Card */
 .card-active {
-  border: 2px solid var(--amina-crimson);
+  border: 2px solid var(--Brand, var(--amina-crimson));
   box-shadow: var(--shadow-lg), var(--glow-crimson);
 }
 
 /* Server Card (Specific) */
 .server-card {
-  background: var(--shadow-gray);
-  border: 2px solid var(--steel-gray);
+  background: var(--CardBackground, var(--shadow-gray));
+  border: 2px solid var(--BorderPrimary, var(--steel-gray));
   border-radius: var(--radius-xl);
   overflow: hidden;
   transition: all 0.3s ease;
@@ -384,19 +519,19 @@ These fonts were chosen to match Amina's character: a passionate, energetic 18-2
 ```css
 /* Text Input */
 .input {
-  background: var(--midnight-black);
-  border: 2px solid var(--steel-gray);
+  background: var(--SurfaceSecondary, var(--midnight-black));
+  border: 2px solid var(--BorderPrimary, var(--steel-gray));
   border-radius: var(--radius-md);
   padding: var(--space-3) var(--space-4);
   font-family: var(--font-body);
   font-size: var(--text-base);
-  color: var(--pure-white);
+  color: var(--TextPrimary, var(--pure-white));
   transition: all 0.3s ease;
 }
 
 .input:focus {
   outline: none;
-  border-color: var(--electric-blue);
+  border-color: var(--Brand, var(--electric-blue));
   box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.2);
 }
 
@@ -725,7 +860,7 @@ The entire system is built dark-first, matching Akame ga Kill's night aesthetic.
 **Light Mode** (optional, for those who prefer):
 
 ```css
-[data-theme='light'] {
+:root[data-theme='light'] {
   --midnight-black: #ffffff;
   --shadow-gray: #f5f5f5;
   --steel-gray: #e0e0e0;
@@ -734,6 +869,8 @@ The entire system is built dark-first, matching Akame ga Kill's night aesthetic.
   /* Keep accent colors vibrant */
 }
 ```
+
+Use the same `data-theme` attribute toggle on the root element to switch between the dark-first defaults and this light override.
 
 ---
 

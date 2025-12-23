@@ -18,7 +18,7 @@ import { BrandLogo } from './BrandLogo';
 import { ThemeSwitch } from '@/components/ThemeSwitch';
 import { UserMenu } from '@/components/menu/UserMenu';
 import { useSession } from '@/utils/auth/hooks';
-import { injectLandingKeyframes, animations } from './keyframes';
+import { animations } from './keyframes';
 
 interface NavLink {
   name: string;
@@ -48,10 +48,6 @@ export const Header = () => {
     setMounted(true);
   }, []);
 
-  useEffect(() => {
-    injectLandingKeyframes();
-  }, []);
-
   return (
     <Box
       as="header"
@@ -63,10 +59,10 @@ export const Header = () => {
       borderBottomWidth="1px"
       zIndex="50"
       userSelect="none"
-      borderColor={{ base: 'gray.200', _dark: 'night.steel/80' }}
-      bg={{ base: 'white/60', _dark: 'night.black/40' }}
+      borderColor="whiteAlpha.100"
+      bg="night.black/40"
       backdropFilter="blur(12px)"
-      css={{ animation: animations.fadeInUp }}
+      css={{ animation: animations.fadeInUp, isolation: 'isolate' }}
     >
       <Flex
         mx="auto"

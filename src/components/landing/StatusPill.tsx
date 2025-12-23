@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { Box, HStack, Text, Link, IconButton } from '@chakra-ui/react';
+import { Box, Text, Link, IconButton } from '@chakra-ui/react';
 import { LuExternalLink, LuX } from 'react-icons/lu';
 
 const STATUS_PAGE_URL = 'https://mina.instatus.com';

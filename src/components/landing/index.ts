@@ -7,5 +7,8 @@ export { FooterSocialLink } from './FooterSocialLink';
 export { AminaStatusCard } from './AminaStatusCard';
 export { LandingLayout } from './LandingLayout';
 
+// Buttons
+export * from './buttons';
+
 // Sections
 export * from './sections';

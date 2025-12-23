@@ -11,7 +11,6 @@ Using Typescript 5, Next.js 16, React 19 and Chakra ui 3
 - Flexiable and Customizable
 - Detailed Documentation
 
-
 - Only 'Welcome message' Feature is Supported
 
 ## Review (not the latest version)
@@ -26,7 +25,11 @@ As a template, you need to customize a few things in order to get it work
 
 ### Before that
 
-- Install Node.js, and a Package Manager (ex: npm or pnpm)
+- Install Bun
+
+  ```sh
+  curl -fsSL https://bun.sh/install | bash
+  ```
 
 ### Required Skills
 
@@ -37,14 +40,13 @@ As a template, you need to customize a few things in order to get it work
 
 1. **Clone the repo**
    <br>
-   `git clone https://github.com/fuma_nama/discord-bot-dashboard-next.git`
+   `git clone https://github.com/iamvikshan/mina-web.git`
 2. **Install dependencies**
    <br>
-   We always prefer [`PNpm`](https://pnpm.io)
 
-   |      NPM      |      PNPM      |
-   | :-----------: | :------------: |
-   | `npm install` | `pnpm install` |
+   ```sh
+   bun install
+   ```
 
 3. **Customize files**
    <br>
@@ -104,7 +106,7 @@ As a template, you need to customize a few things in order to get it work
 
 8. **Done!**
    <br>
-   Start the app by `pnpm run dev` _(depends on your package manager)_
+   Start the app with `bun dev`
    <br>
    Then you should see the app started in port `3000`
 
