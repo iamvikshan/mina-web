@@ -19,6 +19,7 @@ import { ThemeSwitch } from '@/components/ThemeSwitch';
 import { UserMenu } from '@/components/menu/UserMenu';
 import { useSession } from '@/utils/auth/hooks';
 import { animations } from './keyframes';
+import { getDocsUrl } from '@/config/permalinks';
 
 interface NavLink {
   name: string;
@@ -28,7 +29,7 @@ interface NavLink {
 
 const defaultLinks: NavLink[] = [
   { name: 'Dashboard', url: '/dash' },
-  { name: 'Docs', url: 'https://docs.4mina.app', target: '_blank' },
+  { name: 'Docs', url: getDocsUrl(), target: '_blank' },
 ];
 
 /**

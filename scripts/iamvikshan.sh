@@ -1,6 +1,5 @@
 #!/bin/bash
 # Complete setup script to configure Git and GitHub CLI for iamvikshan
-# This allows development as iamvikshan even though Codespace belongs to saintkim
 #
 # This script sets up:
 # 1. Git global config (user.name and user.email)
@@ -11,6 +10,20 @@
 #
 # Run this once to set up your development environment permanently.
 # Safe to run multiple times (idempotent).
+#
+# Usage:
+#   ./iamvikshan.sh [--repo <repository-url>]
+#
+# Options:
+#   --repo <url>   Override the target repository URL (default: https://github.com/iamvikshan/mina-web.git)
+#
+# Environment variables:
+#   TARGET_REPO    Set this to override the default target repository URL
+#
+# Examples:
+#   ./iamvikshan.sh
+#   ./iamvikshan.sh --repo https://github.com/myorg/myrepo.git
+#   TARGET_REPO=https://github.com/myorg/myrepo.git ./iamvikshan.sh
 
 set -e
 
@@ -20,51 +33,89 @@ BASHRC_FILE="$HOME/.bashrc"
 MARKER_START="# iamvikshan development setup"
 MARKER_END="# End iamvikshan development setup"
 
-BASHRC_CONTENT=$(cat <<BASHRC_EOF
-${MARKER_START}
-# Clear GITHUB_TOKEN to use stored gh CLI credentials (${GIT_USER}) instead of Codespace token (saintkim)
-# This ensures all Git operations and GitHub CLI commands use ${GIT_USER} credentials
+# Default target repository (can be overridden by TARGET_REPO env var or --repo argument)
+DEFAULT_TARGET_REPO="https://github.com/iamvikshan/mina-web.git"
+TARGET_REPO="${TARGET_REPO:-$DEFAULT_TARGET_REPO}"
+
+# Parse command line arguments
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --repo)
+            if [ -z "$2" ] || [[ "$2" == -* ]]; then
+                echo "Error: --repo requires a repository URL argument."
+                echo "Run '$0 --help' for usage information."
+                exit 1
+            fi
+            TARGET_REPO="$2"
+            shift 2
+            ;;
+        --help|-h)
+            echo "Usage: $0 [--repo <repository-url>]"
+            echo ""
+            echo "Options:"
+            echo "  --repo <url>   Override the target repository URL"
+            echo "                 (default: $DEFAULT_TARGET_REPO)"
+            echo ""
+            echo "Environment variables:"
+            echo "  TARGET_REPO    Set this to override the default target repository URL"
+            exit 0
+            ;;
+        *)
+            echo "Unknown option: $1"
+            echo "Run '$0 --help' for usage information."
+            exit 1
+            ;;
+    esac
+done
+
+# Define the canonical check_dev_setup function body using a here-doc
+# This ensures both code paths (insert after setup.sh and fallback append) use identical content
+read -r -d '' FUNCTION_DEF << 'FUNCTION_EOF' || true
+# Clear GITHUB_TOKEN to use stored gh CLI credentials (GIT_USER_PLACEHOLDER) instead of existing GITHUB_TOKEN
+# This ensures all Git operations and GitHub CLI commands use GIT_USER_PLACEHOLDER credentials
 # Must be after setup.sh is sourced, as Codespace may set GITHUB_TOKEN
 # Setting to empty string works better than unset for some environments
 export GITHUB_TOKEN=""
 
-# ${GIT_USER} development setup verification
+# GIT_USER_PLACEHOLDER development setup verification
 check_dev_setup() {
-    local git_user=\$(git config --global user.name 2>/dev/null)
-    local git_email=\$(git config --global user.email 2>/dev/null)
+    local git_user=$(git config --global user.name 2>/dev/null)
+    local git_email=$(git config --global user.email 2>/dev/null)
     local gh_user=""
-
+    
     if command -v gh &> /dev/null; then
-        gh_user=\$(gh api user --jq .login 2>/dev/null || echo "")
+        gh_user=$(gh api user --jq .login 2>/dev/null || echo "")
     fi
-
-    if [ "\$git_user" != "${GIT_USER}" ] || [ "\$git_email" != "${GIT_EMAIL}" ]; then
-        echo "⚠️  Git is not configured for ${GIT_USER}"
-        echo "   Run: git config --global user.name '${GIT_USER}'"
-        echo "   Run: git config --global user.email '${GIT_EMAIL}'"
+    
+    if [ "$git_user" != "GIT_USER_PLACEHOLDER" ] || [ "$git_email" != "GIT_EMAIL_PLACEHOLDER" ]; then
+        echo "⚠️  Git is not configured for GIT_USER_PLACEHOLDER"
+        echo "   Run: git config --global user.name 'GIT_USER_PLACEHOLDER'"
+        echo "   Run: git config --global user.email 'GIT_EMAIL_PLACEHOLDER'"
         return 1
     fi
-
-    if [ -z "\$gh_user" ] || [ "\$gh_user" != "${GIT_USER}" ]; then
-        if [ -n "\$GITHUB_TOKEN" ]; then
-            echo "⚠️  GitHub CLI is using Codespace token (saintkim), not ${GIT_USER}"
-            echo "   Run: ./setup-iamvikshan.sh to authenticate as ${GIT_USER}"
+    
+    if [ -z "$gh_user" ] || [ "$gh_user" != "GIT_USER_PLACEHOLDER" ]; then
+        if [ -n "$GITHUB_TOKEN" ]; then
+            echo "⚠️  GitHub CLI is using existing GITHUB_TOKEN, not GIT_USER_PLACEHOLDER"
+            echo "   Run: ./iamvikshan.sh to authenticate as GIT_USER_PLACEHOLDER"
         else
-            echo "⚠️  GitHub CLI is not authenticated as ${GIT_USER}"
-            echo "   Run: ./setup-iamvikshan.sh to authenticate"
+            echo "⚠️  GitHub CLI is not authenticated as GIT_USER_PLACEHOLDER"
+            echo "   Run: ./iamvikshan.sh to authenticate"
         fi
         return 1
     fi
-
-    echo "✓ Development setup verified: working as ${GIT_USER}"
+    
+    echo "✓ Development setup verified: working as GIT_USER_PLACEHOLDER"
     return 0
 }
 
 # Uncomment the line below to auto-check on shell startup
 # check_dev_setup
-${MARKER_END}
-BASHRC_EOF
-)
+FUNCTION_EOF
+
+# Replace placeholders with actual values
+FUNCTION_DEF="${FUNCTION_DEF//GIT_USER_PLACEHOLDER/$GIT_USER}"
+FUNCTION_DEF="${FUNCTION_DEF//GIT_EMAIL_PLACEHOLDER/$GIT_EMAIL}"
 
 echo "=========================================="
 echo "Complete Setup for iamvikshan"
@@ -101,7 +152,7 @@ echo ""
 # Step 3: Authenticate GitHub CLI if needed
 if [ "$NEEDS_AUTH" = true ]; then
     echo "Step 3: Authenticating GitHub CLI..."
-    echo "The Codespace's GITHUB_TOKEN (for saintkim) will be temporarily disabled"
+    echo "The Codespace's existing GITHUB_TOKEN will be temporarily disabled"
     echo ""
     echo "You have two options:"
     echo ""
@@ -129,9 +180,6 @@ if [ "$NEEDS_AUTH" = true ]; then
             echo ""
             unset GITHUB_TOKEN
             echo "$token" | gh auth login --with-token
-            token=""
-            unset token
-            unset GITHUB_TOKEN
             echo "✓ Authentication complete"
             ;;
         s|S)
@@ -154,24 +202,8 @@ export GITHUB_TOKEN=""
 
 # Check if admin:ssh_signing_key scope is available
 HAS_SIGNING_SCOPE=true
-set +e
-SIGNING_SCOPE_OUTPUT=$(gh api -i -X GET /user/ssh_signing_keys 2>&1)
-SIGNING_SCOPE_EXIT=$?
-set -e
-SIGNING_SCOPE_STATUS=$(printf '%s\n' "$SIGNING_SCOPE_OUTPUT" | awk '/^HTTP\// {print $2; exit}')
-
-if [ "$SIGNING_SCOPE_STATUS" = "403" ] || [ "$SIGNING_SCOPE_STATUS" = "404" ]; then
+if ! gh api /user/ssh_signing_keys &>/dev/null; then
     HAS_SIGNING_SCOPE=false
-elif [ "$SIGNING_SCOPE_EXIT" -eq 0 ] && [ "$SIGNING_SCOPE_STATUS" = "200" ]; then
-    HAS_SIGNING_SCOPE=true
-else
-    echo "⚠️  Unable to verify 'admin:ssh_signing_key' scope (status: ${SIGNING_SCOPE_STATUS:-unknown})"
-    echo "   gh api output:"
-    echo "------------------------"
-    echo "$SIGNING_SCOPE_OUTPUT"
-    echo "------------------------"
-    echo "Please resolve network/authentication issues and rerun the script."
-    exit 1
 fi
 
 if [ "$HAS_SIGNING_SCOPE" != "true" ]; then
@@ -239,39 +271,26 @@ echo "Step 3.6: Configuring Git Remote and Credentials..."
 echo "Configuring git credential helper to use gh CLI..."
 gh auth setup-git
 
-# Ensure upstream remote is set correctly (origin is the fork, upstream is iamvikshan's repo)
-echo "Ensuring git remote 'upstream' is configured..."
+# Ensure remote is set correctly
+echo "Ensuring git remote 'origin' is configured..."
 # Check if we are in a git repo
 if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-    UPSTREAM_REPO="https://github.com/iamvikshan/mina-web.git"
-
-    echo "Using upstream repository: $UPSTREAM_REPO"
+    # Set remote to HTTPS URL (TARGET_REPO configured at script start)
+    # We use HTTPS because we just set up the credential helper
     
-    if git remote | grep -q "^upstream$"; then
-        CURRENT_URL=$(git remote get-url upstream)
-        if [ "$CURRENT_URL" != "$UPSTREAM_REPO" ]; then
-            echo "Updating existing 'upstream' remote from $CURRENT_URL to $UPSTREAM_REPO..."
-            git remote set-url upstream "$UPSTREAM_REPO"
+    if git remote | grep -q "^origin$"; then
+        CURRENT_URL=$(git remote get-url origin)
+        if [ "$CURRENT_URL" != "$TARGET_REPO" ]; then
+            echo "Updating existing 'origin' remote from $CURRENT_URL to $TARGET_REPO..."
+            git remote set-url origin "$TARGET_REPO"
         else
-            echo "Remote 'upstream' is already set to $UPSTREAM_REPO"
+            echo "Remote 'origin' is already set to $TARGET_REPO"
         fi
     else
-        echo "Adding 'upstream' remote..."
-        git remote add upstream "$UPSTREAM_REPO"
+        echo "Adding 'origin' remote..."
+        git remote add origin "$TARGET_REPO"
     fi
-    echo "✓ Remote 'upstream' configured"
-    
-    # Set upstream as the default push target for the current branch
-    CURRENT_BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null || echo "main")
-    echo "Setting 'upstream/$CURRENT_BRANCH' as the default push target..."
-    git fetch upstream --quiet 2>/dev/null || true
-    git branch --set-upstream-to=upstream/"$CURRENT_BRANCH" "$CURRENT_BRANCH" 2>/dev/null || true
-    echo "✓ 'git push' will now push to 'upstream' by default"
-    
-    # Show current remote configuration
-    echo ""
-    echo "Current remotes:"
-    git remote -v
+    echo "✓ Remote 'origin' configured"
 else
     echo "⚠️  Not inside a git repository. Skipping remote configuration."
 fi
@@ -287,7 +306,9 @@ if grep -q "$MARKER_START" "$BASHRC_FILE" 2>/dev/null; then
     
     # Remove the old block (from marker_start to marker_end)
     # Use a temporary file to avoid sed portability issues
+    # Use exact string comparison ($0 == start/end) to avoid regex escaping issues
     awk -v start="$MARKER_START" -v end="$MARKER_END" '
+        BEGIN { skip = 0 }
         $0 == start { skip=1; next }
         $0 == end { skip=0; next }
         skip==0 { print }
@@ -302,7 +323,9 @@ if [ -n "$SETUP_LINE" ]; then
     {
         head -n "$SETUP_LINE" "$BASHRC_FILE"
         echo ""
-        printf '%s\n' "$BASHRC_CONTENT"
+        echo "$MARKER_START"
+        echo "$FUNCTION_DEF"
+        echo "$MARKER_END"
         tail -n +$((SETUP_LINE + 1)) "$BASHRC_FILE"
     } > "$BASHRC_FILE.tmp" && mv "$BASHRC_FILE.tmp" "$BASHRC_FILE"
     echo "✓ Updated ~/.bashrc with GITHUB_TOKEN clearing and verification function"
@@ -310,7 +333,9 @@ else
     # If setup.sh line not found, append to end of file
     {
         echo ""
-        printf '%s\n' "$BASHRC_CONTENT"
+        echo "$MARKER_START"
+        echo "$FUNCTION_DEF"
+        echo "$MARKER_END"
     } >> "$BASHRC_FILE"
     echo "✓ Appended setup to ~/.bashrc"
 fi

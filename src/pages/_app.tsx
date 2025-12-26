@@ -7,6 +7,7 @@ import { NextPage } from 'next';
 import { ReactNode } from 'react';
 import Head from 'next/head';
 import { ThemeProvider } from 'next-themes';
+import { SITE } from '@/config/site';
 
 import '@/styles/global.css';
 import 'react-calendar/dist/Calendar.css';
@@ -28,7 +29,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
       <ThemeProvider attribute="class" disableTransitionOnChange>
         <QueryClientProvider client={client}>
           <Head>
-            <title>Demo Bot</title>
+            <title>{SITE.title}</title>
           </Head>
           {getLayout(<Component {...pageProps} />)}
         </QueryClientProvider>

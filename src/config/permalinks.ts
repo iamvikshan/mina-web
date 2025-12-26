@@ -44,10 +44,15 @@ export function getSupportUrl(): string {
 
 /**
  * Get the documentation URL
+ * @param path - Optional path to a specific doc page (e.g., 'features/moderation')
  * @returns Documentation site URL
+ * @example getDocsUrl() → 'https://docs.4mina.app'
+ * @example getDocsUrl('commands') → 'https://docs.4mina.app/commands'
  */
-export function getDocsUrl(): string {
-  return URLS.docs;
+export function getDocsUrl(path?: string): string {
+  if (!path) return URLS.docs;
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  return `${URLS.docs}/${cleanPath}`;
 }
 
 /**

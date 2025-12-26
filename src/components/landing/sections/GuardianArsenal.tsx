@@ -17,6 +17,7 @@ import {
   LuChevronRight,
 } from 'react-icons/lu';
 import type { IconType } from 'react-icons';
+import { getDocsUrl } from '@/config/permalinks';
 
 export interface GuardianFeature {
   icon: IconType;
@@ -35,7 +36,7 @@ const defaultFeatures: GuardianFeature[] = [
     subtitle: 'Auto-Moderation',
     description:
       'Advanced threat detection with customizable filters. Amina monitors raids, spam, and bad actors 24/7 so you can rest easy.',
-    learnMoreUrl: 'https://docs.4mina.app/features/moderation',
+    learnMoreUrl: getDocsUrl('features/moderation'),
   },
   {
     icon: LuSwords,
@@ -44,7 +45,7 @@ const defaultFeatures: GuardianFeature[] = [
     subtitle: 'Moderation Tools',
     description:
       'Swift action tools for mods - ban, kick, mute, warn with detailed logging. Every action tracked for transparency.',
-    learnMoreUrl: 'https://docs.4mina.app/commands',
+    learnMoreUrl: getDocsUrl('commands'),
   },
   {
     icon: LuMessageSquare,
@@ -53,7 +54,7 @@ const defaultFeatures: GuardianFeature[] = [
     subtitle: 'Engagement Features',
     description:
       'Customizable welcome messages, role assignment, and reaction roles to make new members feel at home instantly.',
-    learnMoreUrl: 'https://docs.4mina.app/features/welcome',
+    learnMoreUrl: getDocsUrl('features/welcome'),
   },
 ];
 
@@ -284,7 +285,7 @@ export const GuardianArsenal = ({
             </Text>
           </Text>
           <Link
-            href="https://docs.4mina.app/commands"
+            href={getDocsUrl('commands')}
             target="_blank"
             rel="noopener noreferrer"
             display="inline-flex"

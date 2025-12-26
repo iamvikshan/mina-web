@@ -1,9 +1,11 @@
 import { createIcon } from '@chakra-ui/react';
 import { PermissionFlags } from '@/api/discord';
 import { AppConfig } from './types';
+import { SITE } from './site';
+import { getInviteUrl } from './permalinks';
 
 const BotIcon = createIcon({
-  displayName: 'OmagizeLogo',
+  displayName: 'AminaLogo',
   viewBox: '0 0 512 512',
   path: (
     <g>
@@ -20,10 +22,9 @@ const BotIcon = createIcon({
 });
 
 export const config: AppConfig = {
-  name: 'Demo Bot',
+  name: SITE.title,
   icon: (props) => <BotIcon {...props} />,
-  inviteUrl:
-    'https://discord.com/api/oauth2/authorize?client_id=1070011901385375845&permissions=8&scope=bot',
+  inviteUrl: getInviteUrl(),
   guild: {
     //filter guilds that user has no permissions to manage it
     filter: (guild) =>

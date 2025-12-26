@@ -6,8 +6,8 @@ export const dashboard = createI18n(provider, {
     pricing: 'Pricing',
     learn_more: 'Learn More',
     invite: {
-      title: 'Invite our Bot',
-      description: 'Try our discord bot with one-click',
+      title: 'Invite Amina',
+      description: 'Add Amina to your Discord server with one click',
       bn: 'Invite now',
     },
     servers: {
@@ -27,8 +27,8 @@ export const dashboard = createI18n(provider, {
     pricing: '價錢',
     learn_more: '了解更多',
     invite: {
-      title: '邀請我們的機器人',
-      description: '一鍵試用我們的 Discord 機器人',
+      title: '邀請 Amina',
+      description: '一鍵將 Amina 添加到您的 Discord 服務器',
       bn: '現在邀請',
     },
     servers: {
@@ -48,8 +48,8 @@ export const dashboard = createI18n(provider, {
     pricing: '料金プラン',
     learn_more: '詳しく見る',
     invite: {
-      title: 'ボットを招待',
-      description: 'ワンクリックでDiscordボットをお試しください',
+      title: 'Amina を招待',
+      description: 'ワンクリックで Amina をサーバーに追加',
       bn: '今すぐ招待',
     },
     servers: {

@@ -12,7 +12,8 @@ import {
 } from '@/components/landing';
 import { getBotStats, formatStatNumber } from '@/lib/botStats';
 import { getUptimeStats } from '@/lib/uptime';
-import { SITE, SEO, OG } from '@/config/site';
+import { SEOHead } from '@/components/SEOHead';
+import { SEO, OG } from '@/config/site';
 
 interface LandingPageProps {
   guildCount: number;
@@ -40,26 +41,13 @@ export default function LandingPage({
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
+      <SEOHead
+        title={SEO.title}
+        description={SEO.description}
+        image={OG.image}
+        appendSiteName={false}
+      />
       <Head>
-        <title>{SEO.title}</title>
-        <meta name="description" content={SEO.description} />
-
-        {/* Open Graph */}
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={OG.title} />
-        <meta property="og:description" content={OG.description} />
-        <meta property="og:image" content={OG.image} />
-        <meta property="og:site_name" content={SITE.title} />
-
-        {/* Twitter */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={OG.title} />
-        <meta name="twitter:description" content={OG.description} />
-        <meta name="twitter:image" content={OG.image} />
-
-        {/* Theme Color */}
-        <meta name="theme-color" content="#DC143C" />
-
         {/* Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link

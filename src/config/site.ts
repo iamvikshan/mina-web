@@ -11,8 +11,25 @@
  */
 
 // Environment-based URL configuration
-// Defaults to production URL for safety - only uses localhost when explicitly in dev mode
-const isDev = process.env.NODE_ENV === 'development';
+// DOPPLER_ENVIRONMENT takes precedence (values: 'dev' or 'prd')
+// Falls back to NODE_ENV which Next.js sets automatically based on command
+const VALID_ENVIRONMENTS = ['dev', 'prd'] as const;
+
+const isDev = (() => {
+  if (process.env.DOPPLER_ENVIRONMENT) {
+    const normalized = process.env.DOPPLER_ENVIRONMENT.toLowerCase();
+    if (!VALID_ENVIRONMENTS.includes(normalized as typeof VALID_ENVIRONMENTS[number])) {
+      console.warn(
+        `[site.ts] Invalid DOPPLER_ENVIRONMENT value: "${process.env.DOPPLER_ENVIRONMENT}". ` +
+        `Expected one of: ${VALID_ENVIRONMENTS.join(', ')}. Falling back to NODE_ENV.`
+      );
+      return process.env.NODE_ENV === 'development';
+    }
+    return normalized === 'dev';
+  }
+  return process.env.NODE_ENV === 'development';
+})();
+
 const BASE_URL = isDev ? 'http://localhost:3000' : 'https://4mina.app';
 
 // ============================================================================
@@ -27,6 +44,8 @@ export const SITE = {
     'A quirky, artistic Discord bot that brings life to your server with creative features and infectious enthusiasm.',
   url: BASE_URL,
   author: 'Vikshan',
+  twitterHandle: '@iamvikshan',
+  themeColor: '#DC143C',
 } as const;
 
 // ============================================================================
