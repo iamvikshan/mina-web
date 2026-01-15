@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
 import {
   Box,
   Container,
@@ -10,11 +9,7 @@ import {
   Link,
   Icon,
 } from '@chakra-ui/react';
-import {
-  injectLandingKeyframes,
-  animations,
-  staggeredFadeIn,
-} from '../keyframes';
+import { animations, staggeredFadeIn } from '../keyframes';
 import {
   LuShield,
   LuSwords,
@@ -74,9 +69,6 @@ interface GuardianArsenalProps {
 export const GuardianArsenal = ({
   features = defaultFeatures,
 }: GuardianArsenalProps) => {
-  useEffect(() => {
-    injectLandingKeyframes();
-  }, []);
 
   return (
     <Box
@@ -159,15 +151,15 @@ export const GuardianArsenal = ({
               key={feature.title}
               role="group"
               position="relative"
-              bg="linear-gradient(to bottom right, rgba(45,45,45,0.5), rgba(26,26,26,0.5))"
+              bgGradient="linear(to-br, night.500/50, night.600/50)"
               backdropFilter="blur(12px)"
               borderWidth="2px"
-              borderColor="cyber.blue/20"
+              borderColor="cyber.400/20"
               rounded="2xl"
               p="8"
               transition="all 0.5s"
               _hover={{
-                borderColor: 'cyber.blue/60',
+                borderColor: 'cyber.400/60',
                 transform: 'scale(1.05)',
                 boxShadow: '0 0 40px rgba(0, 206, 209, 0.3)',
               }}
@@ -181,7 +173,7 @@ export const GuardianArsenal = ({
                 left="0"
                 right="0"
                 h="1"
-                bgGradient="linear(to-r, transparent, cyber.blue, transparent)"
+                bgGradient="linear(to-r, transparent, cyber.400, transparent)"
                 opacity="0"
                 _groupHover={{ opacity: 1 }}
                 transition="opacity 0.5s"
@@ -196,13 +188,13 @@ export const GuardianArsenal = ({
                   w="16"
                   h="16"
                   rounded="xl"
-                  bg="cyber.blue/10"
+                  bg="cyber.400/10"
                   borderWidth="1px"
-                  borderColor="cyber.blue/30"
-                  _groupHover={{ bg: 'cyber.blue/20' }}
+                  borderColor="cyber.400/30"
+                  _groupHover={{ bg: 'cyber.400/20' }}
                   transition="all 0.3s"
                 >
-                  <Icon as={feature.icon} boxSize="8" color="cyber.blue" />
+                  <Icon as={feature.icon} boxSize="8" color="cyber.400" />
                 </Box>
                 <Text
                   position="absolute"
@@ -221,7 +213,7 @@ export const GuardianArsenal = ({
                   <Text
                     fontSize="xs"
                     fontFamily="mono"
-                    color="cyber.blue"
+                    color="cyber.400"
                     textTransform="uppercase"
                     letterSpacing="widest"
                     mb="2"
@@ -234,7 +226,7 @@ export const GuardianArsenal = ({
                     fontFamily="heading"
                     fontWeight="bold"
                     color="white"
-                    _groupHover={{ color: 'cyber.blue' }}
+                    _groupHover={{ color: 'cyber.400' }}
                     transition="colors 0.3s"
                   >
                     {feature.title}
@@ -253,7 +245,7 @@ export const GuardianArsenal = ({
                     display="inline-flex"
                     alignItems="center"
                     gap="2"
-                    color="cyber.blue"
+                    color="cyber.400"
                     fontWeight="medium"
                     _hover={{ color: 'white' }}
                     transition="colors 0.3s"
@@ -303,13 +295,13 @@ export const GuardianArsenal = ({
             py="3"
             bg="transparent"
             borderWidth="2px"
-            borderColor="imperial.gold"
-            color="imperial.gold"
+            borderColor="imperial.500"
+            color="imperial.500"
             rounded="xl"
             fontFamily="heading"
             fontWeight="bold"
             _hover={{
-              bg: 'imperial.gold/10',
+              bg: 'imperial.500/10',
               transform: 'scale(1.05)',
             }}
             transition="all 0.3s"

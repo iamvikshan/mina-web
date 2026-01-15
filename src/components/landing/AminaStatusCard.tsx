@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Box, HStack, VStack, Text, Image } from '@chakra-ui/react';
 import { ImagePaths } from '@/utils/cdn';
-import { injectLandingKeyframes, animations } from './keyframes';
+import { animations } from './keyframes';
 
 const METRICS_API = '/api/metrics';
 
@@ -58,7 +58,6 @@ export const AminaStatusCard = () => {
   }, []);
 
   useEffect(() => {
-    injectLandingKeyframes();
     fetchMetrics();
   }, [fetchMetrics]);
 

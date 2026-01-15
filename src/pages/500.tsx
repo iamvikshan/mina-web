@@ -45,8 +45,3 @@ export default function ServerErrorPage() {
     </Box>
   );
 }
-
-// Force static generation
-export const getStaticProps = async () => {
-  return { props: {} };
-};

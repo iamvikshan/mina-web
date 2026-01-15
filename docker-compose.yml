@@ -1,15 +1,15 @@
 services:
-  amina:
+  dashboard:
     build:
       context: .
       dockerfile: Dockerfile
-    image: amina:latest
-    container_name: amina
+    image: mina-dashboard:latest
+    container_name: mina-dashboard
     # If a .env file exists in project root, load it
     env_file:
       - .env
     ports:
-      - '4321:4321'
+      - '3000:3000'
     environment:
       - NODE_ENV=production
       - CLIENT_ID=${CLIENT_ID}
@@ -18,5 +18,5 @@ services:
       - MONGO_CONNECTION=${MONGO_CONNECTION}
       - WEBHOOK_SECRET=${WEBHOOK_SECRET}
       - HOST=0.0.0.0
-      - PORT=4321
+      - PORT=3000
     restart: unless-stopped

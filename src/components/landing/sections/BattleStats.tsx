@@ -4,11 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Box, Container, Grid, VStack, Text, Icon } from '@chakra-ui/react';
 import { LuShield, LuHammer, LuUsers, LuClock } from 'react-icons/lu';
 import type { IconType } from 'react-icons';
-import {
-  injectLandingKeyframes,
-  animations,
-  staggeredFadeIn,
-} from '../keyframes';
+import { animations, staggeredFadeIn } from '../keyframes';
 
 interface Stat {
   id: string;
@@ -141,14 +137,10 @@ export const BattleStats = ({
       formattedValue: uptimeValue.toFixed(1),
       suffix: '%',
       label: 'System Uptime',
-      color: 'status.online',
+      color: 'discord.green',
       description: 'Reliability guarantee',
     },
   ];
-
-  useEffect(() => {
-    injectLandingKeyframes();
-  }, []);
 
   return (
     <Box

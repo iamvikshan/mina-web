@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
 import {
   Box,
   Container,
@@ -13,11 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { LuRadio, LuStar, LuUsers } from 'react-icons/lu';
 import { ImagePaths } from '@/utils/cdn';
-import {
-  injectLandingKeyframes,
-  animations,
-  staggeredFadeIn,
-} from '../keyframes';
+import { staggeredFadeIn } from '../keyframes';
 
 interface Testimonial {
   name: string;
@@ -127,10 +122,6 @@ export const GuardianTestimonials = ({
   formattedGuildCount,
   uptime,
 }: GuardianTestimonialsProps) => {
-  useEffect(() => {
-    injectLandingKeyframes();
-  }, []);
-
   return (
     <Box
       as="section"

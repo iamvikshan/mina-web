@@ -1,80 +1,29 @@
 /**
- * Landing Page Keyframes
- * ======================
- * CSS keyframes for landing page animations
- *
- * Note: Keyframes are now also defined in theme/config.tsx for Chakra's animation token system.
- * This file provides:
- * 1. injectLandingKeyframes() - For SSR compatibility (injects into document head)
- * 2. animations object - Animation strings for use in css={{ animation: ... }}
- *
- * For new components, prefer using Chakra's animation token: animation="float"
- * For complex/custom animations, use css={{ animation: animations.float }}
+ * Landing Page Animation Tokens
+ * ==============================
+ * Animation tokens for landing page components.
+ * 
+ * Keyframes and animations are defined in theme/config.tsx using Chakra's
+ * native animation system. This file exports:
+ * 1. Animation token names for the `animation` prop
+ * 2. staggeredFadeIn() helper for index-based delays
+ * 
+ * Usage in components:
+ * ```tsx
+ * // Using animation prop (preferred)
+ * <Box animation="float">...</Box>
+ * 
+ * // Using css prop for custom timing
+ * <Box css={{ animation: animations.floatDelayed1 }}>...</Box>
+ * 
+ * // Staggered animations
+ * <Box css={{ animation: staggeredFadeIn(index) }}>...</Box>
+ * ```
  */
 
-let injected = false;
-
-export const injectLandingKeyframes = () => {
-  if (typeof document === 'undefined' || injected) return;
-  injected = true;
-
-  const style = document.createElement('style');
-  style.id = 'landing-keyframes';
-  style.textContent = `
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-    }
-
-    @keyframes floatSlow {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    @keyframes breath {
-      0%, 100% { opacity: 0.3; transform: scale(1); }
-      50% { opacity: 0.6; transform: scale(1.05); }
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.05); opacity: 0.8; }
-    }
-
-    @keyframes shimmer {
-      0% { background-position: -200% center; }
-      100% { background-position: 200% center; }
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes bounceSlow {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-
-    @keyframes ping {
-      75%, 100% {
-        transform: scale(2);
-        opacity: 0;
-      }
-    }
-
-    @keyframes gradientText {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-  `;
-  document.head.appendChild(style);
-};
-
 /**
- * Animation strings for use in css={{ animation: ... }}
- * These match the keyframes injected above and defined in theme/config.tsx
+ * Animation token values for use in css prop
+ * These match the animation tokens defined in theme/config.tsx
  */
 export const animations = {
   float: 'float 6s ease-in-out infinite',
@@ -92,8 +41,37 @@ export const animations = {
 } as const;
 
 /**
- * Staggered animation helper
- * Creates fadeInUp animation with staggered delay based on index
+ * Animation token names for use with Chakra's animation prop
+ * @example <Box animation="float">...</Box>
+ */
+export const animationTokens = {
+  float: 'float',
+  floatSlow: 'floatSlow',
+  floatDelayed1: 'floatDelayed1',
+  floatDelayed2: 'floatDelayed2',
+  floatDelayed3: 'floatDelayed3',
+  breath: 'breath',
+  pulse: 'pulse',
+  shimmer: 'shimmer',
+  fadeInUp: 'fadeInUp',
+  bounceSlow: 'bounceSlow',
+  ping: 'ping',
+  gradientText: 'gradientText',
+} as const;
+
+/**
+ * Staggered fadeInUp animation helper
+ * Creates animation with staggered delay based on index
+ * @param index - Item index for delay calculation
+ * @param baseDelay - Base delay multiplier (default: 0.1s)
+ * @returns Animation string with calculated delay
  */
 export const staggeredFadeIn = (index: number, baseDelay = 0.1) =>
   `fadeInUp 0.6s ease-out forwards ${(index + 1) * baseDelay}s`;
+
+// Legacy function - no longer needed since keyframes are in theme
+// Keeping for backwards compatibility during migration
+export const injectLandingKeyframes = () => {
+  // No-op: Keyframes are now defined in theme/config.tsx
+  // and automatically injected by Chakra's system
+};

@@ -23,7 +23,7 @@ import {
 import { FaDiscord } from 'react-icons/fa';
 import { ImagePaths } from '@/utils/cdn';
 import { getInviteUrl } from '@/config/permalinks';
-import { injectLandingKeyframes, animations } from '../keyframes';
+import { animations } from '../keyframes';
 
 const statusColors = {
   online: {
@@ -81,8 +81,6 @@ export const CTAGuardian = ({ ping, status }: CTAGuardianProps) => {
 
   // Inject keyframes and create particles on mount
   useEffect(() => {
-    injectLandingKeyframes();
-
     const container = particlesRef.current;
     if (!container) return;
 

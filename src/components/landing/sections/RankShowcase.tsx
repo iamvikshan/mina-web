@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
 import {
   Box,
   Container,
@@ -20,11 +19,7 @@ import {
   LuChartBar,
 } from 'react-icons/lu';
 import { ImagePaths } from '@/utils/cdn';
-import {
-  injectLandingKeyframes,
-  animations,
-  staggeredFadeIn,
-} from '../keyframes';
+import { animations, staggeredFadeIn } from '../keyframes';
 
 interface Rank {
   id: number;
@@ -106,10 +101,6 @@ const ranks: Rank[] = [
  * Displays rank progression system
  */
 export const RankShowcase = () => {
-  useEffect(() => {
-    injectLandingKeyframes();
-  }, []);
-
   return (
     <Box
       as="section"
