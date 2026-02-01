@@ -28,20 +28,23 @@
         "GitHub.copilot",
         "unifiedjs.vscode-mdx",
         "bradlc.vscode-tailwindcss",
-        "prettier.prettier-vscode",
+        "esbenp.prettier-vscode",
         "eamodio.gitlens",
         "oven.bun-vscode",
         "ms-azuretools.vscode-docker",
         "WakaTime.vscode-wakatime",
         "mongodb.mongodb-vscode",
         "jock.svg",
+        "coderabbit.coderabbit-vscode",
+        "DeepScan.vscode-deepscan",
+        "jetbrains.qodana-code",
         "Lakshmisankar.vscode-lucide-icons"
       ]
     }
   },
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "bun update",
+  "postCreateCommand": "[ -f scripts/iamvikshan.sh ] && chmod +x scripts/iamvikshan.sh; bun install",
 
   // Set `remoteUser` to `root` to connect as root.
   "remoteUser": "root",

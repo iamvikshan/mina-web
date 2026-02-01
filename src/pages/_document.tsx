@@ -26,10 +26,7 @@ export default function Document() {
 
         {/* Basic Meta Tags */}
         <meta charSet="utf-8" />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1"
-        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="author" content={SITE.author} />
         <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
 

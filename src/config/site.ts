@@ -18,10 +18,14 @@ const VALID_ENVIRONMENTS = ['dev', 'prd'] as const;
 const isDev = (() => {
   if (process.env.DOPPLER_ENVIRONMENT) {
     const normalized = process.env.DOPPLER_ENVIRONMENT.toLowerCase();
-    if (!VALID_ENVIRONMENTS.includes(normalized as typeof VALID_ENVIRONMENTS[number])) {
+    if (
+      !VALID_ENVIRONMENTS.includes(
+        normalized as (typeof VALID_ENVIRONMENTS)[number]
+      )
+    ) {
       console.warn(
         `[site.ts] Invalid DOPPLER_ENVIRONMENT value: "${process.env.DOPPLER_ENVIRONMENT}". ` +
-        `Expected one of: ${VALID_ENVIRONMENTS.join(', ')}. Falling back to NODE_ENV.`
+          `Expected one of: ${VALID_ENVIRONMENTS.join(', ')}. Falling back to NODE_ENV.`
       );
       return process.env.NODE_ENV === 'development';
     }

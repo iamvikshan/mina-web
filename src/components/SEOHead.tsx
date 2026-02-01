@@ -51,8 +51,7 @@ export function SEOHead({
   // Build canonical URL from current route, stripping query params, hash fragments, and normalizing trailing slashes
   const cleanPath = router.asPath.split(/[?#]/)[0].replace(/^\/+/, '/');
   // Normalize trailing slashes: keep "/" as-is, remove trailing slash from non-root paths
-  const normalizedPath =
-    cleanPath === '/' ? '/' : cleanPath.replace(/\/$/, '');
+  const normalizedPath = cleanPath === '/' ? '/' : cleanPath.replace(/\/$/, '');
   const canonical = canonicalUrl ?? `${SITE.url}${normalizedPath}`;
 
   // Use provided values or fall back to defaults
