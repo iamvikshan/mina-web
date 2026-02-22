@@ -116,7 +116,7 @@ export const GuardianArsenal = ({
               letterSpacing="wider"
               textTransform="uppercase"
             >
-              Amina's Guardian Capabilities
+              Amina&apos;s Guardian Capabilities
             </Text>
           </Box>
 
@@ -127,7 +127,7 @@ export const GuardianArsenal = ({
             fontWeight="bold"
             color="white"
           >
-            Your Guardian's{' '}
+            Your Guardian&apos;s{' '}
             <Text
               as="span"
               bgGradient="linear(to-r, amina.crimson, rose.red)"
@@ -251,9 +251,10 @@ export const GuardianArsenal = ({
                     transition="colors 0.3s"
                   >
                     <Text>Learn More</Text>
-                    <LuChevronRight
-                      style={{ transition: 'transform 0.3s' }}
-                      className="group-hover:translate-x-1"
+                    <Box
+                      as={LuChevronRight}
+                      transition="transform 0.3s"
+                      _groupHover={{ transform: 'translateX(4px)' }}
                     />
                   </Link>
                 )}

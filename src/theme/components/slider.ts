@@ -20,10 +20,10 @@ export const sliderSlotRecipe = defineSlotRecipe({
       main: {
         thumb: {
           _light: {
-            bg: 'brand.500',
+            bg: 'amina.500',
           },
           _dark: {
-            bg: 'brand.400',
+            bg: 'amina.400',
           },
         },
       },

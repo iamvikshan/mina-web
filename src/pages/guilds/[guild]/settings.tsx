@@ -47,8 +47,10 @@ const GuildSettingsPage: NextPageWithLayout = () => {
           _light={{ color: 'cyan.500' }}
           _dark={{ color: 'cyan.400' }}
           cursor="pointer"
+          // eslint-disable-next-line no-console
           onClick={handleSubmit(() => console.log('submit'))}
         >
+          {/* eslint-disable-next-line react-hooks/incompatible-library */}
           {JSON.stringify(watch())}
         </Text>
       </Box>

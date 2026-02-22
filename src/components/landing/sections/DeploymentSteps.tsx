@@ -10,6 +10,7 @@ import {
   Button,
   Icon,
 } from '@chakra-ui/react';
+import Link from 'next/link';
 import { LuLink, LuSettings, LuRocket, LuClock } from 'react-icons/lu';
 import { FaDiscord } from 'react-icons/fa';
 import type { IconType } from 'react-icons';
@@ -324,7 +325,7 @@ export const DeploymentSteps = ({
               }}
               transition="all 0.3s"
             >
-              <a href="/dash">View Dashboard</a>
+              <Link href="/dash">View Dashboard</Link>
             </Button>
           </HStack>
         </VStack>

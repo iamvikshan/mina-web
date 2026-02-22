@@ -29,7 +29,7 @@ const GuildPage: NextPageWithLayout = () => {
 
   return (
     <QueryStatus query={query} loading={<LoadingPanel />} error={t.error.load}>
-      {query.data != null ? (
+      {query.data !== null && query.data !== undefined ? (
         <GuildPanel guild={guild} info={query.data} />
       ) : (
         <NotJoined guild={guild} />

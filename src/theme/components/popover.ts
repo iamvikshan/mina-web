@@ -15,11 +15,11 @@ export const popoverSlotRecipe = defineSlotRecipe({
   ],
   base: {
     content: {
-      bg: 'secondaryGray.300',
+      bg: 'slate.200',
       rounded: 'xl',
       boxShadow: 'normal',
       _dark: {
-        bg: 'navy.900',
+        bg: 'night.900',
       },
     },
   },

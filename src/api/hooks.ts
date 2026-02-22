@@ -44,7 +44,7 @@ export function useGuild(id: string) {
   return useQuery({
     queryKey: ['guild', id],
     queryFn: () => getGuild(accessToken as string, id),
-    enabled: accessToken != null,
+    enabled: accessToken !== null && accessToken !== undefined,
   });
 }
 
@@ -54,7 +54,7 @@ export function useGuilds() {
   return useQuery({
     queryKey: ['user_guilds'],
     queryFn: () => getGuilds(accessToken as string),
-    enabled: accessToken != null,
+    enabled: accessToken !== null && accessToken !== undefined,
   });
 }
 
@@ -64,7 +64,7 @@ export function useSelfUserQuery() {
   return useQuery<UserInfo>({
     queryKey: ['users', 'me'],
     queryFn: () => fetchUserInfo(accessToken!!),
-    enabled: accessToken != null,
+    enabled: accessToken !== null && accessToken !== undefined,
     staleTime: Infinity,
   });
 }
@@ -113,7 +113,7 @@ export function useEnableFeatureMutation() {
         queryKey: Keys.features(guild, feature),
       });
       client.setQueryData<GuildInfo | null>(Keys.guild_info(guild), (prev) => {
-        if (prev == null) return null;
+        if (prev === null || prev === undefined) return null;
 
         if (enabled) {
           return {

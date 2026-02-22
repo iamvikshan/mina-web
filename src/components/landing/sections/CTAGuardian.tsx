@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import Link from 'next/link';
 import {
   Box,
   Container,
@@ -411,10 +412,10 @@ export const CTAGuardian = ({ ping, status }: CTAGuardianProps) => {
                 }}
                 transition="all 0.3s"
               >
-                <a href="/dash">
+                <Link href="/dash">
                   <Icon as={LuChartBar} boxSize="5" mr="2" />
                   View Dashboard
-                </a>
+                </Link>
               </Button>
             </HStack>
 
@@ -450,7 +451,7 @@ export const CTAGuardian = ({ ping, status }: CTAGuardianProps) => {
 
             {/* Closing Message */}
             <Text color="gray.400" fontSize="lg" pt="4">
-              Let's protect your realm together{' '}
+              Let&apos;s protect your realm together{' '}
               <Text as="span" fontSize="3xl">
                 (｀･ω･´)ゞ
               </Text>

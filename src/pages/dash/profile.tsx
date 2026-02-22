@@ -42,7 +42,7 @@ const ProfilePage: NextPageWithLayout = () => {
       gap={{ base: 3, lg: 6 }}
     >
       <Flex direction="column">
-        {user.banner != null ? (
+        {user.banner !== null && user.banner !== undefined ? (
           <Image
             alt="banner"
             src={bannerUrl(user.id, user.banner)}
@@ -105,7 +105,9 @@ const ProfilePage: NextPageWithLayout = () => {
                 label: names[lang],
                 value: lang,
               }}
-              onChange={(e) => e != null && setLang(e.value)}
+              onChange={(e) =>
+                e !== null && e !== undefined && setLang(e.value)
+              }
               options={languages.map((lang) => ({
                 label: lang.name,
                 value: lang.key,

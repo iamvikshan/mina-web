@@ -5,7 +5,7 @@ export const avatarStyles = defineSlotRecipe({
   slots: ['root', 'image', 'fallback'],
   base: {
     root: {
-      bg: 'brand.300',
+      bg: 'amina.300',
       color: 'white',
     },
   },
@@ -17,7 +17,7 @@ export const avatarStyles = defineSlotRecipe({
           borderWidth: 10,
           borderColor: '#ffffff',
           _dark: {
-            borderColor: 'navy.800',
+            borderColor: 'night.800',
           },
         },
       },

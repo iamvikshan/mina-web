@@ -26,18 +26,18 @@ export const textareaStyles = defineRecipe({
         p: '20px',
         _light: {
           bg: 'transparent',
-          color: 'secondaryGray.900',
-          borderColor: 'secondaryGray.400',
+          color: 'slate.900',
+          borderColor: 'slate.300',
           _placeholder: {
-            color: 'secondaryGray.700',
+            color: 'slate.500',
           },
         },
         _dark: {
-          bg: 'navy.800',
+          bg: 'night.800',
           color: 'white',
-          borderColor: 'navy.600',
+          borderColor: 'night.600',
           _placeholder: {
-            color: 'secondaryGray.600',
+            color: 'slate.400',
           },
         },
       },
@@ -45,13 +45,13 @@ export const textareaStyles = defineRecipe({
         borderColor: 'var(--border-color)',
         border: '1px solid',
         _light: {
-          bg: 'secondaryGray.300',
+          bg: 'slate.200',
           borderColor: 'blackAlpha.200',
           _invalid: {
             borderColor: 'red.300',
           },
           _placeholder: {
-            color: 'secondaryGray.700',
+            color: 'slate.500',
           },
         },
         _dark: {
@@ -61,7 +61,7 @@ export const textareaStyles = defineRecipe({
             borderColor: 'red.400',
           },
           _placeholder: {
-            color: 'secondaryGray.600',
+            color: 'slate.400',
           },
         },
       },

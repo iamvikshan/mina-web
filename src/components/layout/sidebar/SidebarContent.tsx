@@ -68,7 +68,7 @@ export function SidebarContent() {
           />
         </Box>
         <Flex direction="column" px="10px" gap={3}>
-          {filteredGuilds == null ? (
+          {filteredGuilds === null || filteredGuilds === undefined ? (
             <GuildItemsSkeleton />
           ) : (
             filteredGuilds?.map((guild) => (
@@ -88,7 +88,7 @@ export function SidebarContent() {
 
 export function BottomCard() {
   const user = useSelfUserQuery().data;
-  if (user == null) return <></>;
+  if (user === null || user === undefined) return <></>;
 
   return (
     <Card.Root pos="sticky" left={0} bottom={0} w="full" py={2}>

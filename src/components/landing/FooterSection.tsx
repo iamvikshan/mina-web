@@ -33,6 +33,7 @@ export const FooterSection = () => {
   const [currentYear, setCurrentYear] = useState<number>(2024);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setCurrentYear(new Date().getFullYear());
   }, []);
 
@@ -118,7 +119,7 @@ export const FooterSection = () => {
                 h="2"
                 bg="discord.green"
                 rounded="full"
-                className="animate-pulse"
+                animation="pulse"
               />
               <Text
                 fontSize="xs"
@@ -257,7 +258,7 @@ export const FooterSection = () => {
                     h="2"
                     bg="discord.green"
                     rounded="full"
-                    className="animate-pulse"
+                    animation="pulse"
                   />
                   <Text
                     fontSize="xs"

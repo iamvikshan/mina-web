@@ -42,6 +42,22 @@ export const cardSlotRecipe = defineSlotRecipe({
           boxShadow: 'normal',
         },
       },
+      guardian: {
+        root: {
+          rounded: '2xl',
+          border: '1px solid',
+          borderColor: 'cyber.500/30',
+          backdropFilter: 'blur(12px)',
+          _light: {
+            bg: 'white/80',
+            boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+          },
+          _dark: {
+            bg: 'night.800/80',
+            boxShadow: '0 4px 20px rgba(0, 200, 255, 0.08)',
+          },
+        },
+      },
     },
   },
 });

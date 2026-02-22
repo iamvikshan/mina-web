@@ -1,6 +1,20 @@
 import { createSystem, defaultConfig, defineConfig } from '@chakra-ui/react';
 import { breakpoints } from './breakpoints';
 import { colors, dark, light } from './colors';
+import { avatarStyles } from './components/avatar';
+import { badgeStyles } from './components/badge';
+import { buttonStyles } from './components/button';
+import { cardSlotRecipe } from './components/card';
+import { inputStyles } from './components/input';
+import { menuSlotRecipe } from './components/menu';
+import { dialogSlotRecipe } from './components/modal';
+import { popoverSlotRecipe } from './components/popover';
+import { selectStyles } from './components/select';
+import { skeletonStyles } from './components/skeleton';
+import { sliderSlotRecipe } from './components/slider';
+import { switchSlotRecipe } from './components/switch';
+import { tabsSlotRecipe } from './components/tabs';
+import { textareaStyles } from './components/textarea';
 
 const customConfig = defineConfig({
   theme: {
@@ -258,6 +272,24 @@ const customConfig = defineConfig({
           },
         },
       },
+    },
+    recipes: {
+      badge: badgeStyles,
+      button: buttonStyles,
+      skeleton: skeletonStyles,
+      textarea: textareaStyles,
+    },
+    slotRecipes: {
+      avatar: avatarStyles,
+      card: cardSlotRecipe,
+      dialog: dialogSlotRecipe,
+      input: inputStyles,
+      menu: menuSlotRecipe,
+      popover: popoverSlotRecipe,
+      select: selectStyles,
+      slider: sliderSlotRecipe,
+      switch: switchSlotRecipe,
+      tabs: tabsSlotRecipe,
     },
   },
   globalCss: {

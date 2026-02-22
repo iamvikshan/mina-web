@@ -19,7 +19,7 @@ export function Sidebar({ sidebar }: { sidebar?: ReactNode }) {
     >
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
-          key={sidebar == null ? 'default' : 'new'}
+          key={sidebar === null || sidebar === undefined ? 'default' : 'new'}
           initial={{ x: '100px', opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           exit={{ x: '-100px', opacity: 0 }}

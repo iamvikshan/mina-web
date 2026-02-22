@@ -7,26 +7,26 @@ const mainFieldStyles = {
   fontSize: 'sm',
   p: '20px',
   _light: {
-    color: 'secondaryGray.900',
+    color: 'slate.900',
     bg: 'transparent',
     _placeholder: {
-      color: 'secondaryGray.700',
+      color: 'slate.500',
     },
     _invalid: {
       borderColor: 'red.400',
     },
-    borderColor: 'secondaryGray.400',
+    borderColor: 'slate.300',
   },
   _dark: {
     color: 'white',
-    bg: 'navy.800',
+    bg: 'night.800',
     _placeholder: {
-      color: 'secondaryGray.600',
+      color: 'slate.400',
     },
     _invalid: {
       borderColor: 'red.400',
     },
-    borderColor: 'navy.600',
+    borderColor: 'night.600',
   },
 };
 
@@ -37,10 +37,10 @@ export const inputStyles = defineSlotRecipe({
     field: {
       fontWeight: 400,
       _light: {
-        borderColor: 'secondaryGray.400',
+        borderColor: 'slate.300',
       },
       _dark: {
-        borderColor: 'navy.600',
+        borderColor: 'night.600',
       },
       borderRadius: '8px',
     },
@@ -62,11 +62,11 @@ export const inputStyles = defineSlotRecipe({
           fontWeight: '600',
           _light: {
             color: light.textColorPrimary,
-            borderBottomColor: 'secondaryGray.400',
+            borderBottomColor: 'slate.300',
           },
           _dark: {
             color: dark.textColorPrimary,
-            borderBottomColor: 'navy.600',
+            borderBottomColor: 'night.600',
           },
         },
       },
@@ -78,10 +78,10 @@ export const inputStyles = defineSlotRecipe({
           ...mainFieldStyles,
           _focus: {
             _light: {
-              borderColor: 'brand.300',
+              borderColor: 'amina.300',
             },
             _dark: {
-              borderColor: 'brand.400',
+              borderColor: 'amina.400',
             },
           },
         },
@@ -91,8 +91,8 @@ export const inputStyles = defineSlotRecipe({
           bg: 'transparent',
           fontWeight: '500',
           _light: {
-            color: 'navy.700',
-            borderColor: 'secondaryGray.100',
+            color: 'night.700',
+            borderColor: 'slate.100',
           },
           _dark: {
             color: 'white',
@@ -100,16 +100,16 @@ export const inputStyles = defineSlotRecipe({
           },
           border: '1px solid',
           borderRadius: '16px',
-          _placeholder: { color: 'secondaryGray.600', fontWeight: '400' },
+          _placeholder: { color: 'slate.400', fontWeight: '400' },
         },
       },
       authSecondary: {
         field: {
           bg: 'transparent',
           border: '1px solid',
-          borderColor: 'secondaryGray.100',
+          borderColor: 'slate.100',
           borderRadius: '16px',
-          _placeholder: { color: 'secondaryGray.600' },
+          _placeholder: { color: 'slate.400' },
         },
       },
       search: {
@@ -117,7 +117,7 @@ export const inputStyles = defineSlotRecipe({
           border: 'none',
           py: '11px',
           borderRadius: 'inherit',
-          _placeholder: { color: 'secondaryGray.600' },
+          _placeholder: { color: 'slate.400' },
         },
       },
     },

@@ -11,9 +11,10 @@ import { SITE } from '@/config/site';
  * 3. SITE.url from config (uses DOPPLER_ENVIRONMENT / NODE_ENV)
  */
 export function getAbsoluteUrl(): string {
-  if (process.env.APP_URL != null) return process.env.APP_URL;
+  if (process.env.APP_URL !== null && process.env.APP_URL !== undefined)
+    return process.env.APP_URL;
 
-  if (process.env.VERCEL_URL != null)
+  if (process.env.VERCEL_URL !== null && process.env.VERCEL_URL !== undefined)
     return `https://${process.env.VERCEL_URL}`;
 
   return SITE.url;

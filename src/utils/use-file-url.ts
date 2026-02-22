@@ -4,12 +4,16 @@ export function useFileUrl(file: Blob) {
   const [url, setUrl] = useState<string>();
 
   useEffect(() => {
-    if (file != null) {
+    if (file !== null && file !== undefined) {
       const fileReader = new FileReader();
       fileReader.onload = (e) => {
         const result = e.target?.result;
 
-        if (result != null && typeof result === 'string') {
+        if (
+          result !== null &&
+          result !== undefined &&
+          typeof result === 'string'
+        ) {
           setUrl(result);
         }
       };

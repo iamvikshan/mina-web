@@ -23,7 +23,7 @@ export default function GuildNavbar({ back }: { back?: boolean }) {
           </Box>
         </Link>
       </HorizontalCollapse>
-      {guild == null ? (
+      {guild === null || guild === undefined ? (
         <SkeletonCircle mr={3} />
       ) : (
         <Avatar.Root

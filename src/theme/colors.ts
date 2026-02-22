@@ -38,6 +38,7 @@ export const colors = {
     shadow: { value: '#1a1a1a' },
     steel: { value: '#2d2d2d' },
     slate: { value: '#3d3d3d' },
+    void: { value: '#030108' },
   },
 
   // === IMPERIAL GOLD (Accents) ===

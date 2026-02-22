@@ -45,7 +45,7 @@ export const useMemeFeature: UseFormRender<MemeFeature> = (data, onSubmit) => {
             <SelectField<Option>
               {...field}
               value={
-                field.value != null
+                field.value !== null && field.value !== undefined
                   ? sources.find((v) => v.value === field.value)
                   : undefined
               }

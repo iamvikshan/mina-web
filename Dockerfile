@@ -8,8 +8,8 @@ WORKDIR /app
 # Copy package files for better caching
 COPY package.json bun.lock ./
 
-# Install production dependencies only
-RUN bun install --frozen-lockfile --production
+# Install production dependencies only (skip lifecycle scripts like prepare/husky)
+RUN bun install --frozen-lockfile --production --ignore-scripts
 
 # ============================================
 # Stage 2: Builder

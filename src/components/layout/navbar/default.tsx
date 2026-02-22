@@ -24,7 +24,7 @@ export function DefaultNavbar() {
     },
   ];
 
-  if (activeItem != null)
+  if (activeItem !== null && activeItem !== undefined)
     breadcrumb.push({
       icon: activeItem.icon,
       text: <>{activeItem.name}</>,

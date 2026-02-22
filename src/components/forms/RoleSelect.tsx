@@ -28,7 +28,7 @@ function render(role: Role): Option {
     value: role.id,
     label: role.name,
     icon:
-      role.icon?.iconUrl != null ? (
+      role.icon?.iconUrl !== null && role.icon?.iconUrl !== undefined ? (
         <Image
           alt="icon"
           src={role.icon.iconUrl}
@@ -52,15 +52,19 @@ export const RoleSelect = forwardRef<SelectInstance<Option, false>, Props>(
     const isLoading = rolesQuery.isPending;
 
     const selected =
-      value != null ? rolesQuery.data?.find((role) => role.id === value) : null;
+      value !== null && value !== undefined
+        ? rolesQuery.data?.find((role) => role.id === value)
+        : null;
 
     return (
       <SelectField<Option>
         isDisabled={isLoading}
         isLoading={isLoading}
         placeholder={<common.T text="select role" />}
-        value={selected != null ? render(selected) : null}
-        onChange={(e) => e != null && onChange(e.value)}
+        value={
+          selected !== null && selected !== undefined ? render(selected) : null
+        }
+        onChange={(e) => e !== null && e !== undefined && onChange(e.value)}
         options={rolesQuery.data?.map(render) ?? []}
         ref={ref}
         {...rest}

@@ -27,10 +27,10 @@ export const dialogSlotRecipe = defineSlotRecipe({
     },
     content: {
       _light: {
-        bg: 'secondaryGray.300',
+        bg: 'slate.200',
       },
       _dark: {
-        bg: 'navy.900',
+        bg: 'night.900',
       },
     },
   },

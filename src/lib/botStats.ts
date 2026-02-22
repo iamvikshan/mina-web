@@ -102,6 +102,11 @@ async function fetchBotStatsFromDB(): Promise<{
     url: string;
   };
 } | null> {
+  if (!process.env.MONGO_CONNECTION) {
+    console.warn('[botStats] MONGO_CONNECTION not configured, using fallback');
+    return null;
+  }
+
   const client = await connectDB();
   const db = client.db();
   const config = (await db
@@ -197,7 +202,10 @@ export async function getBotStats(): Promise<BotStats> {
       presence: dbStats.presence,
     };
   } catch (error) {
-    console.error('[getBotStats] Error fetching bot stats:', error);
+    console.error(
+      '[getBotStats] Could not fetch bot stats, using defaults:',
+      error instanceof Error ? error.message : error
+    );
 
     // If we have stale cache, return it as fallback
     if (statsCache) {

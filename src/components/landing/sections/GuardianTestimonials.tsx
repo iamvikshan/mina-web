@@ -250,7 +250,7 @@ export const GuardianTestimonials = ({
                 color="cyber.blue/20"
                 fontFamily="serif"
               >
-                "
+                &quot;
               </Box>
 
               {/* Header */}

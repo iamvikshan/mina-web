@@ -81,11 +81,13 @@ export const ColorPickerForm: ControlledInput<
             border="1px solid"
             borderColor="InputBorder"
             bgColor={
-              value == null ? 'InputBackground' : convertHexToRGBA(value)
+              value === null || value === undefined
+                ? 'InputBackground'
+                : convertHexToRGBA(value)
             }
             flex={1}
           >
-            {value == null && (
+            {(value === null || value === undefined) && (
               <Text fontSize="sm" color="TextSecondary">
                 No Color
               </Text>

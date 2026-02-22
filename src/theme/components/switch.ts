@@ -26,14 +26,14 @@ export const switchSlotRecipe = defineSlotRecipe({
         bg: 'gray.300',
       },
       _dark: {
-        bg: 'navy.700',
+        bg: 'night.700',
       },
       _checked: {
         _light: {
-          bg: 'brand.500',
+          bg: 'amina.500',
         },
         _dark: {
-          bg: 'brand.400',
+          bg: 'amina.400',
         },
       },
     },

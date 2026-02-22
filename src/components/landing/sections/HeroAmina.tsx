@@ -51,7 +51,7 @@ export const HeroAmina = ({ formattedGuildCount, uptime }: HeroAminaProps) => {
           bg="amina.crimson/20"
           rounded="full"
           filter="blur(48px)"
-          className="animate-pulse"
+          animation="pulse"
         />
         <Box
           position="absolute"
@@ -62,7 +62,7 @@ export const HeroAmina = ({ formattedGuildCount, uptime }: HeroAminaProps) => {
           bg="cyber.blue/20"
           rounded="full"
           filter="blur(48px)"
-          className="animate-pulse"
+          animation="pulse"
           css={{ animationDelay: '1s' }}
         />
       </Box>
@@ -126,7 +126,7 @@ export const HeroAmina = ({ formattedGuildCount, uptime }: HeroAminaProps) => {
                 <Text as="span" color="cyber.blue/70">
                   *
                 </Text>{' '}
-                Amina prefers to call them "realms" (✿◠‿◠)
+                Amina prefers to call them &quot;realms&quot; (✿◠‿◠)
               </Text>
 
               <Text
@@ -235,7 +235,7 @@ export const HeroAmina = ({ formattedGuildCount, uptime }: HeroAminaProps) => {
                 py="2"
               >
                 <Text color="cyber.blue" fontSize="sm" fontFamily="mono">
-                  :/ heyyo, i'm amina
+                  :/ heyyo, i&apos;m amina
                 </Text>
               </Box>
             </Box>

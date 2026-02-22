@@ -47,7 +47,11 @@ export function FormCard({
   error,
 }: FormCardProps) {
   return (
-    <Form required={required} invalid={error != null} {...baseControl}>
+    <Form
+      required={required}
+      invalid={error !== null && error !== undefined}
+      {...baseControl}
+    >
       {label && (
         <Text fontSize={{ base: '16px', md: 'lg' }} fontWeight="medium" mb={0}>
           {label}

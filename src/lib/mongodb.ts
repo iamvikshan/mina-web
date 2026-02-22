@@ -18,7 +18,6 @@ function validateMongoUri(): string {
 
 // Global type declaration for connection caching
 declare global {
-  // eslint-disable-next-line no-var
   var mongoConnection: {
     client: MongoClient | null;
     promise: Promise<MongoClient> | null;
@@ -52,6 +51,7 @@ export async function connectDB(): Promise<MongoClient> {
     global.mongoConnection!.promise = new MongoClient(uri, options)
       .connect()
       .then((client) => {
+        // eslint-disable-next-line no-console
         console.log('MongoDB connected successfully');
         return client;
       });

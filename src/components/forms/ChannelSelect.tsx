@@ -44,11 +44,12 @@ function mapOptions(channels: GuildChannel[]) {
 
   //group channels
   for (const channel of channels) {
-    if (channel.category == null) roots.push(channel);
+    if (channel.category === null || channel.category === undefined)
+      roots.push(channel);
     else {
       const category = categories.get(channel.category);
 
-      if (category == null) {
+      if (category === null || category === undefined) {
         categories.set(channel.category, [channel]);
       } else {
         category.push(channel);
@@ -84,9 +85,14 @@ export const ChannelSelect = forwardRef<SelectInstance<Option, false>, Props>(
     const isLoading = channelsQuery.isLoading;
 
     const selected =
-      value != null ? channelsQuery.data?.find((c) => c.id === value) : null;
+      value !== null && value !== undefined
+        ? channelsQuery.data?.find((c) => c.id === value)
+        : null;
     const options = useMemo(
-      () => (channelsQuery.data != null ? mapOptions(channelsQuery.data) : []),
+      () =>
+        channelsQuery.data !== null && channelsQuery.data !== undefined
+          ? mapOptions(channelsQuery.data)
+          : [],
       [channelsQuery.data]
     );
 
@@ -95,9 +101,11 @@ export const ChannelSelect = forwardRef<SelectInstance<Option, false>, Props>(
         isDisabled={isLoading}
         isLoading={isLoading}
         placeholder={<common.T text="select channel" />}
-        value={selected != null ? render(selected) : null}
+        value={
+          selected !== null && selected !== undefined ? render(selected) : null
+        }
         options={options}
-        onChange={(e) => e != null && onChange(e.value)}
+        onChange={(e) => e !== null && e !== undefined && onChange(e.value)}
         ref={ref}
         {...rest}
       />

@@ -28,10 +28,15 @@ const FeaturePage: NextPageWithLayout = () => {
   const featureConfig = features[feature] as FeatureConfig<typeof feature>;
   const skeleton = featureConfig?.useSkeleton?.();
 
-  if (featureConfig == null) return <NotFound />;
+  if (featureConfig === null || featureConfig === undefined)
+    return <NotFound />;
   if (query.isError) return <NotEnabled />;
   if (query.isPending)
-    return skeleton != null ? <>{skeleton}</> : <LoadingPanel />;
+    return skeleton !== null && skeleton !== undefined ? (
+      <>{skeleton}</>
+    ) : (
+      <LoadingPanel />
+    );
   return (
     <UpdateFeaturePanel
       key={feature}

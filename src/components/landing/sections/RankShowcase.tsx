@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import {
   Box,
   Container,
@@ -484,10 +485,10 @@ export const RankShowcase = () => {
             }}
             transition="all 0.3s"
           >
-            <a href="/dash">
+            <Link href="/dash">
               <LuChartBar style={{ marginRight: '8px' }} />
               Track Your Progress
-            </a>
+            </Link>
           </Button>
         </VStack>
       </Container>

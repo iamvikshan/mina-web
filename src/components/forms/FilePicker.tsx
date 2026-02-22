@@ -23,7 +23,7 @@ export const FilePickerForm: ControlledInput<
     fieldState,
   } = useController(controller);
 
-  const empty = value == null || value.length === 0;
+  const empty = value === null || value === undefined || value.length === 0;
 
   return (
     <FormCard {...control} error={fieldState.error?.message}>

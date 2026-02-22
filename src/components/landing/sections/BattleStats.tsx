@@ -246,7 +246,7 @@ export const BattleStats = ({
           </Text>
 
           <Text fontSize="xl" color="gray.300" maxW="2xl">
-            Numbers that speak for themselves. Amina's track record of
+            Numbers that speak for themselves. Amina&apos;s track record of
             protecting Discord communities.
           </Text>
         </VStack>
@@ -392,7 +392,7 @@ export const BattleStats = ({
         {/* Bottom Message */}
         <Box textAlign="center" mt="16">
           <Text fontSize="lg" color="gray.400" fontStyle="italic">
-            "Every statistic represents a community made safer."
+            &quot;Every statistic represents a community made safer.&quot;
           </Text>
           <Text fontSize="sm" color="gray.500" mt="2">
             - Updated in real-time

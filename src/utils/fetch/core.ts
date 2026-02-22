@@ -39,7 +39,10 @@ export async function callReturn<T>(
   const res = await fetch(options.url, options.request);
 
   if (!res.ok) {
-    if (init.allowed?.[res.status] != null) {
+    if (
+      init.allowed?.[res.status] !== null &&
+      init.allowed?.[res.status] !== undefined
+    ) {
       return await init.allowed[res.status](res);
     } else {
       await handleError(res, options);
@@ -59,7 +62,10 @@ async function handleError(res: Response, options: Options) {
 
 async function parseOptions<T extends Options>(url: string, options: T) {
   return {
-    url: options.origin == null ? url : `${options.origin}${url}`,
+    url:
+      options.origin === null || options.origin === undefined
+        ? url
+        : `${options.origin}${url}`,
     request: options.request,
   };
 }

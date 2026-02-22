@@ -30,7 +30,11 @@ export type AccessToken = z.infer<typeof tokenSchema>;
 export function middleware_hasServerSession(req: NextRequest) {
   const raw = req.cookies.get(TokenCookie)?.value;
 
-  return raw != null && tokenSchema.safeParse(JSON.parse(raw)).success;
+  return (
+    raw !== null &&
+    raw !== undefined &&
+    tokenSchema.safeParse(JSON.parse(raw)).success
+  );
 }
 
 export function getServerSession(
@@ -40,7 +44,9 @@ export function getServerSession(
 ) {
   const raw = req.cookies[TokenCookie];
 
-  return tokenSchema.safeParse(raw == null ? raw : JSON.parse(raw));
+  return tokenSchema.safeParse(
+    raw === null || raw === undefined ? raw : JSON.parse(raw)
+  );
 }
 
 export async function setServerSession(
