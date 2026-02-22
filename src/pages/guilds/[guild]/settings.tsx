@@ -50,7 +50,7 @@ const GuildSettingsPage: NextPageWithLayout = () => {
           // eslint-disable-next-line no-console
           onClick={handleSubmit(() => console.log('submit'))}
         >
-          {/* eslint-disable-next-line react-hooks/incompatible-library */}
+          {/* eslint-disable-next-line react-hooks/incompatible-library -- intentional debug usage */}
           {JSON.stringify(watch())}
         </Text>
       </Box>

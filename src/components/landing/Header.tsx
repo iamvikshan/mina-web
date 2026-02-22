@@ -46,7 +46,7 @@ export const Header = () => {
 
   // Ensure hydration match
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- hydration guard
     setMounted(true);
   }, []);
 

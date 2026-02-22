@@ -63,7 +63,7 @@ export function useSelfUserQuery() {
 
   return useQuery<UserInfo>({
     queryKey: ['users', 'me'],
-    queryFn: () => fetchUserInfo(accessToken!!),
+    queryFn: () => fetchUserInfo(accessToken as string),
     enabled: accessToken !== null && accessToken !== undefined,
     staleTime: Infinity,
   });

@@ -399,9 +399,13 @@ if [[ "$HAS_SIGNING_SCOPE" != "true" ]]; then
             echo ""
             echo "   Timed out. Skipping scope refresh."
         else
-            gh auth refresh -h github.com -s admin:ssh_signing_key
-            HAS_SIGNING_SCOPE=true
-            echo "✓ Scope granted"
+            if gh auth refresh -h github.com -s admin:ssh_signing_key; then
+                HAS_SIGNING_SCOPE=true
+                echo "✓ Scope granted"
+            else
+                echo "⚠ Failed to refresh scope. SSH signing key upload will be skipped."
+                HAS_SIGNING_SCOPE=false
+            fi
         fi
     fi
 fi

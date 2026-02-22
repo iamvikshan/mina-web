@@ -201,7 +201,8 @@ export function getAchievementProgress(
   unlockedCount: number
 ): AchievementProgress {
   const total = ACHIEVEMENTS.length;
-  const percentage = Math.min(100, Math.round((unlockedCount / total) * 100));
+  const sanitized = Math.max(0, Math.min(unlockedCount, total));
+  const percentage = Math.round((sanitized / total) * 100);
 
   let message: string;
 
