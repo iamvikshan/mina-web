@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.29.7",
-    "@eslint/compat": "2.0.5",
+    "@eslint/compat": "2.1.0",
     "@typescript-eslint/eslint-plugin": "^8.60.0",
     "@typescript-eslint/parser": "^8.60.0",
     "@typescript-eslint/typescript-estree": "^8.60.0",
