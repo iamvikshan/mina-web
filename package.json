@@ -42,10 +42,10 @@
   "devDependencies": {
     "@babel/core": "^7.29.0",
     "@eslint/compat": "2.0.5",
-    "@typescript-eslint/eslint-plugin": "^8.56.1",
-    "@typescript-eslint/parser": "^8.56.1",
-    "@typescript-eslint/typescript-estree": "^8.56.1",
-    "@typescript-eslint/utils": "^8.56.1",
+    "@typescript-eslint/eslint-plugin": "^8.60.0",
+    "@typescript-eslint/parser": "^8.60.0",
+    "@typescript-eslint/typescript-estree": "^8.60.0",
+    "@typescript-eslint/utils": "^8.60.0",
     "@types/node": "^25.3.5",
     "@types/react": "^19.2.15",
     "@types/react-calendar": "^4.1.0",
@@ -58,10 +58,10 @@
     "typescript": "^5.9.3"
   },
   "overrides": {
-    "typescript-eslint": "^8.56.1",
-    "@typescript-eslint/utils": "^8.56.1",
-    "@typescript-eslint/parser": "^8.56.1",
-    "@typescript-eslint/eslint-plugin": "^8.56.1",
-    "@typescript-eslint/typescript-estree": "^8.56.1"
+    "typescript-eslint": "^8.60.0",
+    "@typescript-eslint/utils": "^8.60.0",
+    "@typescript-eslint/parser": "^8.60.0",
+    "@typescript-eslint/eslint-plugin": "^8.60.0",
+    "@typescript-eslint/typescript-estree": "^8.60.0"
   }
 }
