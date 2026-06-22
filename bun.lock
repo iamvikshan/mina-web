@@ -10,7 +10,7 @@
         "@emotion/styled": "^11.14.1",
         "@hookform/resolvers": "^5.4.0",
         "@tanstack/react-query": "^5.101.0",
-        "apexcharts": "^5.15.0",
+        "apexcharts": "^5.15.2",
         "chakra-react-select": "^6.1.3",
         "cookies-next": "^6.1.1",
         "deepmerge-ts": "^7.1.5",
@@ -509,7 +509,7 @@
 
     "ajv": ["ajv@6.14.0", "", { "dependencies": { "fast-deep-equal": "^3.1.1", "fast-json-stable-stringify": "^2.0.0", "json-schema-traverse": "^0.4.1", "uri-js": "^4.2.2" } }, "sha512-IWrosm/yrn43eiKqkfkHis7QioDleaXQHdDVPKg0FSwwd/DuvyX79TZnFOnYpB7dcsFAMmtFztZuXPDvSePkFw=="],
 
-    "apexcharts": ["apexcharts@5.15.0", "", {}, "sha512-ATswoiZi8wynKcwqf0eyE0Is5mBQoDpxZN3PlSVy41OrD+9GMBp2kZQRjyGK+5/j0GFjHkuAd7GKOrt5VMoPrw=="],
+    "apexcharts": ["apexcharts@5.15.2", "", {}, "sha512-qbd+ehDiRxo++wAqaGLmJcd683ktulTqoku4WYYyQ3XOgJIn4yhOQGV27KcdK7c2yhwxblyh4mgMm8ukI0wC0Q=="],
 
     "aria-query": ["aria-query@5.3.2", "", {}, "sha512-COROpnaoap1E2F000S62r6A60uHZnmlvomhfyT2DlTcrY1OrBKn2UhH7qn5wTC9zMvD0AY7csdPSNwKP+7WiQw=="],
 
