@@ -54,7 +54,7 @@
     "eslint-config-next": "^16.2.9",
     "eslint-config-prettier": "10.1.8",
     "husky": "^9.1.7",
-    "prettier": "^3.8.4",
+    "prettier": "^3.8.5",
     "typescript": "^6.0.3"
   },
   "overrides": {
