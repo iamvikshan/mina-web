@@ -1,0 +1,25 @@
+{
+  "extends": ["github>iamvikshan/.github//renovate/next"],
+  "packageRules": [
+    {
+      "description": "Group the full Chakra UI component ecosystem and its core Emotion engine dependencies",
+      "matchPackageNames": ["chakra-react-select"],
+      "matchPackagePatterns": ["^@chakra-ui/", "^@emotion/"],
+      "groupName": "Chakra UI platform",
+      "labels": ["dependencies", "ui", "chakra"]
+    },
+    {
+      "description": "Group forms, dropzones, calendars, and picker input systems specific to this project",
+      "matchPackageNames": ["react-hook-form", "react-dropzone", "react-calendar", "react-colorful"],
+      "matchPackagePatterns": ["^@hookform/"],
+      "groupName": "dashboard inputs and forms",
+      "labels": ["dependencies", "forms"]
+    },
+    {
+      "description": "Isolate remaining local miscellaneous dashboard utilities",
+      "matchPackageNames": ["cookies-next", "deepmerge-ts"],
+      "groupName": "dashboard local utilities",
+      "labels": ["dependencies", "utils"]
+    }
+  ]
+}

@@ -600,4 +600,4 @@ const achievements = checkAchievements(
 **Version**: 1.0.0  
 **Status**: Core system complete, optional achievements pending
 
-**Your journey as Amina's guardian begins now. Protect your realms, earn your achievements, and rise through the ranks. The Night Guard Protocol awaits! [>_]**
+**Your journey as Amina's guardian begins now. Protect your realms, earn your achievements, and rise through the ranks. The Night Guard Protocol awaits! [>\_]**

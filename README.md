@@ -51,12 +51,12 @@ As a template, you need to customize a few things in order to get it work
 3. **Customize files**
    <br>
    The file structure of this project
-   | Path | Description |
-   | ------------------------------------- | ------------- |
-   | [src/pages/\*](./src/pages) | All the pages |
-   | [src/components/\*](./src/components) | Components |
-   | [src/api/\*](./src/api) | API utils |
-   | [src/config/\*](./src/api) | Common configurations |
+   | Path                                  | Description           |
+   | ------------------------------------- | --------------------- |
+   | [src/pages/\*](./src/pages)           | All the pages         |
+   | [src/components/\*](./src/components) | Components            |
+   | [src/api/\*](./src/api)               | API utils             |
+   | [src/config/\*](./src/api)            | Common configurations |
 4. **Define Features**
    <br>
    The dashboard has built-in support for configuring features
