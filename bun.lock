@@ -10,7 +10,7 @@
         "@emotion/styled": "^11.14.1",
         "@hookform/resolvers": "^5.9.2",
         "@tanstack/react-query": "^5.107.1",
-        "apexcharts": "^5.16.0",
+        "apexcharts": "^8.8.1",
         "chakra-react-select": "^6.1.3",
         "cookies-next": "^6.1.1",
         "deepmerge-ts": "^7.1.6",
@@ -504,7 +504,9 @@
 
     "@zag-js/utils": ["@zag-js/utils@1.47.0", "", {}, "sha512-vD4JoPJkFBGA2C5/HcfKrhkxqjFlJrfQj0wSoypvYghP1nJYaa6PNJs0zo3EeI4/NJ0EuJSnUg0zsCo+Dhm4iQ=="],
 
-    "apexcharts": ["apexcharts@5.16.0", "", {}, "sha512-ULO3Gqrm0/26uwBcYz49u181uIp8Fy6BQQgg9QUDajs+JAs/EbXxiAmdc6BLy1JY29/JXroM7P0j0t2JPDApdg=="],
+    "apex-commons": ["apex-commons@0.10.0", "", {}, "sha512-mBXqK6wykMnWV4TzT9636k4aaeEvE8PmBIfa2bHx91eQoit8RjJrOlBpGxNGz1Bmt6gq2U3CoqPAUZftBbYdLQ=="],
+
+    "apexcharts": ["apexcharts@8.8.1", "", { "dependencies": { "apex-commons": "^0.10.0" } }, "sha512-Aeha39Wdrg4pTdJTpM+QsQemLoCRpwC5tEgwHYzbvtRxo4E9EmQ6zdTZbhcYia24HyPhqx3IATd1evgS0lRtzw=="],
 
     "attr-accept": ["attr-accept@2.2.5", "", {}, "sha512-0bDNnY/u6pPwHDMoF0FieU354oBi0a8rD9FcsLwzcGWbc8KS8KPIi7y+s13OlVY+gMWc/9xEMUgNE6Qm8ZllYQ=="],
 
